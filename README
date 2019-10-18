@@ -1,0 +1,22 @@
+Compile: make
+
+Testing socket:
+    run ./bin/test_server
+    run ./bin/test_client
+
+    Server output:
+    ```
+        Creating server on 0.0.0.0:8080
+        Server started. Waiting for client data...
+        Got Hello
+        Sent back: ok
+        Closing server socket...
+    ```
+
+    Client output:
+    ```
+        Connecting client to 127.0.0.1:8080
+        Client sending: Hello
+        Message sent. Client waiting for response..
+        Client received: ok
+    ```

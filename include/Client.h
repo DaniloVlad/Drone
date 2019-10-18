@@ -8,11 +8,17 @@
 
 class Client : Socket
 {
-public:
-    int createClient(struct sockaddr server_addr); 
-    void startClient();
+    
+    public:
+        Client();
+        Client(int port, char *address, int domain = AF_INET, int type = SOCK_STREAM, int protocol = 0);
+        Client(int port, uint32_t address, int domain = AF_INET, int type = SOCK_STREAM, int protocol = 0);
+        ~Client() {
+            
+        }
+        int send(void *data, size_t length);
+        int receive(void *buffer, size_t length);
 
-private:
-    struct sockaddr client_addr;                                                                 private : Drone drone;
+
 };
 #endif
