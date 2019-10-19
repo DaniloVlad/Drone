@@ -20,16 +20,21 @@ typedef enum inst {
     LOWER
 } INSTRUCTION;
 
-pthread_t running = 0;
-// pid_t rotateL = 0;
-// pid_t rotateR = 0;
-// pid_t raise = 0;
-// pid_t lower = 0;
-// pid_t moveForward = 0;
-// pid_t moveBackward = 0;
-// pid_t moveLeft = 0;
-// pid_t moveRight = 0;
+typedef struct _cmd {
+  INSTRUCTION ins;
+  pthread_t *tid;
+} COMMAND;
 
+pthread_t rotateL = 0;
+pthread_t rotateR = 0;
+pthread_t up = 0;
+pthread_t lower = 0;
+pthread_t moveForward = 0;
+pthread_t moveBackward = 0;
+pthread_t moveLeft = 0;
+pthread_t moveRight = 0;
+
+pthread_mutex_t lock;
 //LAYOUT OF DRONE
 // M1----M2
 // |     |
@@ -45,10 +50,17 @@ static void print_hello (GtkWidget *widget, gpointer   data)
   g_print ("Hello World\n");
 }
 
+//threaded function started by key press and 
+//exits upon key release
 void *instruction_handler(void *varg) {
-  INSTRUCTION * t_ins = (INSTRUCTION *) varg;
-  INSTRUCTION ins = *t_ins;
-  while(running != 0) {
+  COMMAND * t_ins = (COMMAND *) varg;
+  INSTRUCTION ins = t_ins -> ins;
+  pthread_t *id = t_ins -> tid;
+
+  //set the lock before checking id, any process about to manipulate the id will hold until mutex is unlocked
+  pthread_mutex_lock(&lock);
+  //id is the address of a global variable, that stores either 0 or the thread id
+  while(*id != 0) {
     if(ins == ROT_L) {
       if(Motor1 > 100 && Motor4 > 100 && Motor2 < 140 && Motor3 < 140) {
         Motor1--;
@@ -121,8 +133,10 @@ void *instruction_handler(void *varg) {
     }
     printf("New speed M1: %d M2: %d M3: %d M4: %d\r", Motor1, Motor2, Motor3, Motor4);
     fflush(stdout);
+    //motors have been adjusted, unlock the mutex and sleep for a 1/4 second
+    pthread_mutex_unlock(&lock);
     timespec time;
-    time.tv_nsec = 1000000000/4; //half second (1 billion nanosec in a sec)
+    time.tv_nsec = 1000000000/4; //quarter second (1 billion nanosec in a sec)
     nanosleep(&time, NULL);
 
   }
@@ -130,60 +144,94 @@ void *instruction_handler(void *varg) {
 }
 
 gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data) {
-  if(running != 0) 
+  pthread_t *id = NULL;
+
+  if(event -> keyval == GDK_KEY_A || event -> keyval == GDK_KEY_a)
+    id = &rotateL;
+  else if(event -> keyval == GDK_KEY_S || event -> keyval == GDK_KEY_s)
+    id = &lower;
+  else if(event -> keyval == GDK_KEY_W || event -> keyval == GDK_KEY_w)
+    id = &up;
+
+  else if(event -> keyval == GDK_KEY_D || event -> keyval == GDK_KEY_d )
+    id = &rotateR;
+
+  else if(event -> keyval == GDK_KEY_Up)
+    id = &moveForward;
+
+  else if(event -> keyval == GDK_KEY_Down )
+    id = &moveBackward;
+  else if(event -> keyval == GDK_KEY_Left)
+    id = &moveLeft;
+  else if(event -> keyval == GDK_KEY_Right)
+    id = &moveRight;
+
+  if(id != NULL) 
   {
-    // pthread_kill(running, SIGINT);
-    running = 0;
+    //lock mutex before updating id. Will wait if mutex is already locked
+    //otherwise it will make the threads wait until it is unlocked
+    pthread_mutex_lock(&lock);
+    *id = 0;
     printf("New speed M1: %d M2: %d M3: %d M4: %d\n", Motor1, Motor2, Motor3, Motor4);
 
     //Submit reset to socket here
     Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
     printf("RESET M1: %d M2: %d M3: %d M4: %d\n\n", Motor1, Motor2, Motor3, Motor4);
-
+    pthread_mutex_unlock(&lock);
   }
   return TRUE;
 }
 
 //Function is called multiple times if key is being held
 gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data) {
-  if(running == 0) g_print("Key pressed: %s\n", gdk_keyval_name(event -> keyval));
-  INSTRUCTION ins;
-  if(event -> keyval == GDK_KEY_A || event -> keyval == GDK_KEY_a && running == 0) {
-    ins = ROT_L;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  //command structure stores the instruction and a pointer to the thread id
+  //which is used in the instruction_handler while loop
+  COMMAND cmd;
+
+  if(event -> keyval == GDK_KEY_A || event -> keyval == GDK_KEY_a && rotateL == 0) {
+    cmd.ins = ROT_L;
+    cmd.tid = &rotateL;
+    pthread_create(&rotateL, NULL, (instruction_handler), (void *) &cmd);
 
   }
-  else if(event -> keyval == GDK_KEY_S || event -> keyval == GDK_KEY_s  && running == 0) {
-    ins = LOWER;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_S || event -> keyval == GDK_KEY_s  && lower == 0) {
+    cmd.ins = LOWER;
+    cmd.tid = &lower;
+    pthread_create(&lower, NULL, (instruction_handler), (void *) &cmd);
   }
 
-  else if(event -> keyval == GDK_KEY_W || event -> keyval == GDK_KEY_w  && running == 0) {
-    ins = RAISE;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_W || event -> keyval == GDK_KEY_w  && up == 0) {
+    cmd.ins = RAISE;
+    cmd.tid = &up;
+    pthread_create(&up, NULL, (instruction_handler), (void *) &cmd);
   }
 
-  else if(event -> keyval == GDK_KEY_D || event -> keyval == GDK_KEY_d  && running == 0) {
-    ins = ROT_R;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_D || event -> keyval == GDK_KEY_d  && rotateR == 0) {
+    cmd.ins = ROT_R;
+    cmd.tid = &rotateR;
+    pthread_create(&rotateR, NULL, (instruction_handler), (void *) &cmd);
   }
 
-  else if(event -> keyval == GDK_KEY_Up && running == 0) {
-    ins = ACC_F;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_Up && moveForward == 0) {
+    cmd.ins = ACC_F;
+    cmd.tid = &moveForward;
+    pthread_create(&moveForward, NULL, (instruction_handler), (void *) &cmd);
   }
 
-  else if(event -> keyval == GDK_KEY_Down && running == 0) {
-    ins = ACC_B;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_Down && moveBackward == 0) {
+    cmd.ins = ACC_B;
+    cmd.tid = &moveBackward;
+    pthread_create(&moveBackward, NULL, (instruction_handler), (void *) &cmd);
   }
-  else if(event -> keyval == GDK_KEY_Left && running == 0) {
-    ins = ACC_L;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_Left && moveLeft == 0) {
+    cmd.ins = ACC_L;
+    cmd.tid = &moveLeft;
+    pthread_create(&moveLeft, NULL, (instruction_handler), (void *) &cmd);
   }
-  else if(event -> keyval == GDK_KEY_Right && running == 0) {
-    ins = ACC_R;
-    pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
+  else if(event -> keyval == GDK_KEY_Right && moveRight == 0) {
+    cmd.ins = ACC_R;
+    cmd.tid = &moveRight;
+    pthread_create(&moveRight, NULL, (instruction_handler), (void *) &cmd);
   }
   
 
@@ -218,6 +266,11 @@ int main (int argc, char **argv)
   GtkApplication *app;
   int status;
   Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
+  //initialize up mutex lock
+  if(pthread_mutex_init(&lock, NULL) != 0) {
+    perror("Couldn't initialize mutex");
+    exit(EXIT_FAILURE);
+  }
 
   app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
