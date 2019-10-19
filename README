@@ -16,6 +16,7 @@ Server output:
 
 
 Client output:
+
     Connecting client to 127.0.0.1:8080
     Client sending: Hello
     Message sent. Client waiting for response..
@@ -27,7 +28,6 @@ Testing UI:
 
 Sample output:
 
-    
     Key pressed: Up
     New speed M1: 100 M2: 100 M3: 140 M4: 140
     RESET M1: 120 M2: 120 M3: 120 M4: 120
