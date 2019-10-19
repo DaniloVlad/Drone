@@ -134,11 +134,11 @@ gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data
   {
     // pthread_kill(running, SIGINT);
     running = 0;
-    //Submit reset to socket here
     printf("New speed M1: %d M2: %d M3: %d M4: %d\n", Motor1, Motor2, Motor3, Motor4);
 
+    //Submit reset to socket here
     Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
-    printf("RESET M1: %d M2: %d M3: %d M4: %d\n", Motor1, Motor2, Motor3, Motor4);
+    printf("RESET M1: %d M2: %d M3: %d M4: %d\n\n", Motor1, Motor2, Motor3, Motor4);
 
   }
   return TRUE;
@@ -146,7 +146,7 @@ gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data
 
 //Function is called multiple times if key is being held
 gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data) {
-
+  if(running == 0) g_print("Key pressed: %s\n", gdk_keyval_name(event -> keyval));
   INSTRUCTION ins;
   if(event -> keyval == GDK_KEY_A || event -> keyval == GDK_KEY_a && running == 0) {
     ins = ROT_L;
@@ -168,7 +168,7 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
     pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
   }
 
-  if(event -> keyval == GDK_KEY_Up && running == 0) {
+  else if(event -> keyval == GDK_KEY_Up && running == 0) {
     ins = ACC_F;
     pthread_create(&running, NULL, (instruction_handler), (void *) &ins);
   }
