@@ -1,8 +1,10 @@
 Compile: make
 
 Testing socket:
+
     run ./bin/test_server
     run ./bin/test_client
+
 
     Server output:
     ```
@@ -20,11 +22,12 @@ Testing socket:
         Message sent. Client waiting for response..
         Client received: ok
     ```
+
 Testing UI:
 
     run ./bin/client_ui
+
     Sample output:
-    
     ```
         Key pressed: Up
         New speed M1: 100 M2: 100 M3: 140 M4: 140
