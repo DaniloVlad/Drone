@@ -1,5 +1,4 @@
-#include "Motor.h"
-
+#include "include/Motor.h"
 
 Motor::Motor(int pin) {
     this -> pin = pin;
