@@ -24,9 +24,7 @@ Server::Server() : Socket() {
     }
 }
 
-
-
-Server::Server( int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
+Server::Server(int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
@@ -51,7 +49,7 @@ Server::Server( int port, char *address, int domain, int type, int protocol) : S
     }
 }
 
-Server::Server( int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
+Server::Server(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
