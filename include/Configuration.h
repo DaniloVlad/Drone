@@ -23,4 +23,12 @@
 
 #define MOTOR_PWM_RANGE 2000
 #define MOTOR_PWM_FREQUENCY 8000
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdint.h>
+
+#include <pigpio.h>
+
 #endif

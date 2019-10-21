@@ -1,7 +1,6 @@
 #include "include/Server.h"
 
-Server::Server() {
-    Socket();
+Server::Server() : Socket() {
     this -> drone = NULL;
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
@@ -26,8 +25,7 @@ Server::Server() {
     }
 }
 
-Server::Server(Drone *drone) {
-    Socket();
+Server::Server(Drone *drone) : Socket() {
     this -> drone = drone;
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
@@ -52,8 +50,7 @@ Server::Server(Drone *drone) {
     }
 }
 
-Server::Server(Drone *drone, int port, char *address, int domain, int type, int protocol) {
-    Socket(port, address, domain, type, protocol);
+Server::Server(Drone *drone, int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     this -> drone = drone;
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
@@ -78,8 +75,8 @@ Server::Server(Drone *drone, int port, char *address, int domain, int type, int 
     }
 }
 
-Server::Server(Drone *drone, int port, uint32_t address, int domain, int type, int protocol) {
-    Socket(port, address, domain, type, protocol);
+Server::Server(Drone *drone, int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
+    
     this -> drone = drone;
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
