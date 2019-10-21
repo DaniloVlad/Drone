@@ -14,12 +14,12 @@ public:
     Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc);
     ~Drone();
     int handleInstruction(char INS);
-    int //called by server after receiving instruction
+    //called by server after receiving instruction
     STATE getState();
     void checkAlt(); //called by server, polls accelerometer to maintain drones altitude if state is ROT_L/R, RESET, ACC_X/Y
     int *getGyroData();
-    int[3] int *getAccData();
-    int[3] int rotateLeft();
+    int *getAccData();
+    int rotateLeft();
     int rotateRight();
     int moveForward();
     int moveBackward();
