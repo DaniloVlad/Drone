@@ -3,7 +3,6 @@
  * */
 #ifndef CLIENT_H
 #define CLIENT_H
-#include "Drone.h"
 #include "Socket.h"
 
 class Client : Socket

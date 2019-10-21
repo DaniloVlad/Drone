@@ -5,6 +5,19 @@ Accelerometer::Accelerometer() {
     this -> i2c_bus = I2C_BUS;
     this -> data_pin = I2C_SDA;
     this -> clock_pin = I2C_SCL;
+
+    if(gpioSetMode(this -> data_pin, PI_ALT0) != 0) {
+        perror("Couldn't set mode");
+        exit(EXIT_FAILURE);
+
+    }
+
+    if(gpioSetMode(this -> clock_pin, PI_ALT0) != 0) {
+        perror("Couldn't set mode");
+        exit(EXIT_FAILURE);
+
+    }
+
     if((this -> i2c_handle = i2cOpen(this -> i2c_bus, this -> i2c_addr, 0)) == (PI_BAD_I2C_BUS | PI_BAD_I2C_ADDR | PI_BAD_FLAGS | PI_NO_HANDLE | PI_I2C_OPEN_FAILED)) {
         perror("Couldn't initialize i2c device");
         exit(EXIT_FAILURE);
@@ -19,6 +32,19 @@ Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_p
     this -> i2c_bus = i2c_bus;
     this -> data_pin = data_pin;
     this -> clock_pin = clock_pin;
+
+    //ALT0 pg 102 "BCM ARM PERIPHERALS"
+    if(gpioSetMode(this -> data_pin, PI_ALT0) != 0) {
+        perror("Couldn't set mode");
+        exit(EXIT_FAILURE);
+
+    }
+
+    if(gpioSetMode(this -> clock_pin, PI_ALT0) != 0) {
+        perror("Couldn't set mode");
+        exit(EXIT_FAILURE);
+
+    }
 
     if((this -> i2c_handle = i2cOpen(this -> i2c_bus, this -> i2c_addr, 0)) == (PI_BAD_I2C_BUS | PI_BAD_I2C_ADDR | PI_BAD_FLAGS | PI_NO_HANDLE | PI_I2C_OPEN_FAILED)) {
         perror("Couldn't initialize i2c device");

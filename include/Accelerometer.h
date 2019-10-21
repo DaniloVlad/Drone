@@ -17,8 +17,6 @@
 #define GYRO_Z_H 55
 #define GYRO_Z_L 56
 
-#include <iostream>
-#include <pigpio.h>
 #include "Configuration.h"
 
 class Accelerometer{
