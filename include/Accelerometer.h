@@ -39,7 +39,7 @@ class Accelerometer{
   
   	// Constructor function for the accelerometer object.
     public:
-  		// Creates the accelerometer with given paramaters if available.
+  		// Specifies a base constructor, a constructor with params and a deconstructor function.
         Accelerometer();
         Accelerometer(int i2c_addr, int i2c_bus, int data_pin,int clock_pin);
         ~Accelerometer();
