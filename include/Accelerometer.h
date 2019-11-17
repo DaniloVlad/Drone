@@ -1,9 +1,11 @@
 /**
  * Accelerometer Header
  * */
-#ifndef Accelerometer_H
-#define Accelerometer_H
 
+// Function/Class definitions can be seen in the accelerometer data sheet pdf within the repository.
+#ifndef Accelerometer_H
+
+#define Accelerometer_H
 #define ACC_X_H 45
 #define ACC_X_L 46
 #define ACC_Y_H 47
@@ -20,24 +22,29 @@
 #include "Configuration.h"
 
 class Accelerometer{
+  
+  	// Defines all the variables that will be used in the construction of the accelerometer object.
     private:
-        int data_pin;
-        int clock_pin;
+        int data_pin;		// The pin used to connect data.
+        int clock_pin;		// The pin used to connect the stream of data for the clock.
         int i2c_handle;
-        int i2c_addr;
+        int i2c_addr;		// Stores the physical address of i2c with a value of 1 for read and 0 for write.
         int i2c_bus;
-        uint16_t accX;
-        uint16_t accY;
-        uint16_t accZ;
-        uint16_t gyroX;
-        uint16_t gyroY;
-        uint16_t gyroZ;
+        uint16_t accX;		// High byte version of accelorometer X-axis data.
+        uint16_t accY;		// High byte version of accelorometer Y-axis data.
+        uint16_t accZ;		// High byte version of accelorometer Z-axis data.
+        uint16_t gyroX;		// High byte version of gyroscope X-axis data.
+        uint16_t gyroY;		// High byte version of gyroscope X-axis data.
+        uint16_t gyroZ;		// High byte version of gyroscope X-axis data.
+  
+  	// Constructor function for the accelerometer object.
     public:
+  		// Creates the accelerometer with given paramaters if available.
         Accelerometer();
         Accelerometer(int i2c_addr, int i2c_bus, int data_pin,int clock_pin);
         ~Accelerometer();
 
-        /** Getters **/
+        /** Getter Functions **/
         int getGyroX();
         int getGyroY();
         int getGyroZ();
@@ -46,9 +53,6 @@ class Accelerometer{
         int getAccZ();
         int* getGyroXYZ();
         int* getAccXYZ();
-
-    /** Setters **/
-    //nothing right now
 
 };
 #endif
