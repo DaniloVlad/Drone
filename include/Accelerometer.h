@@ -37,7 +37,7 @@ class Accelerometer{
         uint16_t gyroY;		// High byte version of gyroscope X-axis data.
         uint16_t gyroZ;		// High byte version of gyroscope X-axis data.
   
-  	// Constructor function for the accelerometer object.
+  	// Accelerometer functions.
     public:
   		// Specifies a base constructor, a constructor with params and a deconstructor function.
         Accelerometer();
