@@ -15,7 +15,7 @@ class Motor{
         int frequency;
         unsigned int pin;
 
-    // Constructor function for the motor object.
+    // Motor functions.
     public:
     	// Specifies a base constructor, constructor with partial and full params, and a deconstructor function.
         Motor(int pin);
