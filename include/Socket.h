@@ -21,6 +21,7 @@
 
 class Socket
 {
+  	// Defines all the variables that will be used in the construction of the server object.
     protected:
         struct sockaddr_in *addr = NULL;
         int socketfd = 0;
@@ -30,18 +31,21 @@ class Socket
         int protocol = 0;
         int port = 0;
         
+  	// Socket functions.    
     public:
+        // Specifies a base constructor, constructors with different address params and a deconstructor function.
         Socket();
         Socket(int port, char *address, int domain = AF_INET, int type = SOCK_STREAM, int protocol = 0);
         Socket(int port, uint32_t address = INADDR_ANY, int domain = AF_INET, int type = SOCK_STREAM, int protocol = 0);
         ~Socket();
         
-
+		// Setter function for the socket port. Returns 0 if successful.
         int setPort(int port) {
             this -> port = htons(port);
             return 0;
         }
 
+		// Setter function for the socket host. Returns 0 if successful, and -1 if unsuccesful.
         int setHost(const char *host) {
             if(addr != NULL) {
                 inet_pton(this -> domain, host, &this -> addr -> sin_addr.s_addr);
@@ -50,11 +54,13 @@ class Socket
             return -1;
         }
 
+		// Setter function for the socket type. Returns 0 if successful.
         int setType(int type) {
             this -> type = type;
             return 0;
         }
 
+		// Setter function for the socket domain. Returns 0 if successful.
         int setDomain(int domain) {
             this -> domain = domain;
             return 0;
