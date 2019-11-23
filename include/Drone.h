@@ -15,7 +15,9 @@ public:
     ~Drone();
     int handleInstruction(char INS);
     //called by server after receiving instruction
-    STATE getState();
+    STATE *getState() {
+        return this -> current_state;
+    }
     void checkAlt(); //called by server, polls accelerometer to maintain drones altitude if state is ROT_L/R, RESET, ACC_X/Y
     int *getGyroData();
     int *getAccData();
@@ -31,9 +33,9 @@ public:
     int setMotorSpeed(int motor_id, int speed); //sets all motors to the same speed
     int land();
 private:
-    int Motors[4];
-    Accelerometer acc;
-    STATE current_state;
+    Motor *motors[4];
+    Accelerometer *acc;
+    STATE *current_state;
     int acc_data[3];
     int gyro_data[3];
 };
