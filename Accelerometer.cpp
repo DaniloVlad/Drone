@@ -28,9 +28,7 @@ Accelerometer::Accelerometer() {
     }
 }
 
-<<<<<<< HEAD
 // Constructs the accelerometer with specific paramater input for it's components.
-=======
 /* Function: Accelerometer
 *   @breif Constructor for Accelerometer class
 *   @param i2c_addr address of i2c device
@@ -38,7 +36,6 @@ Accelerometer::Accelerometer() {
 *   @param data_pin SDA pin for i2c device
 *   @param clock_pin SCL pin for i2c device
 */  
->>>>>>> 040bfe35a6b22c69f7d7d643a18b5762d364b961
 Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_pin) {
   
     //
@@ -112,16 +109,20 @@ int Accelerometer::getAccZ() {
 }
 
 // Getter function for the gyroscope's current X, Y and Z axis data.
-int *Accelerometer::getGyroXYZ() {
-	getGyroX();
-  	getGyroY();
-  	getGyroZ();
+signed short *Accelerometer::getGyroXYZ() {
+    short val[3] = {0};
+	val[0] = getGyroX();
+  	val[1] = getGyroY();
+  	val[2] = getGyroZ();
+    return val;
 }
 
 // Getter function for the accelerometer's current X, Y and Z axis data.
-int *Accelerometer::getAccXYZ() {
-	getAccX();
-  	getAccY();
-  	getAccZ();
+signed short *Accelerometer::getAccXYZ() {
+    short val[3] = {0};
+	val[0] = getAccX();
+  	val[1] = getAccY();
+  	val[2] = getAccZ();
+    return val;
 }
 

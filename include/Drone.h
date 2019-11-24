@@ -30,10 +30,12 @@ public:
     int setAllMotors(int speed);
     int setMotorSpeed(int motor_id, int speed); //sets all motors to the same speed
     int land();
+    void startDrone();
 private:
-    int Motors[4];
-    Accelerometer acc;
+    Motor *motors[4];
+    Accelerometer *acc;
     STATE current_state;
+    Server *server;
     int acc_data[3];
     int gyro_data[3];
 };
