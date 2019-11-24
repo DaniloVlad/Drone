@@ -11,6 +11,7 @@
 class Drone
 {
 public:
+    Drone();
     Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc);
     ~Drone();
     int handleInstruction(char INS);
@@ -36,6 +37,7 @@ private:
     Motor *motors[4];
     Accelerometer *acc;
     STATE *current_state;
+    Server *server;
     int acc_data[3];
     int gyro_data[3];
 };

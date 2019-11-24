@@ -119,7 +119,7 @@ signed short *Accelerometer::getGyroXYZ() {
 
 // Getter function for the accelerometer's current X, Y and Z axis data.
 signed short *Accelerometer::getAccXYZ() {
-	signed short val[3] = {0}
+	signed short val[3] = {0};
     val[0] = getAccX();
   	val[1] = getAccY();
   	val[2] = getAccZ();
