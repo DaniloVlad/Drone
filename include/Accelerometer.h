@@ -51,8 +51,8 @@ class Accelerometer{
         int getAccX();
         int getAccY();
         int getAccZ();
-        int* getGyroXYZ();
-        int* getAccXYZ();
+        signed short* getGyroXYZ();
+        signed short* getAccXYZ();
 
 };
 #endif
