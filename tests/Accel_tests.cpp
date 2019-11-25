@@ -1,7 +1,3 @@
-#include <pigpio.h>
-#include <iostream>
-#include <unistd.h>
-#include <time.h>
 #include "Accelerometer.h"
 
 int main(){ // wasnt sure if this needed a main to run it.
