@@ -1,10 +1,9 @@
 /**
- * Accelerometer Header
- * */
+* Accelerometer Header
+*/
 
 // Function/Class definitions can be seen in the accelerometer data sheet pdf within the repository.
 #ifndef Accelerometer_H
-
 #define Accelerometer_H
 #define ACC_X_H 45
 #define ACC_X_L 46
@@ -18,8 +17,8 @@
 #define GYRO_Y_L 54
 #define GYRO_Z_H 55
 #define GYRO_Z_L 56
-
 #include "Configuration.h"
+
 
 class Accelerometer{
   
