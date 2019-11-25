@@ -21,7 +21,7 @@ Accelerometer::Accelerometer() {
         exit(EXIT_FAILURE);
     }
 
-  	// 
+  	// Attempt's to initialize the i2c device.
     if((this -> i2c_handle = i2cOpen(this -> i2c_bus, this -> i2c_addr, 0)) == (PI_BAD_I2C_BUS | PI_BAD_I2C_ADDR | PI_BAD_FLAGS | PI_NO_HANDLE | PI_I2C_OPEN_FAILED)) {
         perror("Couldn't initialize i2c device");
         exit(EXIT_FAILURE);
@@ -35,7 +35,6 @@ Accelerometer::Accelerometer() {
 *   @param data_pin - SDA pin for i2c device
 *   @param clock_pin - SCL pin for i2c device
 */  
-
 Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_pin) {
   
     // Checks if the i2c bus is of the desired type.
