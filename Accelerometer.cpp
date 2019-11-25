@@ -30,10 +30,10 @@ Accelerometer::Accelerometer() {
 
 /* Function: Accelerometer
 *   @breif Constructor for Accelerometer class with specific parameter input.
-*   @param i2c_addr - address of i2c device
-*   @param i2c_bus - i2c bus
-*   @param data_pin - SDA pin for i2c device
-*   @param clock_pin - SCL pin for i2c device
+*   @param i2c_addr - address of i2c device.
+*   @param i2c_bus - i2c bus.
+*   @param data_pin - SDA pin for i2c device.
+*   @param clock_pin - SCL pin for i2c device.
 */  
 Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_pin) {
   
