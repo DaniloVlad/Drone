@@ -1,13 +1,13 @@
 #include "include/Server.h"
 
-// Constructs the server socket without any specific paramater input for it's components.
+/* Function: Socket Constructor
+*   @breif - Constructs the server socket without any specific paramater input for it's components.
+*/  
 Server::Server() : Socket() {
+  
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
-
-  	// 
     memset(this -> client_addr, 0, sizeof(sockaddr_in));
-
     int opt = 1;
     
   	// Error check - attempting to set socket options. If failed, sends an error message and exit.
@@ -29,15 +29,19 @@ Server::Server() : Socket() {
     }
 }
 
-// Constructs the server socket with specific paramater input for it's components, using the char address.
+/* Function: Socket Constructor
+*   @breif - Constructs the server socket with specific paramater input for it's components, using the char address.
+*   @param port - port for the socket.
+*   @param address - address for the socket.. 
+*   @param domain - domain for the socket.
+*   @param type - type of data for the socket.
+*   @param protocol - protocol the socket is using.
+*/  
 Server::Server(int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
-
-  	//
     memset(this -> client_addr, 0, sizeof(sockaddr_in));
-
     int opt = 1;
 
     // Error check - attempting to set socket options. If failed, sends an error message and exit.
@@ -59,13 +63,18 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
     }
 }
 
-// Constructs the server socket with specific paramater input for it's components, using the uint32_t address.
+/* Function: Socket Constructor
+*   @breif - Constructs the server socket with specific paramater input for it's components, using the uint32_t address.
+*   @param port - port for the socket.
+*   @param address - address for the socket.. 
+*   @param domain - domain for the socket.
+*   @param type - type of data for the socket.
+*   @param protocol - protocol the socket is using.
+*/  
 Server::Server(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
-
-  	//
     memset(this -> client_addr, 0, sizeof(sockaddr_in));
 
     int opt = 1;
@@ -89,14 +98,18 @@ Server::Server(int port, uint32_t address, int domain, int type, int protocol) :
     }
 }
 
-// Deconstructor method for the server socket.
+/* Function: Server Deconstructor
+*   @breif - Deconstructor method for the server socket.
+*/  
 Server::~Server() {
     if(this -> client_addr) free(this -> client_addr);
     printf("Closing server socket...\n");
     close(new_socket);
 }
 
-// Starter function that attempts to start the server. If failed, sends an error message and exit.
+/* Function: startServer
+*   @breif - Starter function that attempts to start the server. If failed, sends an error message and exit.
+*/  
 int Server::startServer() {
     if((this -> new_socket = accept(this -> socketfd, (sockaddr *) this -> client_addr, (socklen_t *) & this -> client_socklen)) < 0) {
         perror("Error accepting connection!");
@@ -105,12 +118,20 @@ int Server::startServer() {
     return 0;
 }
 
-// Returns the information read in to the server socket.
+/* Function: send
+*   @breif - Returns the information read in to the server socket.
+*   @param data - the data to be recieved by the server.
+*   @param length - the size/length of the data.
+*/  
 int Server::send(void *data, size_t length) {
     return write(this -> new_socket, data, length);
 }
 
-// Returns the information to write in to the server socket.
+/* Function: receive
+*   @breif - Returns the information to write in to the server socket.
+*   @param buffer - the data to be sent by the server. 
+*   @param length - the size/length of the data. 
+*/  
 int Server::receive(void * buffer, size_t length) {
     return read(this -> new_socket, buffer, length);
 }

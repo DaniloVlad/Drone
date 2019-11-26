@@ -1,6 +1,8 @@
 #include "include/Socket.h"
 
-// Constructs the socket without any specific paramater input for it's components.
+/* Function: Socket Constructor
+*   @breif - Constructs the socket without any specific paramater input for it's components.
+*/  
 Socket::Socket() {
   
   	// Sets all the constructor variables.
@@ -10,8 +12,7 @@ Socket::Socket() {
     this -> domain = DEFAULT_DOMAIN;
     this -> protocol = DEFAULT_PROTOCOL;
     this -> type = DEFAULT_TYPE;
-
-  	//
+  
     memset(this -> addr, 0, this -> socklen);
     
     this -> addr -> sin_addr.s_addr = DEFAULT_ADDR;
@@ -25,7 +26,14 @@ Socket::Socket() {
     }
 }   
 
-// Constructs the socket with specific paramater input for it's components, using the char address.
+/* Function: Socket Constructor
+*   @breif - Constructs the socket with specific paramater input for it's components, using the char address.
+*   @param port - port for the socket.
+*   @param address - address for the socket.socket. 
+*   @param domain - domain for the socket.
+*   @param type - type of data for the socket.
+*   @param protocol - protocol the client is socket.
+*/  
 Socket::Socket(int port, char *address, int domain, int type, int protocol) {
   
    	// Sets all the constructor variables. 
@@ -35,7 +43,6 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     this -> type = type;
     this -> protocol = protocol;
     
-  	//
     memset(this -> addr, 0, this -> socklen);
     inet_pton(this -> domain, address, &this -> addr -> sin_addr.s_addr);
 
@@ -49,7 +56,14 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     }
 }
 
-// Constructs the socket with specific paramater input for it's components, using the uint32_t address.
+/* Function: Socket Constructor
+*   @breif - Constructs the socket with specific paramater input for it's components, using the uint32_t address.
+*   @param port - port for the socket.
+*   @param address - address for the socket.socket. 
+*   @param domain - domain for the socket.
+*   @param type - type of data for the socket.
+*   @param protocol - protocol the client is socket.
+*/  
 Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
   
     // Sets all the constructor variables.
@@ -60,7 +74,6 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
     this -> domain = domain;
     this -> protocol = protocol;
 
-  	//
     memset(this -> addr, 0, this -> socklen);
 
     this -> addr -> sin_family = this -> domain;
@@ -74,7 +87,9 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
     }
 }
 
-// Deconstructor method for the socket.
+/* Function: Socket Deconstructor
+*   @breif - Deconstructor method for the socket.
+*/  
 Socket::~Socket() {
     if(addr != NULL) 
         free(this -> addr);
