@@ -21,8 +21,8 @@
 #define GPIO_MOTOR_3 22
 #define GPIO_MOTOR_4 24
 
-#define MOTOR_PWM_RANGE 2000
-#define MOTOR_PWM_FREQUENCY 10000
+#define MOTOR_PWM_RANGE 2500 //2500 us pwm signals
+#define MOTOR_PWM_FREQUENCY 400 //400hz
 
 #include <stdio.h>
 #include <stdlib.h>

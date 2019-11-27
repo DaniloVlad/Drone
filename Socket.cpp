@@ -42,10 +42,12 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     this -> port = htons(port);
     this -> type = type;
     this -> protocol = protocol;
-    
+    printf("in Socket: %s:%d domain: %d type %d protocol %d\n", address, port, domain, type, protocol);
     memset(this -> addr, 0, this -> socklen);
-    inet_pton(this -> domain, address, &this -> addr -> sin_addr.s_addr);
-
+    if(inet_pton(AF_INET, address, &this -> addr -> sin_addr.s_addr) < 1) {
+        perror("Could't translate ip address!\n");
+        return;
+    }
     this -> addr -> sin_family = this -> domain;
     this -> addr -> sin_port = this -> port;
 

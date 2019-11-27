@@ -13,8 +13,8 @@ Motor::Motor(int pin) {
         exit(EXIT_FAILURE);
     }
 
-    this -> setDutyRange(MOTOR_PWM_RANGE);
     this -> setFrequency(MOTOR_PWM_FREQUENCY);
+    this -> setDutyRange(MOTOR_PWM_RANGE);
 }
 
 /* Function: Motor Constructor
@@ -31,8 +31,8 @@ Motor::Motor(int pin, int frequency) {
         exit(EXIT_FAILURE);
     }
 
-    this -> setDutyRange(MOTOR_PWM_RANGE);
-    this -> setFrequency(frequency);
+    // this -> setFrequency(frequency);
+    // this -> setDutyRange(MOTOR_PWM_RANGE);
 }
 
 /* Function: Motor Constructor
@@ -50,8 +50,8 @@ Motor::Motor(int pin, int frequency, int pwm_range) {
         exit(EXIT_FAILURE);
     }
 
-    this -> setDutyRange(pwm_range);
     this -> setFrequency(frequency);
+    this -> setDutyRange(pwm_range);
 }
 
 /* Function: Motor Deconstructor
@@ -97,9 +97,9 @@ int Motor::setSpeed(int speed) {
   	// Attempt to return the speed.
     else {
       	// First check if the GPIO PWM can be set to 0 (off), send an error message and exit.
-        if(gpioPWM(this -> pin, speed) != 0) {
+        if(gpioServo(this -> pin, speed) != 0) {
             perror("Error setting speed");
-            exit(EXIT_FAILURE);
+            return -1;
         }
       	// If everything works as intended, the speed is returned
         return (this -> speed = speed);

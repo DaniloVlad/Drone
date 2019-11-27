@@ -1,10 +1,20 @@
+#include <string>
 #include <gtk/gtk.h>
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
+#include "../include/Client.h"
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #define HOVER 120
 #define MAX_SPEED 255
+
+char addr[13] = "192.168.0.10";
+uint32_t s = inet_addr(addr);
+Client *client = new Client(8080, addr, AF_INET, SOCK_STREAM, 0);
+
 
 typedef enum inst {
     OFF,
@@ -45,10 +55,6 @@ int Motor2 = 0;
 int Motor3 = 0;
 int Motor4 = 0;
 
-static void print_hello (GtkWidget *widget, gpointer   data)
-{
-  g_print ("Hello World\n");
-}
 
 //threaded function started by key press and 
 //exits upon key release
@@ -56,80 +62,42 @@ void *instruction_handler(void *varg) {
   COMMAND * t_ins = (COMMAND *) varg;
   INSTRUCTION ins = t_ins -> ins;
   pthread_t *id = t_ins -> tid;
-
+  char cins;
   //set the lock before checking id, any process about to manipulate the id will hold until mutex is unlocked
   pthread_mutex_lock(&lock);
   //id is the address of a global variable, that stores either 0 or the thread id
   while(*id != 0) {
     if(ins == ROT_L) {
-      if(Motor1 > 100 && Motor4 > 100 && Motor2 < 140 && Motor3 < 140) {
-        Motor1--;
-        Motor4--;
-
-        Motor2++;
-        Motor3++;
-      }
+      cins = 'a';
+      client -> send(&cins, 1);
     }
     else if(ins == ROT_R) {
-      if(Motor2 > 100 && Motor3 > 100 && Motor1 < 140 && Motor4 < 140) {
-        Motor1++;
-        Motor4++;
-
-        Motor2--;
-        Motor3--;
-      }
+      cins = 'd';
+      client -> send(&cins, 1);
     }
     else if(ins == ACC_R) {
-      if(Motor1 < 140 && Motor3 < 140 && Motor2 > 100 && Motor4 > 100) {
-        Motor1++;
-        Motor3++;
-
-        Motor2--;
-        Motor4--;
-      }
+      cins = '>';
+      client -> send(&cins, 1);
     }
     else if(ins == ACC_L) {
-      if(Motor2 < 140 && Motor4 < 140 && Motor1 > 100 && Motor3 > 100) {
-        Motor2++;
-        Motor4++;
-
-        Motor1--;
-        Motor3--;
-      }
+      cins = '<';
+      client -> send(&cins, 1);
     }
     else if(ins == ACC_F) {
-      if(Motor3 < 140 && Motor4 < 140 && Motor1 > 100 && Motor2 > 100) {
-        Motor3++;
-        Motor4++;
-
-        Motor1--;
-        Motor2--;
-      }
+      cins = '^';
+      client -> send(&cins, 1);
     }
     else if(ins == ACC_B) {
-      if(Motor1 < 140 && Motor2 < 140 && Motor3 > 100 && Motor4 > 100) {
-        Motor1++;
-        Motor2++;
-
-        Motor3--;
-        Motor4--;
-      }
+      cins = 'b';
+      client -> send(&cins, 1);
     }
     else if(ins == RAISE) {
-      if(Motor1 < MAX_SPEED && Motor2 < MAX_SPEED && Motor3 < MAX_SPEED && Motor4 < MAX_SPEED) {
-        Motor1++;
-        Motor2++;
-        Motor3++;
-        Motor4++;
-      }
+      cins = 'w';
+      client -> send(&cins, 1);
     }
     else if(ins == LOWER) {
-      if(Motor1 > 0 && Motor2 > 0 && Motor3 > 0 && Motor4 > 0) {
-        Motor1--;
-        Motor2--;
-        Motor3--;
-        Motor4--;
-      }
+      cins = 's';
+      client -> send(&cins, 1);
     }
     printf("New speed M1: %d M2: %d M3: %d M4: %d\r", Motor1, Motor2, Motor3, Motor4);
     fflush(stdout);
@@ -233,7 +201,7 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
     cmd.tid = &moveRight;
     pthread_create(&moveRight, NULL, (instruction_handler), (void *) &cmd);
   }
-  
+    
 
   return TRUE;
 }
@@ -241,8 +209,7 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
 static void activate (GtkApplication *app, gpointer user_data)
 {
   GtkWidget *window;
-  // GtkWidget *button;
-  // GtkWidget *button_box;
+
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
@@ -250,13 +217,6 @@ static void activate (GtkApplication *app, gpointer user_data)
   gtk_widget_add_events(window, GDK_KEY_PRESS_MASK);  
   g_signal_connect (G_OBJECT (window), "key_press_event", G_CALLBACK (handle_key_press), NULL);
   g_signal_connect (G_OBJECT (window), "key_release_event", G_CALLBACK (handle_key_release), NULL);
-
-  // button_box = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
-  // gtk_container_add (GTK_CONTAINER (window), button_box);
-
-  // button = gtk_button_new_with_label ("Hello World");
-  // g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
-  // gtk_container_add (GTK_CONTAINER (button_box), button);
 
   gtk_widget_show_all (window);
 }
@@ -266,16 +226,18 @@ int main (int argc, char **argv)
   GtkApplication *app;
   int status;
   Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
+
+  
   //initialize up mutex lock
   if(pthread_mutex_init(&lock, NULL) != 0) {
     perror("Couldn't initialize mutex");
     exit(EXIT_FAILURE);
   }
 
-  app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
+  app = gtk_application_new ("Drone App", G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   status = g_application_run (G_APPLICATION (app), argc, argv);
   g_object_unref (app);
-
+  printf("To start using the drone\n\tPlease make sure the battery is disconnected then press c.\n");
   return status;
 }

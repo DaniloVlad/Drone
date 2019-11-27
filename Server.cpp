@@ -4,7 +4,7 @@
 *   @breif - Constructs the server socket without any specific paramater input for it's components.
 */  
 Server::Server() : Socket() {
-  
+    printf("Creating server....\n");
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
     memset(this -> client_addr, 0, sizeof(sockaddr_in));
@@ -72,7 +72,7 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
 *   @param protocol - protocol the socket is using.
 */  
 Server::Server(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
-    
+    printf("Creating server....\n");
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
     this -> client_socklen = sizeof(sockaddr_in);
     memset(this -> client_addr, 0, sizeof(sockaddr_in));
@@ -111,6 +111,7 @@ Server::~Server() {
 *   @breif - Starter function that attempts to start the server. If failed, sends an error message and exit.
 */  
 int Server::startServer() {
+    printf("Server waiting on connection...\n");
     if((this -> new_socket = accept(this -> socketfd, (sockaddr *) this -> client_addr, (socklen_t *) & this -> client_socklen)) < 0) {
         perror("Error accepting connection!");
         exit(EXIT_FAILURE);
@@ -133,6 +134,7 @@ int Server::send(void *data, size_t length) {
 *   @param length - the size/length of the data. 
 */  
 int Server::receive(void * buffer, size_t length) {
+    printf("Server waiting for data...\n");
     return read(this -> new_socket, buffer, length);
 }
 
