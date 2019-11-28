@@ -1,5 +1,12 @@
 Compile: make
 
+On drone:
+    
+    run make drone
+
+On client:
+    run make client
+    
 Testing socket:
 
     ./bin/test_server
