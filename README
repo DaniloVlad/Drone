@@ -1,11 +1,12 @@
 Compile: make
 
 On drone:
-    
-    run make drone
+    make drone
+    sudo ./bin/main
 
 On client:
-    run make client
+    make client
+    ./bin/client_ui
     
 Testing socket:
 
