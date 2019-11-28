@@ -56,6 +56,8 @@ Drone::~Drone(){
 
     delete this -> acc;
     delete this -> server;
+    delete this -> acc_data;
+    delete this -> gyro_data;
 }
 
 int Drone::handleInstruction(char INS){
@@ -139,7 +141,7 @@ int Drone::handleInstruction(char INS){
     case 'w':
         //raise, increase all motor speeds
         int avgSpeed = this -> getAvgMotorSpeed();
-        
+
         //prevent drone from going above maximum
         if(avgSpeed + 100 > 2000) avgSpeed = 1900;
 
