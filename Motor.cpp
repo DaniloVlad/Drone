@@ -5,7 +5,7 @@
 *   @param pin - the pin address for the device motor.
 */  
 Motor::Motor(int pin) {
-  
+    this -> speed = 0;
     this -> pin = pin;
     // If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.
     if(gpioSetMode(pin, PI_OUTPUT) != 0) {
@@ -23,7 +23,7 @@ Motor::Motor(int pin) {
 *   @param frequency - the frequency that the signal will be transmitted on.
 */  
 Motor::Motor(int pin, int frequency) {
-  
+    this -> speed = 0;
     this -> pin = pin;  
     // If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.
     if(gpioSetMode(pin, PI_OUTPUT) != 0) {
@@ -42,7 +42,7 @@ Motor::Motor(int pin, int frequency) {
 *   @param pwm_range - the range of the signal.
 */  
 Motor::Motor(int pin, int frequency, int pwm_range) {
-  
+    this -> speed = 0;
     this -> pin = pin;
     // If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.
     if(gpioSetMode(pin, PI_OUTPUT) != 0) {

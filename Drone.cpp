@@ -61,6 +61,10 @@ Drone::~Drone(){
 
 int Drone::handleInstruction(char INS){
     printf("Got character %c\n", INS);
+    if(this -> getAvgMotorSpeed() == 0) {
+        printf("All motors are 0, starting at minimum!\n");
+        this -> setAllMotors(1100);
+    }
     switch (INS)
     {
     case 'c':
@@ -333,7 +337,7 @@ int Drone::handleInstruction(char INS){
     case 'h':
         {
             //Expiremental hover!
-            if(this -> hover != NULL) {
+            if(this -> hover == NULL) {
                 this -> hover = new std::thread(&Drone::checkAlt, this);
             }
             else
@@ -354,6 +358,7 @@ int Drone::handleInstruction(char INS){
 void *Drone::checkAlt(){
     //on default mode accelerometer samples at 20hz ie 20 updates to values per second
     while(this -> hover != NULL) {
+        printf("Running thread...\n");
         float z = (float) this -> acc -> getAccZ();
         int speed = this -> getAvgMotorSpeed();
         if(z < 0) z = (-1) * z;
