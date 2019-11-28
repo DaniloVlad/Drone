@@ -6,7 +6,7 @@
 #include "Socket.h"
 
 // Socket class that allows sending and receiving data to the client class.
-class Client : Socket
+class Client : public Socket
 {
     public:
       	// Specifies a base constructor, constructors with params and a deconstructor function.

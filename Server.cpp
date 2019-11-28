@@ -6,8 +6,8 @@
 Server::Server() : Socket() {
     printf("Creating server....\n");
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
-    this -> client_socklen = sizeof(sockaddr_in);
-    memset(this -> client_addr, 0, sizeof(sockaddr_in));
+    this -> client_socklen = sizeof(struct sockaddr_in);
+    memset(this -> client_addr, 0, sizeof(struct sockaddr_in));
     int opt = 1;
     
   	// Error check - attempting to set socket options. If failed, sends an error message and exit.
@@ -17,7 +17,7 @@ Server::Server() : Socket() {
     }
   
   	// Error check - attempting to bind the socket. If failed, sends an error message and exit.
-    if(bind(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(bind(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't bind socket!");
         exit(EXIT_FAILURE);
     }
@@ -41,8 +41,8 @@ Server::Server() : Socket() {
 Server::Server(int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
-    this -> client_socklen = sizeof(sockaddr_in);
-    memset(this -> client_addr, 0, sizeof(sockaddr_in));
+    this -> client_socklen = sizeof(struct sockaddr_in);
+    memset(this -> client_addr, 0, sizeof(struct sockaddr_in));
     int opt = 1;
 
     // Error check - attempting to set socket options. If failed, sends an error message and exit.
@@ -52,7 +52,7 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
     }
     
   	// Error check - attempting to bind the socket. If failed, sends an error message and exit.  
-    if(bind(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(bind(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't bind socket!");
         exit(EXIT_FAILURE);
     }
@@ -75,8 +75,8 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
 Server::Server(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     printf("Creating server....\n");
     this -> client_addr = (struct sockaddr_in *) malloc(sizeof(sockaddr_in));
-    this -> client_socklen = sizeof(sockaddr_in);
-    memset(this -> client_addr, 0, sizeof(sockaddr_in));
+    this -> client_socklen = sizeof(struct sockaddr_in);
+    memset(this -> client_addr, 0, sizeof( struct sockaddr_in));
 
     int opt = 1;
 
@@ -87,7 +87,7 @@ Server::Server(int port, uint32_t address, int domain, int type, int protocol) :
     }
     
   	// Error check - attempting to bind the socket. If failed, sends an error message and exit.  
-    if(bind(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(bind(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't bind socket!");
         exit(EXIT_FAILURE);
     }
@@ -113,7 +113,7 @@ Server::~Server() {
 */  
 int Server::startServer() {
     printf("Server waiting on connection...\n");
-    if((this -> new_socket = accept(this -> socketfd, (sockaddr *) this -> client_addr, (socklen_t *) & this -> client_socklen)) < 0) {
+    if((this -> new_socket = accept(this -> socketfd, (struct sockaddr *) this -> client_addr, (socklen_t *) & this -> client_socklen)) < 0) {
         perror("Error accepting connection!");
         exit(EXIT_FAILURE);
     }

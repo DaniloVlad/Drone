@@ -6,7 +6,7 @@
 Socket::Socket() {
   
   	// Sets all the constructor variables.
-    this -> addr = (sockaddr_in *) malloc(sizeof(struct sockaddr_in));
+    this -> addr = (struct sockaddr_in *) malloc(sizeof(struct sockaddr_in));
     this -> socklen = sizeof(struct sockaddr_in);
     this -> port = htons(DEFAULT_PORT);
     this -> domain = DEFAULT_DOMAIN;
@@ -20,7 +20,7 @@ Socket::Socket() {
     this -> addr -> sin_port = this -> port;
 
   	// Error check - attempting to create the socket. If failed, sends an error message and exit.
-    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) == 0) {
+    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) < 0) {
         perror("Couldn't create socket");
         exit(EXIT_FAILURE);
     }
@@ -38,14 +38,15 @@ Socket::Socket() {
 Socket::Socket(int port, char *address, int domain, int type, int protocol) {
   
    	// Sets all the constructor variables. 
-    this -> addr = (sockaddr_in *) malloc(sizeof(struct sockaddr_in));
+    this -> addr = (struct sockaddr_in *) malloc(sizeof(struct sockaddr_in));
     this -> socklen = sizeof(struct sockaddr_in);
     this -> port = htons(port);
     this -> type = type;
     this -> protocol = protocol;
-    printf("in Socket: %s:%d domain: %d type %d protocol %d\n", address, port, domain, type, protocol);
+    this -> domain = domain;
+    printf("in Socket: %s:%d domain: %d type %d protocol %d\n", address, port, this -> domain, this->type, this->protocol);
     memset(this -> addr, 0, this -> socklen);
-    if(inet_pton(AF_INET, address, &this -> addr -> sin_addr.s_addr) < 1) {
+    if(inet_pton(AF_INET, address, &(this -> addr -> sin_addr.s_addr)) < 1) {
         perror("Could't translate ip address!\n");
         return;
     }
@@ -53,7 +54,7 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     this -> addr -> sin_port = this -> port;
 
     // Error check - attempting to create the socket. If failed, sends an error message and exit.
-    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) == 0) {
+    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) < 0) {
         perror("Couldn't create socket");
         exit(EXIT_FAILURE);
     }
@@ -70,7 +71,7 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
 Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
   
     // Sets all the constructor variables.
-    this -> addr = (sockaddr_in *) malloc(sizeof(struct sockaddr_in));
+    this -> addr = (struct sockaddr_in *) malloc(sizeof(struct sockaddr_in));
     this -> socklen = sizeof(struct sockaddr_in);
     this -> port = htons(port);
     this -> type = type;
@@ -84,7 +85,7 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
     this -> addr -> sin_addr.s_addr = address;
   
     // Error check - attempting to create the socket. If failed, sends an error message and exit.
-    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) == 0) {
+    if((this -> socketfd = socket(this -> domain, this -> type, this -> protocol)) < 0) {
         perror("Couldn't create socket");
         exit(EXIT_FAILURE);
     }
@@ -94,7 +95,9 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
 *   @breif - Deconstructor method for the socket.
 */  
 Socket::~Socket() {
-    if(addr != NULL) 
+    printf("Destroying socket");
+    if(addr != NULL) {
         free(this -> addr);
-    close(this -> socketfd);
+        close(this -> socketfd);
+    }
 }

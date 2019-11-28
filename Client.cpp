@@ -4,10 +4,9 @@
 /* Function: Client Constructor
 *   @breif - Constructs the client without any specific paramater input for it's components.
 */  
-Client::Client() {
-    Socket();
+Client::Client() : Socket() {
   	// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
-    if(connect(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't connect client socket");
         exit(EXIT_FAILURE);
     }
@@ -22,11 +21,13 @@ Client::Client() {
 *   @param type - type of data for the client.
 *   @param protocol - protocol the client is using.
 */  
-Client::Client(int port, char *address, int domain, int type, int protocol) {
-    Socket(port, address, domain, type, protocol);
+Client::Client(int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
+    
     printf("Client has called parent constructor\n");
+    printf("protocol: %d\n", protocol);
+
     // Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
-    if(connect(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't connect client socket");
         exit(EXIT_FAILURE);
     }
@@ -41,17 +42,17 @@ Client::Client(int port, char *address, int domain, int type, int protocol) {
 *   @param type - type of data for the client.
 *   @param protocol - protocol the client is using.
 */  
-Client::Client(int port, uint32_t address, int domain, int type, int protocol) {
-    Socket(port, address, domain, type, protocol);
+Client::Client(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
+    printf("protocol: %d\n", protocol);
     // Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
-    if(connect(this -> socketfd, (sockaddr *) this -> addr, this -> socklen) < 0) {
+    if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't connect client socket");
         exit(EXIT_FAILURE);
     }
 }
 
 Client::~Client() {
-
+    printf("Closing socket");
 }
 
 // Returns the information read in to the client socket.

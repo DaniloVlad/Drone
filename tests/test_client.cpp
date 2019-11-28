@@ -4,7 +4,7 @@
 int main() {
     char buff[3] = {0};
     char msg[6] = "Hello";
-    char host[13] = "192.168.0.10";
+    char host[12] = "192.168.4.1";
     printf("Connecting client to %s:%d\n", host, DEFAULT_PORT);
     Client *test = new Client(DEFAULT_PORT, host);
     printf("Client sending: %s\n", msg);
