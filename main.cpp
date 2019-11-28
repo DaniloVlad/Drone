@@ -3,6 +3,7 @@
 #include "include/Drone.h"
 
 int main() {
+    std::cout << "Please ensure include/Configurations.h is correctly setup!" << std::endl;
     if(gpioInitialise() < 0) {
         std::cout << "Error starting pigpio: Run sudo main and if problem still presists run sudo killall pigpio" << std::endl;
         return -1;
