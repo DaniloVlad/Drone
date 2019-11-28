@@ -331,7 +331,7 @@ void Drone::checkAlt(){
         if(z < 0) z = (-1) * z;
 
         if(z > 1) {
-            if(speed - 25 < 1000) speed = 1025;
+            if(speed - 25 < 1100) speed = 1125;
             this -> setAllMotors(speed - 25);
         }
         else {
