@@ -6,6 +6,10 @@ TDIR = tests
 
 all: Socket.o Server.o Client.o Accelerometer.o Motor.o Drone.o AccelTest MotorTest DroneTest test_client test_server client_ui main
 
+drone: Socket.o Server.o Client.o Accelerometer.o Motor.o Drone.o AccelTest MotorTest DroneTest test_client test_server main
+
+client: client_ui
+
 Server.o: $(IDIR)/Socket.h $(IDIR)/Server.h
 	$(CC) Server.cpp -c -o $(ODIR)/Server.o
 
