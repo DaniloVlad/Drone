@@ -26,6 +26,7 @@ Socket::Socket() {
     }
 }   
 
+
 /* Function: Socket Constructor
 *   @breif - Constructs the socket with specific paramater input for it's components, using the char address.
 *   @param port - port for the socket.

@@ -1,5 +1,13 @@
 #include "include/Drone.h"
 
+
+// motors[0] --- motors[1]
+//   |            |
+// motors[2] --- motors[3]
+
+// 0 & 3 => Clockwise
+// 1 & 2 => Counter Clockwise
+
 Drone::Drone() {
     this -> motors[0] = new Motor(GPIO_MOTOR_1);
     this -> motors[1] = new Motor(GPIO_MOTOR_2);
@@ -8,10 +16,16 @@ Drone::Drone() {
     this -> acc = new Accelerometer();
     this -> server = new Server();
 
-    this -> acc_data[0] = {0};
-    this -> acc_data[1] = {0};
-    this -> acc_data[2] = {0};
+    //set thread id to 0 (ie not running)
+    this -> hover = 0;
 
+    this -> acc_data = new signed short(3);
+    this -> gyro_data = new signed short(3);
+    for(int i = 0; i < 3; i++) {
+        this -> acc_data[i] = 0;
+        this -> gyro_data[i] = 0;
+    }
+    this -> calibrated = 0;
 
 }
 Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc) {
@@ -21,10 +35,19 @@ Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin,
 	this -> motors[2] = new Motor(m3_pin);
 	this -> motors[3] = new Motor(m4_pin);
 	this -> acc = new Accelerometer();
+    this -> server = new Server(port);
+    
+    //set thread id to 0 (ie not running)
+    this -> hover = 0;
+
+    this -> acc_data = new signed short(3);
+    this -> gyro_data = new signed short(3);
 	//initialize with a loop
-	this -> acc_data[0] = 0;
-	this -> acc_data[1] = 0;
-	this -> acc_data[2] = 0;
+    for(int i = 0; i < 3; i++) {
+        this -> acc_data[i] = 0;
+        this -> gyro_data[i] = 0;
+    }
+    this -> calibrated = 0;
 }
 
 Drone::~Drone(){
@@ -40,33 +63,223 @@ int Drone::handleInstruction(char INS){
     switch (INS)
     {
     case 'c':
-        //calibrate motors
-        break;
-    case 'a':
-        //rotate left
-        break;
-    case 'd':
-        //rotate right
-        break;
-    case 'w':
-        //raise
-        break;
-    case 's':
-        //lower
-        break;
-    case '<':
-        //move left
-        break;
-    case '>':
-        //move right
-        break;
-    case '^':
-        //move forward
-        break;
-    case 'b':
-        //move backward
+        if(this -> calibrated == 0) {
+            this -> setAllMotors(2000);
+            this -> calibrated = 1;
+        }
+        else {
+            this -> setAllMotors(1000);
+        }
         break;
 
+    case 'a':
+        //rotate left
+        int clockwise = this -> motors[0] -> getSpeed();
+        int counterClockWise = this -> motors[1] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(counterClockWise - clockwise >= 400)
+            break;
+
+        if(counterClockWise >= clockwise + 200) {
+            this -> setMotorSpeed(0, clockwise - 100);
+            this -> setMotorSpeed(3, clockwise - 100);
+            this -> setMotorSpeed(1, counterClockWise + 100);
+            this -> setMotorSpeed(2, counterClockWise + 100);
+        }
+        else {
+            //speeds are within 100 steps (10%) of eachother
+            int diff = 0;
+            if(clockwise > counterClockWise) 
+                diff = clockwise - counterClockWise;
+            
+            this -> setMotorSpeed(0, clockwise - 100);
+            this -> setMotorSpeed(3, clockwise - 100);
+            this -> setMotorSpeed(1, counterClockWise + diff + 100);
+            this -> setMotorSpeed(2, counterClockWise + diff + 100);
+        }
+        break;
+
+    case 'd':
+        //rotate right
+        int clockwise = this -> motors[0] -> getSpeed();
+        int counterClockWise = this -> motors[1] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(clockwise - counterClockWise >= 400) 
+            break;
+        if(clockwise >= counterClockWise + 200) {
+            this -> setMotorSpeed(0, clockwise + 100);
+            this -> setMotorSpeed(3, clockwise + 100);
+            this -> setMotorSpeed(1, counterClockWise - 100);
+            this -> setMotorSpeed(2, counterClockWise - 100);
+        }
+        else {
+            //speeds are within 100 steps (10%) of eachother
+            int diff = 0;
+            if(counterClockWise > clockwise) 
+                diff = counterClockWise - clockwise;
+            
+            this -> setMotorSpeed(0, clockwise + diff + 100);
+            this -> setMotorSpeed(3, clockwise + diff + 100);
+            this -> setMotorSpeed(1, counterClockWise - 100);
+            this -> setMotorSpeed(2, counterClockWise - 100);
+        }
+        break;
+
+    case 'w':
+        //raise, increase all motor speeds
+        int avgSpeed = this -> getAvgMotorSpeed();
+        this -> setAllMotors(avgSpeed + 100);
+        break;
+
+    case 's':
+        //lower, decrease all motor speeds
+        int avgSpeed = this -> getAvgMotorSpeed();
+        this -> setAllMotors(avgSpeed - 100);
+        break;
+
+    case '<':
+        //move left, Motors 1 & 3 should be spin faster than 0 & 2
+        int leftBank = this -> motors[0] -> getSpeed();
+        int rightBank = this -> motors[1] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(rightBank - leftBank >= 400)
+            break;
+
+        if(rightBank >= leftBank + 200) {
+            this -> setMotorSpeed(0, leftBank - 100);
+            this -> setMotorSpeed(2, leftBank - 100);
+
+            this -> setMotorSpeed(3, rightBank + 100);
+            this -> setMotorSpeed(1, rightBank + 100);
+        
+        }
+        else {
+            int diff = 0;
+            if(leftBank > rightBank)
+                diff = leftBank - rightBank;
+            
+            this -> setMotorSpeed(0, leftBank - 100);
+            this -> setMotorSpeed(2, leftBank - 100);
+
+            this -> setMotorSpeed(3, rightBank + diff + 100);
+            this -> setMotorSpeed(1, rightBank + diff + 100);
+        }
+        break;
+
+    case '>':
+        //move right, Motors 0 & 2 > Motors 1 & 3
+        int leftBank = this -> motors[0] -> getSpeed();
+        int rightBank = this -> motors[1] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(leftBank - rightBank >= 400)
+            break;
+
+        if(leftBank >= rightBank + 200) {
+            this -> setMotorSpeed(0, leftBank + 100);
+            this -> setMotorSpeed(2, leftBank + 100);
+
+            this -> setMotorSpeed(3, rightBank - 100);
+            this -> setMotorSpeed(1, rightBank - 100);
+        
+        }
+        else {
+            int diff = 0;
+            if(rightBank > leftBank)
+                diff = rightBank - leftBank;
+            
+            this -> setMotorSpeed(0, leftBank + diff + 100);
+            this -> setMotorSpeed(2, leftBank + diff + 100);
+
+            this -> setMotorSpeed(3, rightBank - 100);
+            this -> setMotorSpeed(1, rightBank - 100);
+        }
+        break;
+
+    case '^':
+        //move forward, Motors 0 & 1 > Motors 2 & 3
+        int frontBank = this -> motors[0] -> getSpeed();
+        int backBank = this -> motors[2] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(backBank - frontBank >= 400)
+            break;
+
+        if(backBank >= frontBank + 200) {
+            this -> setMotorSpeed(0, frontBank - 100);
+            this -> setMotorSpeed(1, frontBank - 100);
+
+            this -> setMotorSpeed(2, backBank + 100);
+            this -> setMotorSpeed(3, backBank + 100);
+        
+        }
+        else {
+            int diff = 0;
+            if(frontBank > backBank)
+                diff = frontBank - backBank;
+            
+            this -> setMotorSpeed(0, frontBank - 100);
+            this -> setMotorSpeed(1, frontBank - 100);
+
+            this -> setMotorSpeed(3, backBank + diff + 100);
+            this -> setMotorSpeed(1, backBank + diff + 100);
+        }
+        break;
+
+    case 'b':
+        //move backward, Motors 2 & 3 > Motors 0 & 1
+        int frontBank = this -> motors[0] -> getSpeed();
+        int backBank = this -> motors[2] -> getSpeed();
+
+        //prevent the drone from flipping over
+        if(frontBank - backBank >= 400) 
+            break; 
+
+        if(frontBank >= backBank + 200) {
+            this -> setMotorSpeed(0, frontBank + 100);
+            this -> setMotorSpeed(1, frontBank + 100);
+
+            this -> setMotorSpeed(2, backBank - 100);
+            this -> setMotorSpeed(3, backBank - 100);
+        
+        }
+        else {
+            int diff = 0;
+            if(backBank > frontBank)
+                diff = backBank - frontBank;
+            
+            this -> setMotorSpeed(0, frontBank + diff + 100);
+            this -> setMotorSpeed(1, frontBank + diff + 100);
+
+            this -> setMotorSpeed(3, backBank - 100);
+            this -> setMotorSpeed(1, backBank - 100);
+        }
+        break;
+
+    case 'x':
+        //turn off all motors
+        this -> setAllMotors(0);
+        break;
+    case 'l':
+        //set motors to minimum speed
+        this -> setAllMotors(1000);
+        break;
+
+    case 'h':
+        //Expiremental hover!
+        if(this -> hover == 0) {
+            if(pthread_create(&this -> hover, NULL, (this -> checkAlt), NULL) == 0) {
+                printf("Creating hover thread!");
+            }
+        }
+        else
+            this -> hover = 0;
+        
+        
+        break;
     default:
         break;
     }
@@ -76,62 +289,37 @@ int Drone::handleInstruction(char INS){
 
 
 void Drone::checkAlt(){
+    //on default mode accelerometer samples at 20hz ie 20 updates to values per second
+    while(this -> hover != 0) {
+        float z = (float) this -> acc -> getAccZ();
+        int speed = this -> getAvgMotorSpeed();
+        if(z < 0) z = (-1) * z;
 
-
-
-}
-
-int Drone::*getGyroData(){
-return 0;
-
-}
-
-int Drone::*getAccData(){
-return 0;
-}
-
-int Drone::rotateLeft(){
-
-return 0;
-
-}
-
-int Drone::rotateRight(){
-return 0;
+        if(z > 1) {
+            if(speed - 25 < 1000) speed = 1025;
+            this -> setAllMotors(speed - 25);
+        }
+        else {
+            if(speed + 25 > 2000) speed = 1975;
+            this -> setAllMotors(speed + 25);
+        }
+        timespec time;
+        time.tv_nsec = 1000000000/10;
+        nanosleep(&time, NULL);
+    }
+    return;
 
 }
 
-int Drone::moveForward(){
-return 0;
-
+signed short *Drone::getGyroData() {
+    this -> gyro_data = this -> acc -> getGyroXYZ();
+    return this -> gyro_data;
 }
 
-int Drone::moveBackward(){
-
-return 0;
+signed short *Drone::getAccData(){
+    this -> acc_data = this -> acc -> getAccXYZ();
+    return this -> acc_data;
 }
-
-int Drone::moveLeft(){
-
-return 0;
-}
-
-
-int Drone::moveRight(){
-
-return 0;
-}
-
-int Drone::climb(){
-
-return 0;
-}
-
-int Drone::lower(){
-return 0;
-
-}
-
 
 int Drone::setAllMotors(int speed){
     if(motors[0] -> setSpeed(speed) < 0 || motors[1] -> setSpeed(speed) < 0 || motors[2] -> setSpeed(speed) < 0 || motors[3] -> setSpeed(speed) < 0) {
@@ -154,8 +342,10 @@ void Drone::startDrone() {
     printf("Drone attempting read...\n");
     while(this -> server -> receive(&buff, 1) > 0) {
         handleInstruction(buff[0]);
-        printf("Read data...\n");
-        printf("%s\n", buff);
     }
     printf("Exiting...\n");
+}
+
+int Drone::getAvgMotorSpeed() {
+    return ((this -> motors[0] -> getSpeed() + this -> motors[1] -> getSpeed() + this -> motors[2] -> getSpeed() + this -> motors[3] -> getSpeed()) / 4);
 }

@@ -1,21 +1,19 @@
+#include <iostream>
 #include <string>
 #include <gtk/gtk.h>
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
 #include "../include/Client.h"
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
-#define HOVER 120
-#define MAX_SPEED 255
+
 
 char addr[13] = "192.168.0.10";
-uint32_t s = inet_addr(addr);
 Client *client = new Client(8080, addr, AF_INET, SOCK_STREAM, 0);
 
+int calibration = 0;
 
+//Insturction set used in key_press handler to issue correct character to socket
 typedef enum inst {
     OFF,
     INIT,
@@ -30,11 +28,13 @@ typedef enum inst {
     LOWER
 } INSTRUCTION;
 
+//Command struct that will store an INSTRUCTION and thread id declared below
 typedef struct _cmd {
   INSTRUCTION ins;
   pthread_t *tid;
 } COMMAND;
 
+//various thread id's for instructions
 pthread_t rotateL = 0;
 pthread_t rotateR = 0;
 pthread_t up = 0;
@@ -44,17 +44,13 @@ pthread_t moveBackward = 0;
 pthread_t moveLeft = 0;
 pthread_t moveRight = 0;
 
+//lock so that only 1 command is sent to the socket at a time
 pthread_mutex_t lock;
-//LAYOUT OF DRONE
-// M1----M2
-// |     |
-// M3----M4
 
-int Motor1 = 0;
-int Motor2 = 0;
-int Motor3 = 0;
-int Motor4 = 0;
-
+//print availible commands
+void print_instructions() {
+    std::cout << "Controls are as follows:\n\ta => Rotate Left\n\td => Rotate Right\n\tw => Raise\n\ts => Lower\n\tArrow Left => Move Left\n\tArrow Right => Move Right\n\tArrow Forward => Move Forward\n\tArrow Back => Move Backward\n\tc => Calibrate/Initialise\n\tx => Turn off motors\n\tl => Land\n\th => Hover hold (Expiremental!)\n\ti => Show instruction list" << std::endl;
+}
 
 //threaded function started by key press and 
 //exits upon key release
@@ -99,18 +95,19 @@ void *instruction_handler(void *varg) {
       cins = 's';
       client -> send(&cins, 1);
     }
-    printf("New speed M1: %d M2: %d M3: %d M4: %d\r", Motor1, Motor2, Motor3, Motor4);
     fflush(stdout);
     //motors have been adjusted, unlock the mutex and sleep for a 1/4 second
     pthread_mutex_unlock(&lock);
+    //put the thread to sleep
     timespec time;
-    time.tv_nsec = 1000000000/4; //quarter second (1 billion nanosec in a sec)
+    time.tv_nsec = 1000000000/8; //8th of a second (1 billion nanosec in a sec)
     nanosleep(&time, NULL);
 
   }
   return NULL;
 }
 
+//certain key releases need to set their respective thread id to kill the thread
 gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data) {
   pthread_t *id = NULL;
 
@@ -140,11 +137,7 @@ gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data
     //otherwise it will make the threads wait until it is unlocked
     pthread_mutex_lock(&lock);
     *id = 0;
-    printf("New speed M1: %d M2: %d M3: %d M4: %d\n", Motor1, Motor2, Motor3, Motor4);
 
-    //Submit reset to socket here
-    Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
-    printf("RESET M1: %d M2: %d M3: %d M4: %d\n\n", Motor1, Motor2, Motor3, Motor4);
     pthread_mutex_unlock(&lock);
   }
   return TRUE;
@@ -162,6 +155,7 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
     pthread_create(&rotateL, NULL, (instruction_handler), (void *) &cmd);
 
   }
+
   else if(event -> keyval == GDK_KEY_S || event -> keyval == GDK_KEY_s  && lower == 0) {
     cmd.ins = LOWER;
     cmd.tid = &lower;
@@ -191,20 +185,62 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
     cmd.tid = &moveBackward;
     pthread_create(&moveBackward, NULL, (instruction_handler), (void *) &cmd);
   }
+
   else if(event -> keyval == GDK_KEY_Left && moveLeft == 0) {
     cmd.ins = ACC_L;
     cmd.tid = &moveLeft;
     pthread_create(&moveLeft, NULL, (instruction_handler), (void *) &cmd);
   }
+
   else if(event -> keyval == GDK_KEY_Right && moveRight == 0) {
     cmd.ins = ACC_R;
     cmd.tid = &moveRight;
     pthread_create(&moveRight, NULL, (instruction_handler), (void *) &cmd);
   }
-    
+
+  else if(event -> keyval == GDK_KEY_X || event -> keyval == GDK_KEY_x) {
+    std::cout << "Turning motors off!" << std::endl; 
+    char x = 'x';
+    client -> send(&x, 1);
+  }
+
+  else if(event -> keyval == GDK_KEY_C || event -> keyval == GDK_KEY_c) {
+    char c = 'c';
+    if(calibration == 0) {
+      std::cout << "Starting calibration." << std::endl;
+     client -> send(&c, 1);
+     std::cout << "Please connect the battery and press c once again once beeping is completed!" << std::endl;
+     calibration = 1;
+    }
+
+    else if(calibration == 1) {
+      std::cout << "Wait for the beeps to complete and you can start flying the drone!" << std::endl;
+      calibration = 2;
+    }
+
+    else {
+      std::cout << "Calibration already completed. Start flying!" << std::endl;
+    }
+  }
+
+  else if(event -> keyval == GDK_KEY_H || event -> keyval == GDK_KEY_h) {
+    std::cout << "You are testing the expiremental hover hold! Press h to cancel it before executing other commands!" << std::endl;
+    char h = 'h';
+    client -> send(&h, 1);
+  }
+
+  else if(event -> keyval == GDK_KEY_L || event -> keyval == GDK_KEY_l) {
+    std::cout << "Landing initiated. Reducing motor speeds. Press x once landed to turn off motors" << std::endl;
+    char l = 'l';
+    client -> send(&l, 1);
+  }
+  else if(event -> keyval == GDK_KEY_I || event -> keyval == GDK_KEY_i) {
+    print_instructions();
+  }
 
   return TRUE;
 }
+
 
 static void activate (GtkApplication *app, gpointer user_data)
 {
@@ -213,11 +249,14 @@ static void activate (GtkApplication *app, gpointer user_data)
   window = gtk_application_window_new (app);
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
-
+  
+  //add key press events to the window
   gtk_widget_add_events(window, GDK_KEY_PRESS_MASK);  
+  //connect key press and key release to proper functions
   g_signal_connect (G_OBJECT (window), "key_press_event", G_CALLBACK (handle_key_press), NULL);
   g_signal_connect (G_OBJECT (window), "key_release_event", G_CALLBACK (handle_key_release), NULL);
 
+  //show the window
   gtk_widget_show_all (window);
 }
 
@@ -225,19 +264,23 @@ int main (int argc, char **argv)
 {
   GtkApplication *app;
   int status;
-  Motor1 = Motor2 = Motor3 = Motor4 = HOVER;
-
+  std::cout << "Hello and Welcome to your Drone Controller" << std::endl;
+  std::cout << "To start: please ensure the battery is disconnected from the motors and press c on your keyboard!" << std::endl;
   
+  print_instructions();
   //initialize up mutex lock
   if(pthread_mutex_init(&lock, NULL) != 0) {
     perror("Couldn't initialize mutex");
     exit(EXIT_FAILURE);
   }
-
+  //create the gtk apllication
   app = gtk_application_new ("Drone App", G_APPLICATION_FLAGS_NONE);
+  //connect the activate function
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+  //run the app
   status = g_application_run (G_APPLICATION (app), argc, argv);
+  //upon closing free the app
   g_object_unref (app);
-  printf("To start using the drone\n\tPlease make sure the battery is disconnected then press c.\n");
+
   return status;
 }

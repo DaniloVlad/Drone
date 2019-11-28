@@ -123,7 +123,7 @@ int Accelerometer::getAccZ() {
 *   @breif - Getter function for the gyroscope's current X, Y and Z axis data.
 */  
 signed short *Accelerometer::getGyroXYZ() {
-    signed short val[3] = {0};
+    signed short *val = new signed short(3);
 	val[0] = getGyroX();
   	val[1] = getGyroY();
   	val[2] = getGyroZ();
@@ -134,7 +134,7 @@ signed short *Accelerometer::getGyroXYZ() {
 *   @breif - Getter function for the accelerometer's current X, Y and Z axis data.
 */  
 signed short *Accelerometer::getAccXYZ() {
-	signed short val[3] = {0};
+	signed short *val = new signed short(3);
     val[0] = getAccX();
   	val[1] = getAccY();
   	val[2] = getAccZ();

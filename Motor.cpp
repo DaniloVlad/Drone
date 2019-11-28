@@ -13,8 +13,8 @@ Motor::Motor(int pin) {
         exit(EXIT_FAILURE);
     }
 
-    this -> setFrequency(MOTOR_PWM_FREQUENCY);
-    this -> setDutyRange(MOTOR_PWM_RANGE);
+    // this -> setFrequency(MOTOR_PWM_FREQUENCY);
+    // this -> setDutyRange(MOTOR_PWM_RANGE);
 }
 
 /* Function: Motor Constructor
@@ -50,8 +50,8 @@ Motor::Motor(int pin, int frequency, int pwm_range) {
         exit(EXIT_FAILURE);
     }
 
-    this -> setFrequency(frequency);
-    this -> setDutyRange(pwm_range);
+    // this -> setFrequency(frequency);
+    // this -> setDutyRange(pwm_range);
 }
 
 /* Function: Motor Deconstructor
@@ -89,8 +89,9 @@ void Motor::setDutyRange(int range) {
 *   @param speed - speed the motor's are spinning.
 */  
 int Motor::setSpeed(int speed) {
+    
   	// If the speed is out of range, it returns -1.
-    if(speed > this -> range || speed < 0) {
+    if(speed > MAX_SPEED || speed < 0) {
         perror("Speed out of range");
         return -1;
     }

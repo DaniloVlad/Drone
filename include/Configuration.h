@@ -24,6 +24,9 @@
 #define MOTOR_PWM_RANGE 2500 //2500 us pwm signals
 #define MOTOR_PWM_FREQUENCY 400 //400hz
 
+#define MAX_SPEED 2000
+#define MIN_SPEED 1000
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
