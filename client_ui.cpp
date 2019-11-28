@@ -15,9 +15,6 @@ int calibration = 0;
 
 //Insturction set used in key_press handler to issue correct character to socket
 typedef enum inst {
-    OFF,
-    INIT,
-    RESET,
     ROT_L,
     ROT_R,
     ACC_F,
