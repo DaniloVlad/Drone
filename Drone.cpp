@@ -81,6 +81,10 @@ int Drone::handleInstruction(char INS){
         if(counterClockWise - clockwise >= 400)
             break;
 
+        //prevent drone from going over max or under min!
+        if(clockwise - 100 < 1000) clockwise = 1100;
+        if(counterClockWise + 100 > 2000) counterClockWise = 1900;
+
         if(counterClockWise >= clockwise + 200) {
             this -> setMotorSpeed(0, clockwise - 100);
             this -> setMotorSpeed(3, clockwise - 100);
@@ -108,6 +112,11 @@ int Drone::handleInstruction(char INS){
         //prevent the drone from flipping over
         if(clockwise - counterClockWise >= 400) 
             break;
+
+        //prevent drone from going over max or under min!
+        if(counterClockWise - 100 < 1000) counterClockWise = 1100;
+        if(clockwise + 100 > 2000) clockwise = 1900;
+        
         if(clockwise >= counterClockWise + 200) {
             this -> setMotorSpeed(0, clockwise + 100);
             this -> setMotorSpeed(3, clockwise + 100);
@@ -130,12 +139,20 @@ int Drone::handleInstruction(char INS){
     case 'w':
         //raise, increase all motor speeds
         int avgSpeed = this -> getAvgMotorSpeed();
+        
+        //prevent drone from going above maximum
+        if(avgSpeed + 100 > 2000) avgSpeed = 1900;
+
         this -> setAllMotors(avgSpeed + 100);
         break;
 
     case 's':
         //lower, decrease all motor speeds
         int avgSpeed = this -> getAvgMotorSpeed();
+
+        //prevent drone from going beyond minimum
+        if(avgSpeed - 100 < 1000) avgSpeed = 1100;
+
         this -> setAllMotors(avgSpeed - 100);
         break;
 
@@ -147,6 +164,10 @@ int Drone::handleInstruction(char INS){
         //prevent the drone from flipping over
         if(rightBank - leftBank >= 400)
             break;
+
+        //prevent motors from exceeding max/min
+        if(leftBank - 100 < 1000) leftBank = 1100;
+        if(rightBank + 100 > 2000) rightBank = 1900;
 
         if(rightBank >= leftBank + 200) {
             this -> setMotorSpeed(0, leftBank - 100);
@@ -178,6 +199,10 @@ int Drone::handleInstruction(char INS){
         if(leftBank - rightBank >= 400)
             break;
 
+        //prevent motors from exceeding max/min
+        if(leftBank + 100 > 2000) leftBank = 1900;
+        if(rightBank - 100 < 1000) rightBank = 1100;
+
         if(leftBank >= rightBank + 200) {
             this -> setMotorSpeed(0, leftBank + 100);
             this -> setMotorSpeed(2, leftBank + 100);
@@ -207,6 +232,10 @@ int Drone::handleInstruction(char INS){
         //prevent the drone from flipping over
         if(backBank - frontBank >= 400)
             break;
+        
+        //prevent motors from exceeding max/min
+        if(frontBank - 100 < 1000) frontBank = 1100;
+        if(backBank + 100 > 2000) backBank = 1900;
 
         if(backBank >= frontBank + 200) {
             this -> setMotorSpeed(0, frontBank - 100);
@@ -234,10 +263,14 @@ int Drone::handleInstruction(char INS){
         int frontBank = this -> motors[0] -> getSpeed();
         int backBank = this -> motors[2] -> getSpeed();
 
+        
         //prevent the drone from flipping over
         if(frontBank - backBank >= 400) 
             break; 
 
+        //prevent motors from exceeding max/min
+        if(frontBank + 100 > 2000) frontBank = 1900;
+        if(backBank - 100 < 1000) backBank = 1100;
         if(frontBank >= backBank + 200) {
             this -> setMotorSpeed(0, frontBank + 100);
             this -> setMotorSpeed(1, frontBank + 100);
