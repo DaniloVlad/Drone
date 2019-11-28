@@ -4,11 +4,11 @@
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
-#include "../include/Client.h"
+#include "include/Client.h"
 
 
 
-char addr[13] = "192.168.0.10";
+char addr[13] = "192.168.1.4";
 Client *client = new Client(8080, addr, AF_INET, SOCK_STREAM, 0);
 
 int calibration = 0;

@@ -44,7 +44,7 @@ test_server: $(IDIR)/Socket.h $(IDIR)/Server.h
 	$(CC) $(TDIR)/test_server.cpp $(ODIR)/Socket.o $(ODIR)/Server.o -o $(BDIR)/test_server
 
 client_ui: $(IDIR)/Client.h $(IDIR)/Socket.h
-	$(CC) `pkg-config --cflags gtk+-3.0` -o $(BDIR)/client_ui ui/ui-test1.cpp $(ODIR)/Client.o $(ODIR)/Socket.o -lpthread `pkg-config --libs gtk+-3.0`
+	$(CC) `pkg-config --cflags gtk+-3.0` -o $(BDIR)/client_ui client_ui.cpp $(ODIR)/Client.o $(ODIR)/Socket.o -lpthread `pkg-config --libs gtk+-3.0`
 
 main: $(IDIR)/Drone.h $(IDIR)/Motor.h $(IDIR)/Accelerometer.h $(IDIR)/Server.h $(IDIR)/Socket.h 
 	$(CC) $(TDIR)/main.cpp $(ODIR)/Drone.o $(ODIR)/Motor.o $(ODIR)/Accelerometer.o $(ODIR)/Server.o $(ODIR)/Socket.o -lpigpio -lpthread -o $(BDIR)/main
