@@ -23,9 +23,6 @@ Client::Client() : Socket() {
 */  
 Client::Client(int port, char *address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
     
-    printf("Client has called parent constructor\n");
-    printf("protocol: %d\n", protocol);
-
     // Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
     if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't connect client socket");
@@ -43,7 +40,6 @@ Client::Client(int port, char *address, int domain, int type, int protocol) : So
 *   @param protocol - protocol the client is using.
 */  
 Client::Client(int port, uint32_t address, int domain, int type, int protocol) : Socket(port, address, domain, type, protocol) {
-    printf("protocol: %d\n", protocol);
     // Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
     if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
         perror("Couldn't connect client socket");

@@ -44,8 +44,8 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     this -> type = type;
     this -> protocol = protocol;
     this -> domain = domain;
-    printf("in Socket: %s:%d domain: %d type %d protocol %d\n", address, port, this -> domain, this->type, this->protocol);
     memset(this -> addr, 0, this -> socklen);
+    
     if(inet_pton(AF_INET, address, &(this -> addr -> sin_addr.s_addr)) < 1) {
         perror("Could't translate ip address!\n");
         return;
