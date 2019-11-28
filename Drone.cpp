@@ -84,7 +84,7 @@ int Drone::handleInstruction(char INS){
             break;
 
         //prevent drone from going over max or under min!
-        if(clockwise - 100 < 1000) clockwise = 1100;
+        if(clockwise - 100 < 1100) clockwise = 1200;
         if(counterClockWise + 100 > 2000) counterClockWise = 1900;
 
         if(counterClockWise >= clockwise + 200) {
@@ -116,7 +116,7 @@ int Drone::handleInstruction(char INS){
             break;
 
         //prevent drone from going over max or under min!
-        if(counterClockWise - 100 < 1000) counterClockWise = 1100;
+        if(counterClockWise - 100 < 1100) counterClockWise = 1200;
         if(clockwise + 100 > 2000) clockwise = 1900;
         
         if(clockwise >= counterClockWise + 200) {
@@ -153,7 +153,7 @@ int Drone::handleInstruction(char INS){
         int avgSpeed = this -> getAvgMotorSpeed();
 
         //prevent drone from going beyond minimum
-        if(avgSpeed - 100 < 1000) avgSpeed = 1100;
+        if(avgSpeed - 100 < 1100) avgSpeed = 1200;
 
         this -> setAllMotors(avgSpeed - 100);
         break;
@@ -168,7 +168,7 @@ int Drone::handleInstruction(char INS){
             break;
 
         //prevent motors from exceeding max/min
-        if(leftBank - 100 < 1000) leftBank = 1100;
+        if(leftBank - 100 < 1100) leftBank = 1200;
         if(rightBank + 100 > 2000) rightBank = 1900;
 
         if(rightBank >= leftBank + 200) {
@@ -203,7 +203,7 @@ int Drone::handleInstruction(char INS){
 
         //prevent motors from exceeding max/min
         if(leftBank + 100 > 2000) leftBank = 1900;
-        if(rightBank - 100 < 1000) rightBank = 1100;
+        if(rightBank - 100 < 1100) rightBank = 1200;
 
         if(leftBank >= rightBank + 200) {
             this -> setMotorSpeed(0, leftBank + 100);
@@ -236,7 +236,7 @@ int Drone::handleInstruction(char INS){
             break;
         
         //prevent motors from exceeding max/min
-        if(frontBank - 100 < 1000) frontBank = 1100;
+        if(frontBank - 100 < 1100) frontBank = 1200;
         if(backBank + 100 > 2000) backBank = 1900;
 
         if(backBank >= frontBank + 200) {
@@ -272,7 +272,7 @@ int Drone::handleInstruction(char INS){
 
         //prevent motors from exceeding max/min
         if(frontBank + 100 > 2000) frontBank = 1900;
-        if(backBank - 100 < 1000) backBank = 1100;
+        if(backBank - 100 < 1100) backBank = 1200;
         if(frontBank >= backBank + 200) {
             this -> setMotorSpeed(0, frontBank + 100);
             this -> setMotorSpeed(1, frontBank + 100);
@@ -300,7 +300,7 @@ int Drone::handleInstruction(char INS){
         break;
     case 'l':
         //set motors to minimum speed
-        this -> setAllMotors(1000);
+        this -> setAllMotors(1100);
         break;
 
     case 'h':
