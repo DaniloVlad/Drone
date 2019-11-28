@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Accelerometer.h"
+#include "../include/Accelerometer.h"
 
 int main() {  
     

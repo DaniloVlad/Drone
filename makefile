@@ -29,7 +29,7 @@ Drone.o: $(IDIR)/Drone.h
 	$(CC) Drone.cpp -c -o $(ODIR)/Drone.o
 
 AccelTest: $(IDIR)/Accelerometer.h $(IDIR)/Configuration.h
-	$(CC) $(TDIR)/Accel_tests.cpp $(ODIR)/Accelerometer.o -o $(BDIR)/AccelTest
+	$(CC) $(TDIR)/Accel_tests.cpp $(ODIR)/Accelerometer.o -lpigpio -o $(BDIR)/AccelTest
 
 MotorTest: $(IDIR)/Motor.h 
 	$(CC) $(TDIR)/MotorTest.cpp $(ODIR)/Motor.o -lpigpio -o $(BDIR)/MotorTest
@@ -47,7 +47,7 @@ client_ui: $(IDIR)/Client.h $(IDIR)/Socket.h
 	$(CC) `pkg-config --cflags gtk+-3.0` -o $(BDIR)/client_ui client_ui.cpp $(ODIR)/Client.o $(ODIR)/Socket.o -lpthread `pkg-config --libs gtk+-3.0`
 
 main: $(IDIR)/Drone.h $(IDIR)/Motor.h $(IDIR)/Accelerometer.h $(IDIR)/Server.h $(IDIR)/Socket.h 
-	$(CC) $(TDIR)/main.cpp $(ODIR)/Drone.o $(ODIR)/Motor.o $(ODIR)/Accelerometer.o $(ODIR)/Server.o $(ODIR)/Socket.o -lpigpio -lpthread -o $(BDIR)/main
+	$(CC) main.cpp $(ODIR)/Drone.o $(ODIR)/Motor.o $(ODIR)/Accelerometer.o $(ODIR)/Server.o $(ODIR)/Socket.o -lpigpio -lpthread -o $(BDIR)/main
 
 clean:
 	rm $(ODIR)/* $(BDIR)/*

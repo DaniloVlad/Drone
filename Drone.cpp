@@ -17,8 +17,7 @@ Drone::Drone() {
     this -> server = new Server();
 
     //set thread id to 0 (ie not running)
-    this -> hover = 0;
-
+    this -> hover = NULL;
     this -> acc_data = new signed short(3);
     this -> gyro_data = new signed short(3);
     for(int i = 0; i < 3; i++) {
@@ -38,7 +37,7 @@ Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin,
     this -> server = new Server(port);
     
     //set thread id to 0 (ie not running)
-    this -> hover = 0;
+    this -> hover = NULL;
 
     this -> acc_data = new signed short(3);
     this -> gyro_data = new signed short(3);
@@ -65,267 +64,296 @@ int Drone::handleInstruction(char INS){
     switch (INS)
     {
     case 'c':
-        if(this -> calibrated == 0) {
-            this -> setAllMotors(2000);
-            this -> calibrated = 1;
+        {
+            if(this -> calibrated == 0) {
+                this -> setAllMotors(2000);
+                this -> calibrated = 1;
+            }
+            else {
+                this -> setAllMotors(1000);
+            }
+            break;
         }
-        else {
-            this -> setAllMotors(1000);
-        }
-        break;
+        
 
     case 'a':
-        //rotate left
-        int clockwise = this -> motors[0] -> getSpeed();
-        int counterClockWise = this -> motors[1] -> getSpeed();
+        {
+            //rotate left
+            int clockwise = this -> motors[0] -> getSpeed();
+            int counterClockWise = this -> motors[1] -> getSpeed();
 
-        //prevent the drone from flipping over
-        if(counterClockWise - clockwise >= 400)
+            //prevent the drone from flipping over
+            if(counterClockWise - clockwise >= 400)
+                break;
+
+            //prevent drone from going over max or under min!
+            if(clockwise - 100 < 1100) clockwise = 1200;
+            if(counterClockWise + 100 > 2000) counterClockWise = 1900;
+
+            if(counterClockWise >= clockwise + 200) {
+                this -> setMotorSpeed(0, clockwise - 100);
+                this -> setMotorSpeed(3, clockwise - 100);
+                this -> setMotorSpeed(1, counterClockWise + 100);
+                this -> setMotorSpeed(2, counterClockWise + 100);
+            }
+            else {
+                //speeds are within 100 steps (10%) of eachother
+                int diff = 0;
+                if(clockwise > counterClockWise) 
+                    diff = clockwise - counterClockWise;
+                
+                this -> setMotorSpeed(0, clockwise - 100);
+                this -> setMotorSpeed(3, clockwise - 100);
+                this -> setMotorSpeed(1, counterClockWise + diff + 100);
+                this -> setMotorSpeed(2, counterClockWise + diff + 100);
+            }
             break;
 
-        //prevent drone from going over max or under min!
-        if(clockwise - 100 < 1100) clockwise = 1200;
-        if(counterClockWise + 100 > 2000) counterClockWise = 1900;
-
-        if(counterClockWise >= clockwise + 200) {
-            this -> setMotorSpeed(0, clockwise - 100);
-            this -> setMotorSpeed(3, clockwise - 100);
-            this -> setMotorSpeed(1, counterClockWise + 100);
-            this -> setMotorSpeed(2, counterClockWise + 100);
         }
-        else {
-            //speeds are within 100 steps (10%) of eachother
-            int diff = 0;
-            if(clockwise > counterClockWise) 
-                diff = clockwise - counterClockWise;
-            
-            this -> setMotorSpeed(0, clockwise - 100);
-            this -> setMotorSpeed(3, clockwise - 100);
-            this -> setMotorSpeed(1, counterClockWise + diff + 100);
-            this -> setMotorSpeed(2, counterClockWise + diff + 100);
-        }
-        break;
 
     case 'd':
-        //rotate right
-        int clockwise = this -> motors[0] -> getSpeed();
-        int counterClockWise = this -> motors[1] -> getSpeed();
+        {
 
-        //prevent the drone from flipping over
-        if(clockwise - counterClockWise >= 400) 
-            break;
+            //rotate right
+            int clockwise = this -> motors[0] -> getSpeed();
+            int counterClockWise = this -> motors[1] -> getSpeed();
 
-        //prevent drone from going over max or under min!
-        if(counterClockWise - 100 < 1100) counterClockWise = 1200;
-        if(clockwise + 100 > 2000) clockwise = 1900;
-        
-        if(clockwise >= counterClockWise + 200) {
-            this -> setMotorSpeed(0, clockwise + 100);
-            this -> setMotorSpeed(3, clockwise + 100);
-            this -> setMotorSpeed(1, counterClockWise - 100);
-            this -> setMotorSpeed(2, counterClockWise - 100);
-        }
-        else {
-            //speeds are within 100 steps (10%) of eachother
-            int diff = 0;
-            if(counterClockWise > clockwise) 
-                diff = counterClockWise - clockwise;
+            //prevent the drone from flipping over
+            if(clockwise - counterClockWise >= 400) 
+                break;
+
+            //prevent drone from going over max or under min!
+            if(counterClockWise - 100 < 1100) counterClockWise = 1200;
+            if(clockwise + 100 > 2000) clockwise = 1900;
             
-            this -> setMotorSpeed(0, clockwise + diff + 100);
-            this -> setMotorSpeed(3, clockwise + diff + 100);
-            this -> setMotorSpeed(1, counterClockWise - 100);
-            this -> setMotorSpeed(2, counterClockWise - 100);
+            if(clockwise >= counterClockWise + 200) {
+                this -> setMotorSpeed(0, clockwise + 100);
+                this -> setMotorSpeed(3, clockwise + 100);
+                this -> setMotorSpeed(1, counterClockWise - 100);
+                this -> setMotorSpeed(2, counterClockWise - 100);
+            }
+            else {
+                //speeds are within 100 steps (10%) of eachother
+                int diff = 0;
+                if(counterClockWise > clockwise) 
+                    diff = counterClockWise - clockwise;
+                
+                this -> setMotorSpeed(0, clockwise + diff + 100);
+                this -> setMotorSpeed(3, clockwise + diff + 100);
+                this -> setMotorSpeed(1, counterClockWise - 100);
+                this -> setMotorSpeed(2, counterClockWise - 100);
+            }
+            break;
         }
-        break;
 
     case 'w':
-        //raise, increase all motor speeds
-        int avgSpeed = this -> getAvgMotorSpeed();
+        {
+            //raise, increase all motor speeds
+            int avgSpeed = this -> getAvgMotorSpeed();
 
-        //prevent drone from going above maximum
-        if(avgSpeed + 100 > 2000) avgSpeed = 1900;
+            //prevent drone from going above maximum
+            if(avgSpeed + 100 > 2000) avgSpeed = 1900;
 
-        this -> setAllMotors(avgSpeed + 100);
-        break;
+            this -> setAllMotors(avgSpeed + 100);
+            break;
+        }
 
     case 's':
-        //lower, decrease all motor speeds
-        int avgSpeed = this -> getAvgMotorSpeed();
+        {
+            //lower, decrease all motor speeds
+            int avgSpeed = this -> getAvgMotorSpeed();
 
-        //prevent drone from going beyond minimum
-        if(avgSpeed - 100 < 1100) avgSpeed = 1200;
+            //prevent drone from going beyond minimum
+            if(avgSpeed - 100 < 1100) avgSpeed = 1200;
 
-        this -> setAllMotors(avgSpeed - 100);
-        break;
+            this -> setAllMotors(avgSpeed - 100);
+            break;
+        }
 
     case '<':
-        //move left, Motors 1 & 3 should be spin faster than 0 & 2
-        int leftBank = this -> motors[0] -> getSpeed();
-        int rightBank = this -> motors[1] -> getSpeed();
+        {
+            //move left, Motors 1 & 3 should be spin faster than 0 & 2
+            int leftBank = this -> motors[0] -> getSpeed();
+            int rightBank = this -> motors[1] -> getSpeed();
 
-        //prevent the drone from flipping over
-        if(rightBank - leftBank >= 400)
-            break;
+            //prevent the drone from flipping over
+            if(rightBank - leftBank >= 400)
+                break;
 
-        //prevent motors from exceeding max/min
-        if(leftBank - 100 < 1100) leftBank = 1200;
-        if(rightBank + 100 > 2000) rightBank = 1900;
+            //prevent motors from exceeding max/min
+            if(leftBank - 100 < 1100) leftBank = 1200;
+            if(rightBank + 100 > 2000) rightBank = 1900;
 
-        if(rightBank >= leftBank + 200) {
-            this -> setMotorSpeed(0, leftBank - 100);
-            this -> setMotorSpeed(2, leftBank - 100);
+            if(rightBank >= leftBank + 200) {
+                this -> setMotorSpeed(0, leftBank - 100);
+                this -> setMotorSpeed(2, leftBank - 100);
 
-            this -> setMotorSpeed(3, rightBank + 100);
-            this -> setMotorSpeed(1, rightBank + 100);
-        
-        }
-        else {
-            int diff = 0;
-            if(leftBank > rightBank)
-                diff = leftBank - rightBank;
+                this -> setMotorSpeed(3, rightBank + 100);
+                this -> setMotorSpeed(1, rightBank + 100);
             
-            this -> setMotorSpeed(0, leftBank - 100);
-            this -> setMotorSpeed(2, leftBank - 100);
+            }
+            else {
+                int diff = 0;
+                if(leftBank > rightBank)
+                    diff = leftBank - rightBank;
+                
+                this -> setMotorSpeed(0, leftBank - 100);
+                this -> setMotorSpeed(2, leftBank - 100);
 
-            this -> setMotorSpeed(3, rightBank + diff + 100);
-            this -> setMotorSpeed(1, rightBank + diff + 100);
+                this -> setMotorSpeed(3, rightBank + diff + 100);
+                this -> setMotorSpeed(1, rightBank + diff + 100);
+            }
+            break;
         }
-        break;
 
     case '>':
-        //move right, Motors 0 & 2 > Motors 1 & 3
-        int leftBank = this -> motors[0] -> getSpeed();
-        int rightBank = this -> motors[1] -> getSpeed();
+        {
 
-        //prevent the drone from flipping over
-        if(leftBank - rightBank >= 400)
-            break;
+            //move right, Motors 0 & 2 > Motors 1 & 3
+            int leftBank = this -> motors[0] -> getSpeed();
+            int rightBank = this -> motors[1] -> getSpeed();
 
-        //prevent motors from exceeding max/min
-        if(leftBank + 100 > 2000) leftBank = 1900;
-        if(rightBank - 100 < 1100) rightBank = 1200;
+            //prevent the drone from flipping over
+            if(leftBank - rightBank >= 400)
+                break;
 
-        if(leftBank >= rightBank + 200) {
-            this -> setMotorSpeed(0, leftBank + 100);
-            this -> setMotorSpeed(2, leftBank + 100);
+            //prevent motors from exceeding max/min
+            if(leftBank + 100 > 2000) leftBank = 1900;
+            if(rightBank - 100 < 1100) rightBank = 1200;
 
-            this -> setMotorSpeed(3, rightBank - 100);
-            this -> setMotorSpeed(1, rightBank - 100);
-        
-        }
-        else {
-            int diff = 0;
-            if(rightBank > leftBank)
-                diff = rightBank - leftBank;
+            if(leftBank >= rightBank + 200) {
+                this -> setMotorSpeed(0, leftBank + 100);
+                this -> setMotorSpeed(2, leftBank + 100);
+
+                this -> setMotorSpeed(3, rightBank - 100);
+                this -> setMotorSpeed(1, rightBank - 100);
             
-            this -> setMotorSpeed(0, leftBank + diff + 100);
-            this -> setMotorSpeed(2, leftBank + diff + 100);
+            }
+            else {
+                int diff = 0;
+                if(rightBank > leftBank)
+                    diff = rightBank - leftBank;
+                
+                this -> setMotorSpeed(0, leftBank + diff + 100);
+                this -> setMotorSpeed(2, leftBank + diff + 100);
 
-            this -> setMotorSpeed(3, rightBank - 100);
-            this -> setMotorSpeed(1, rightBank - 100);
+                this -> setMotorSpeed(3, rightBank - 100);
+                this -> setMotorSpeed(1, rightBank - 100);
+            }
+            break;
         }
-        break;
 
     case '^':
-        //move forward, Motors 0 & 1 > Motors 2 & 3
-        int frontBank = this -> motors[0] -> getSpeed();
-        int backBank = this -> motors[2] -> getSpeed();
+        {
 
-        //prevent the drone from flipping over
-        if(backBank - frontBank >= 400)
-            break;
-        
-        //prevent motors from exceeding max/min
-        if(frontBank - 100 < 1100) frontBank = 1200;
-        if(backBank + 100 > 2000) backBank = 1900;
+            //move forward, Motors 0 & 1 > Motors 2 & 3
+            int frontBank = this -> motors[0] -> getSpeed();
+            int backBank = this -> motors[2] -> getSpeed();
 
-        if(backBank >= frontBank + 200) {
-            this -> setMotorSpeed(0, frontBank - 100);
-            this -> setMotorSpeed(1, frontBank - 100);
-
-            this -> setMotorSpeed(2, backBank + 100);
-            this -> setMotorSpeed(3, backBank + 100);
-        
-        }
-        else {
-            int diff = 0;
-            if(frontBank > backBank)
-                diff = frontBank - backBank;
+            //prevent the drone from flipping over
+            if(backBank - frontBank >= 400)
+                break;
             
-            this -> setMotorSpeed(0, frontBank - 100);
-            this -> setMotorSpeed(1, frontBank - 100);
+            //prevent motors from exceeding max/min
+            if(frontBank - 100 < 1100) frontBank = 1200;
+            if(backBank + 100 > 2000) backBank = 1900;
 
-            this -> setMotorSpeed(3, backBank + diff + 100);
-            this -> setMotorSpeed(1, backBank + diff + 100);
+            if(backBank >= frontBank + 200) {
+                this -> setMotorSpeed(0, frontBank - 100);
+                this -> setMotorSpeed(1, frontBank - 100);
+
+                this -> setMotorSpeed(2, backBank + 100);
+                this -> setMotorSpeed(3, backBank + 100);
+            
+            }
+            else {
+                int diff = 0;
+                if(frontBank > backBank)
+                    diff = frontBank - backBank;
+                
+                this -> setMotorSpeed(0, frontBank - 100);
+                this -> setMotorSpeed(1, frontBank - 100);
+
+                this -> setMotorSpeed(3, backBank + diff + 100);
+                this -> setMotorSpeed(1, backBank + diff + 100);
+            }
+            break;
         }
-        break;
 
     case 'b':
-        //move backward, Motors 2 & 3 > Motors 0 & 1
-        int frontBank = this -> motors[0] -> getSpeed();
-        int backBank = this -> motors[2] -> getSpeed();
+        {
 
-        
-        //prevent the drone from flipping over
-        if(frontBank - backBank >= 400) 
-            break; 
+            //move backward, Motors 2 & 3 > Motors 0 & 1
+            int frontBank = this -> motors[0] -> getSpeed();
+            int backBank = this -> motors[2] -> getSpeed();
 
-        //prevent motors from exceeding max/min
-        if(frontBank + 100 > 2000) frontBank = 1900;
-        if(backBank - 100 < 1100) backBank = 1200;
-        if(frontBank >= backBank + 200) {
-            this -> setMotorSpeed(0, frontBank + 100);
-            this -> setMotorSpeed(1, frontBank + 100);
-
-            this -> setMotorSpeed(2, backBank - 100);
-            this -> setMotorSpeed(3, backBank - 100);
-        
-        }
-        else {
-            int diff = 0;
-            if(backBank > frontBank)
-                diff = backBank - frontBank;
             
-            this -> setMotorSpeed(0, frontBank + diff + 100);
-            this -> setMotorSpeed(1, frontBank + diff + 100);
+            //prevent the drone from flipping over
+            if(frontBank - backBank >= 400) 
+                break; 
 
-            this -> setMotorSpeed(3, backBank - 100);
-            this -> setMotorSpeed(1, backBank - 100);
+            //prevent motors from exceeding max/min
+            if(frontBank + 100 > 2000) frontBank = 1900;
+            if(backBank - 100 < 1100) backBank = 1200;
+            if(frontBank >= backBank + 200) {
+                this -> setMotorSpeed(0, frontBank + 100);
+                this -> setMotorSpeed(1, frontBank + 100);
+
+                this -> setMotorSpeed(2, backBank - 100);
+                this -> setMotorSpeed(3, backBank - 100);
+            
+            }
+            else {
+                int diff = 0;
+                if(backBank > frontBank)
+                    diff = backBank - frontBank;
+                
+                this -> setMotorSpeed(0, frontBank + diff + 100);
+                this -> setMotorSpeed(1, frontBank + diff + 100);
+
+                this -> setMotorSpeed(3, backBank - 100);
+                this -> setMotorSpeed(1, backBank - 100);
+            }
+            break;
         }
-        break;
 
     case 'x':
-        //turn off all motors
-        this -> setAllMotors(0);
-        break;
+        {
+            //turn off all motors
+            this -> setAllMotors(0);
+            break;
+        }
     case 'l':
-        //set motors to minimum speed
-        this -> setAllMotors(1100);
-        break;
+        {
+            //set motors to minimum speed
+            this -> setAllMotors(1100);
+            break;
+        }
 
     case 'h':
-        //Expiremental hover!
-        if(this -> hover == 0) {
-            if(pthread_create(&this -> hover, NULL, (this -> checkAlt), NULL) == 0) {
-                printf("Creating hover thread!");
+        {
+            //Expiremental hover!
+            if(this -> hover != NULL) {
+                this -> hover = new std::thread(&Drone::checkAlt, this);
             }
+            else
+                this -> hover = NULL;
+            
+            
+            break;
         }
-        else
-            this -> hover = 0;
-        
-        
-        break;
     default:
         break;
     }
+
     return 0;
 
 }
 
 
-void Drone::checkAlt(){
+void *Drone::checkAlt(){
     //on default mode accelerometer samples at 20hz ie 20 updates to values per second
-    while(this -> hover != 0) {
+    while(this -> hover != NULL) {
         float z = (float) this -> acc -> getAccZ();
         int speed = this -> getAvgMotorSpeed();
         if(z < 0) z = (-1) * z;
@@ -342,8 +370,7 @@ void Drone::checkAlt(){
         time.tv_nsec = 1000000000/10;
         nanosleep(&time, NULL);
     }
-    return;
-
+    return NULL;
 }
 
 signed short *Drone::getGyroData() {

@@ -5,7 +5,7 @@
 #define DRONE_H
 
 #include <time.h>
-#include <pthread.h>
+#include <thread>
 #include "Accelerometer.h"
 #include "Motor.h"
 #include "Server.h"
@@ -18,7 +18,7 @@ public:
     ~Drone();
 
     int handleInstruction(char INS);
-    void checkAlt(); //called by server, polls accelerometer to maintain drones altitude if state is ROT_L/R, RESET, ACC_X/Y
+    void *checkAlt(); //called by server, polls accelerometer to maintain drones altitude if state is ROT_L/R, RESET, ACC_X/Y
     signed short *getGyroData();
     signed short *getAccData();
     int setAllMotors(int speed);
@@ -31,7 +31,7 @@ private:
     Server *server;
     signed short *acc_data;
     signed short *gyro_data;
-    pthread_t hover;
+    std::thread *hover;
     int calibrated;
     int getAvgMotorSpeed();
 };
