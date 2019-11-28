@@ -95,7 +95,7 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
 *   @breif - Deconstructor method for the socket.
 */  
 Socket::~Socket() {
-    printf("Destroying socket");
+    printf("Destroying socket\n");
     if(addr != NULL) {
         free(this -> addr);
         close(this -> socketfd);

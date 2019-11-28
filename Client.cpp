@@ -48,7 +48,7 @@ Client::Client(int port, uint32_t address, int domain, int type, int protocol) :
 }
 
 Client::~Client() {
-    printf("Closing socket");
+    printf("Closing socket\n");
 }
 
 // Returns the information read in to the client socket.
