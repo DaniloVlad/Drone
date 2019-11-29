@@ -113,8 +113,8 @@ int Drone::handleInstruction(char INS){
     // this is the case for having the drone move to the left
     case 'a':
         {
-            //rotate left by adjusting clockwise and counterclockwise values to corresponding motor speeds to have the motor
-	    // in the correct direction
+            //rotate left by adjusting clockwise and counterclockwise values to corresponding motor steps to have the motor
+	    // move in the correct direction
             int clockwise = this -> motors[0] -> getSpeed();
             int counterClockWise = this -> motors[1] -> getSpeed();
 
@@ -123,23 +123,28 @@ int Drone::handleInstruction(char INS){
                 break;
 
             //check to prevent drone from going over max or under min!
-	    // case for clockwise speed is less than 1100
+	    // case for clockwise steps is less than 1100, hence the speeds too low
             if(clockwise - 100 < 1100) clockwise = 1200;
-	    // case for counterClockWise speed being too high
+	    // case for counterClockWise steps being too high = speeds being too high
             if(counterClockWise + 100 > 2000) counterClockWise = 1900;
-	    // case for 
+	    // case for when the counterClockWise steps is greater than or equal to clockwise steps + 200
+	    // which equates to the counterClockWise speed for  the drone motors being too fast 
             if(counterClockWise >= clockwise + 200) {
                 this -> setMotorSpeed(0, clockwise - 100);
                 this -> setMotorSpeed(3, clockwise - 100);
                 this -> setMotorSpeed(1, counterClockWise + 100);
                 this -> setMotorSpeed(2, counterClockWise + 100);
             }
+   	    // when the speeds are very close to one another
             else {
                 //speeds are within 100 steps (10%) of each other
                 int diff = 0;
+		// when the steps of left motor are greather than right motor
                 if(clockwise > counterClockWise) 
                     diff = clockwise - counterClockWise;
-                
+                // set the motor speeds accordingly to ensure that the motor moves to the left
+		// by reducing the speed of the motors to the left and increasing the speed on the motors
+		// on the right of the motor
                 this -> setMotorSpeed(0, clockwise - 100);
                 this -> setMotorSpeed(3, clockwise - 100);
                 this -> setMotorSpeed(1, counterClockWise + diff + 100);
@@ -148,7 +153,7 @@ int Drone::handleInstruction(char INS){
             break;
 
         }
-
+   
     case 'd':
         {
 
@@ -412,16 +417,34 @@ void *Drone::checkAlt(){
     return NULL;
 }
 
+/**
+*getGyroData function
+*@brief - the getGyroData returns a pointer for the current gyro data of the drone
+*@return - the gyro data of the drone
+*/
 signed short *Drone::getGyroData() {
+    // retrive the gyrodata for the drone at the time or request
     this -> gyro_data = this -> acc -> getGyroXYZ();
     return this -> gyro_data;
 }
 
+/**
+*getAccData function
+*@brief - this function returns the acceleration data of the motor
+*@return - the acceleration data
+*/
 signed short *Drone::getAccData(){
+    // retrive the acceleration data of the drone
     this -> acc_data = this -> acc -> getAccXYZ();
     return this -> acc_data;
 }
 
+/**
+*setAllMotors Function
+*@brief - the setAllMotors function sets the motor speeds of all the motors to the speed provided by the parameter
+*@param speed - this parameter holds the value with which we want to set the speed of th motors of the drone.
+*@return - it returns a 0 for success and a -1 for failure which is if one drone motor cannot change speed
+*/
 int Drone::setAllMotors(int speed){
     if(motors[0] -> setSpeed(speed) < 0 || motors[1] -> setSpeed(speed) < 0 || motors[2] -> setSpeed(speed) < 0 || motors[3] -> setSpeed(speed) < 0) {
         return -1;
@@ -429,7 +452,13 @@ int Drone::setAllMotors(int speed){
     return 0;
 }
 
-
+/**
+*setMotorSpeed Function 
+*@brief - the setMotorSpeed function sets the motor speed of the motor desired to that speed
+*@param motor_id - the motor id of which motor we desire to change its speeds to
+*@param speed - the speed of which we want that specific motor set 
+*@return - the int representing whether we could set that motor that specific speed or not
+*/
 int Drone::setMotorSpeed(int motor_id, int speed){
     if(motors[motor_id] -> setSpeed(speed) < 0) {
         return -1;
@@ -437,16 +466,27 @@ int Drone::setMotorSpeed(int motor_id, int speed){
     return 0;
 }
 
+/**
+*startDrone function is responsible for taking input and using the appropriate function to perform each task on the drone
+*@brief - startDrone takes no parameters but is responsible for taking in input from the server which was sent by the client utilizing the proper funnction to handle each instruction
+*/
 void Drone::startDrone() {
-    char buff[256];
-    this -> server -> startServer();
+    char buff[256]; // character buffer to take in an input that is received by the server
+    this -> server -> startServer(); // starting the server which will use the buffer to put the received commands
     printf("Drone attempting read...\n");
+    // while we have inputs coming in we have to handle the inputs accordingly by using the handelInstruction function
     while(this -> server -> receive(&buff, 1) > 0) {
         handleInstruction(buff[0]);
     }
     printf("Exiting...\n");
 }
 
+
+/**
+*getAvgMotorSpeed function
+*@brief - this function calculates the average motor speed for the drone then returns it
+*@return - the average motor speed for the drone
+*/
 int Drone::getAvgMotorSpeed() {
     return ((this -> motors[0] -> getSpeed() + this -> motors[1] -> getSpeed() + this -> motors[2] -> getSpeed() + this -> motors[3] -> getSpeed()) / 4);
 }
