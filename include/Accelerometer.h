@@ -17,6 +17,7 @@
 #define GYRO_Y_L 54
 #define GYRO_Z_H 55
 #define GYRO_Z_L 56
+#include <time.h>
 #include "Configuration.h"
 
 
@@ -29,12 +30,12 @@ class Accelerometer{
         int i2c_handle;
         int i2c_addr;		// Stores the physical address of i2c with a value of 1 for read and 0 for write.
         int i2c_bus;
-        uint16_t accX;		// High byte version of accelorometer X-axis data.
-        uint16_t accY;		// High byte version of accelorometer Y-axis data.
-        uint16_t accZ;		// High byte version of accelorometer Z-axis data.
-        uint16_t gyroX;		// High byte version of gyroscope X-axis data.
-        uint16_t gyroY;		// High byte version of gyroscope X-axis data.
-        uint16_t gyroZ;		// High byte version of gyroscope X-axis data.
+        int16_t accX;		// High byte version of accelorometer X-axis data.
+        int16_t accY;		// High byte version of accelorometer Y-axis data.
+        int16_t accZ;		// High byte version of accelorometer Z-axis data.
+        int16_t gyroX;		// High byte version of gyroscope X-axis data.
+        int16_t gyroY;		// High byte version of gyroscope X-axis data.
+        int16_t gyroZ;		// High byte version of gyroscope X-axis data.
   
   	// Accelerometer functions.
     public:
@@ -47,9 +48,9 @@ class Accelerometer{
         int getGyroX();
         int getGyroY();
         int getGyroZ();
-        int getAccX();
-        int getAccY();
-        int getAccZ();
+        int16_t getAccX();
+        int16_t getAccY();
+        int16_t getAccZ();
         signed short* getGyroXYZ();
         signed short* getAccXYZ();
 

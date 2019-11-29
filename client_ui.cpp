@@ -8,8 +8,8 @@
 
 
 
-char addr[13] = "192.168.1.4";
-Client *client = new Client(8080, addr, AF_INET, SOCK_STREAM, 0);
+char addr[13] = "192.168.4.1";
+Client *client = new Client(8080, addr);
 
 int calibration = 0;
 
@@ -271,7 +271,7 @@ int main (int argc, char **argv)
     exit(EXIT_FAILURE);
   }
   //create the gtk apllication
-  app = gtk_application_new ("Drone App", G_APPLICATION_FLAGS_NONE);
+  app = gtk_application_new ("org.app.test", G_APPLICATION_FLAGS_NONE);
   //connect the activate function
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   //run the app
