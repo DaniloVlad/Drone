@@ -153,7 +153,7 @@ int Drone::handleInstruction(char INS){
             break;
 
         }
-   
+    // 
     case 'd':
         {
 
@@ -323,21 +323,26 @@ int Drone::handleInstruction(char INS){
             break;
         }
 
+    // this is the case for making the drone move backwards, as in
+    // move in the reverse direction, all relative to a point of view
     case 'b':
         {
-
             //move backward, Motors 2 & 3 > Motors 0 & 1
             int frontBank = this -> motors[0] -> getSpeed();
             int backBank = this -> motors[2] -> getSpeed();
-
-            
-            //prevent the drone from flipping over
+   
+            //check to prevent the drone from flipping over
             if(frontBank - backBank >= 400) 
                 break; 
 
-            //prevent motors from exceeding max/min
+            // check to prevent motors from exceeding max/min
+	    // when the frontbank's steppings is too high we lower it down
             if(frontBank + 100 > 2000) frontBank = 1900;
+	    // when the backbank is moving to slowely we increase its speed
             if(backBank - 100 < 1100) backBank = 1200;
+	    // when the front bank is slightly or is faster than backbank
+	    // we have to set the speeds so it is slightly faster in the front bank
+	    // so we move backwards
             if(frontBank >= backBank + 200) {
                 this -> setMotorSpeed(0, frontBank + 100);
                 this -> setMotorSpeed(1, frontBank + 100);
@@ -346,11 +351,13 @@ int Drone::handleInstruction(char INS){
                 this -> setMotorSpeed(3, backBank - 100);
             
             }
+	    // case were we have the difference is around 100 steps or less (10%)
             else {
                 int diff = 0;
+		// we check to see if the back is greater than front
                 if(backBank > frontBank)
                     diff = backBank - frontBank;
-                
+                // here we use that difference to add it to the front bank
                 this -> setMotorSpeed(0, frontBank + diff + 100);
                 this -> setMotorSpeed(1, frontBank + diff + 100);
 
@@ -360,12 +367,16 @@ int Drone::handleInstruction(char INS){
             break;
         }
 
+    // case to turn off the motors, which is when we have placed the drone
+    // on departure or arrival destination
     case 'x':
         {
             //turn off all motors
             this -> setAllMotors(0);
             break;
         }
+
+    // this case to set the motors to the minimum speed
     case 'l':
         {
             //set motors to minimum speed
@@ -393,7 +404,10 @@ int Drone::handleInstruction(char INS){
 
 }
 
-
+/**
+*checkAlt function
+*@brief - this function
+*/
 void *Drone::checkAlt(){
     //on default mode accelerometer samples at 20hz ie 20 updates to values per second
     while(this -> hover != NULL) {
