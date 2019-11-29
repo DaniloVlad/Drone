@@ -68,10 +68,12 @@ void *instruction_handler(void *varg) {
   INSTRUCTION ins = t_ins -> ins;
   pthread_t *id = t_ins -> tid;
   char cins;
-  //set the lock before checking id, any process about to manipulate the id will hold until mutex is unlocked
-  pthread_mutex_lock(&lock);
   //id is the address of a global variable, that stores either 0 or the thread id
   while(*id != 0) {
+
+    //set the lock before checking id, any process about to manipulate the id will hold until mutex is unlocked
+    pthread_mutex_lock(&lock);
+
     if(ins == ROT_L) {
       cins = 'a';
       client -> send(&cins, 1);
