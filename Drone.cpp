@@ -8,15 +8,23 @@
 // 0 & 3 => Clockwise
 // 1 & 2 => Counter Clockwise
 
+
+/**
+*Drone Constructor
+*@brief  - constructs a drone object that will prepare  all the components required by the physical drone. including the mototrs, the accelerometer, the server,the acc_data, gyro_data, calibrated, and hover 
+*/
 Drone::Drone() {
+    // the creation of motor objects to control each motor
     this -> motors[0] = new Motor(GPIO_MOTOR_1);
     this -> motors[1] = new Motor(GPIO_MOTOR_2);
     this -> motors[2] = new Motor(GPIO_MOTOR_3);
     this -> motors[3] = new Motor(GPIO_MOTOR_4);
+    // the creation of accelerometer object
     this -> acc = new Accelerometer();
+    // the initializaiton of server class to communicate with drone
     this -> server = new Server();
 
-    //set thread id to 0 (ie not running)
+    //set thread id to 0 (ie not running) and initialize all values to 0 using a for loop
     this -> hover = NULL;
     this -> acc_data = new signed short(3);
     this -> gyro_data = new signed short(3);
@@ -25,10 +33,19 @@ Drone::Drone() {
         this -> gyro_data[i] = 0;
     }
     this -> calibrated = 0;
-
 }
+
+/**
+*Enhanced Drone Constructor
+*@brief - constructs a drone object but using the parameters to initialize with motor connections, the specific port, and so forth 
+*@param port - this holds the port number of which the server will send information back to
+*@param m1_pin - this holds the pin for motor 0
+*@param m2_pin - this holds the pin for motor 1
+*@param m3_pin - this holds the pin for motor 2
+*@param m4_pin - this holds the pin for motor 3
+*/
 Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc) {
-	
+	// equivalent comments as in Drone::Drone() but with each using a parameter value rather than a reference value
 	this -> motors[0] = new Motor(m1_pin);
 	this -> motors[1] = new Motor(m2_pin);
 	this -> motors[2] = new Motor(m3_pin);
@@ -49,47 +66,64 @@ Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin,
     this -> calibrated = 0;
 }
 
+/**
+*Destructor function of Drone
+*@brief - this is the destructor function for Drone, it frees any memory allocated
+*/
 Drone::~Drone(){
-	for(int i = 0; i < 4; i++)
-	    delete this -> motors[i];
-
+   // delete all motors in the motors array
+    for(int i = 0; i < 4; i++)
+    	delete this -> motors[i];
+    // delete the rest of the objects in the Drone class that are referenced
     delete this -> acc;
     delete this -> server;
     delete this -> acc_data;
     delete this -> gyro_data;
 }
 
+/**
+    Function to handle instructions
+    @brief - this handleInstruction function essentially handles the instruction it recieved from the server class to apply the appropriate command
+    @param  INS - this holds the instruction character which will correspond to a task to be performed by the drone
+*/
 int Drone::handleInstruction(char INS){
     printf("Got character %c\n", INS);
     switch (INS)
     {
+
+   // this is the case were we are trying to calibrate the drone
     case 'c':
         {
+	    // when not initialized we set all the motors to a value of 2000 then set calibrated value to 1
             if(this -> calibrated == 0) {
                 this -> setAllMotors(2000);
                 this -> calibrated = 1;
             }
+           // if drone as been previously calibrated, we set the value of all motors to 1000
             else {
                 this -> setAllMotors(1000);
             }
             break;
         }
         
-
+    // this is the case for having the drone move to the left
     case 'a':
         {
-            //rotate left
+            //rotate left by adjusting clockwise and counterclockwise values to corresponding motor speeds to have the motor
+	    // in the correct direction
             int clockwise = this -> motors[0] -> getSpeed();
             int counterClockWise = this -> motors[1] -> getSpeed();
 
-            //prevent the drone from flipping over
+            // check to prevent the drone from flipping over
             if(counterClockWise - clockwise >= 400)
                 break;
 
-            //prevent drone from going over max or under min!
+            //check to prevent drone from going over max or under min!
+	    // case for clockwise speed is less than 1100
             if(clockwise - 100 < 1100) clockwise = 1200;
+	    // case for counterClockWise speed being too high
             if(counterClockWise + 100 > 2000) counterClockWise = 1900;
-
+	    // case for 
             if(counterClockWise >= clockwise + 200) {
                 this -> setMotorSpeed(0, clockwise - 100);
                 this -> setMotorSpeed(3, clockwise - 100);
@@ -97,7 +131,7 @@ int Drone::handleInstruction(char INS){
                 this -> setMotorSpeed(2, counterClockWise + 100);
             }
             else {
-                //speeds are within 100 steps (10%) of eachother
+                //speeds are within 100 steps (10%) of each other
                 int diff = 0;
                 if(clockwise > counterClockWise) 
                     diff = clockwise - counterClockWise;

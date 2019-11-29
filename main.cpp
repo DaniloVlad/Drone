@@ -2,6 +2,10 @@
 #include <pigpio.h>
 #include "include/Drone.h"
 
+/**
+*Main method for drone
+*@brief - the main method initiates a drone object and starts it.
+*/
 int main() {
     std::cout << "Please ensure include/Configurations.h is correctly setup!" << std::endl;
     if(gpioInitialise() < 0) {
