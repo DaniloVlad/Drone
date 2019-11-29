@@ -5,7 +5,7 @@
 
 #include "include/Socket.h"
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the socket without any specific paramater input for it's components.
 */  
 Socket::Socket() {
@@ -32,7 +32,7 @@ Socket::Socket() {
 }   
 
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the socket with specific paramater input for it's components, using the char address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.socket. 
@@ -65,7 +65,7 @@ Socket::Socket(int port, char *address, int domain, int type, int protocol) {
     }
 }
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the socket with specific paramater input for it's components, using the uint32_t address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.socket. 
@@ -96,7 +96,7 @@ Socket::Socket(int port, uint32_t address, int domain, int type, int protocol) {
     }
 }
 
-/* Function: Socket Deconstructor
+/** Function: Socket Deconstructor
 *   @brief - Deconstructor method for the socket.
 */  
 Socket::~Socket() {

@@ -5,7 +5,7 @@
 
 #include "include/Server.h"
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the server socket without any specific paramater input for it's components.
 */  
 Server::Server() : Socket() {
@@ -35,7 +35,7 @@ Server::Server() : Socket() {
 }
 
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the server socket with specific paramater input for it's components, using the char address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.. 
@@ -69,7 +69,7 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
     }
 }
 
-/* Function: Socket Constructor
+/** Function: Socket Constructor
 *   @brief - Constructs the server socket with specific paramater input for it's components, using the uint32_t address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.. 
@@ -104,7 +104,7 @@ Server::Server(int port, uint32_t address, int domain, int type, int protocol) :
     }
 }
 
-/* Function: Server Deconstructor
+/** Function: Server Deconstructor
 *   @brief - Deconstructor method for the server socket.
 */  
 Server::~Server() {
@@ -113,7 +113,7 @@ Server::~Server() {
     close(new_socket);
 }
 
-/* Function: startServer
+/** Function: startServer
 *   @brief - Starter function that attempts to start the server. If failed, sends an error message and exit.
 */  
 int Server::startServer() {
@@ -125,7 +125,7 @@ int Server::startServer() {
     return 0;
 }
 
-/* Function: send
+/** Function: send
 *   @brief - Returns the information read in to the server socket.
 *   @param data - the data to be recieved by the server.
 *   @param length - the size/length of the data.
@@ -134,7 +134,7 @@ int Server::send(void *data, size_t length) {
     return write(this -> new_socket, data, length);
 }
 
-/* Function: receive
+/** Function: receive
 *   @brief - Returns the information to write in to the server socket.
 *   @param buffer - the data to be sent by the server. 
 *   @param length - the size/length of the data. 

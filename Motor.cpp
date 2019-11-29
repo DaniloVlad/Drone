@@ -5,7 +5,7 @@
 
 #include "include/Motor.h"
 
-/* Function: Motor Constructor
+/** Function: Motor Constructor
 *   @brief - Constructs and sets the base motor with only the pin parameter. 
 *   @param pin - the pin address for the device motor.
 */  
@@ -22,7 +22,7 @@ Motor::Motor(int pin) {
     // this -> setDutyRange(MOTOR_PWM_RANGE);
 }
 
-/* Function: Motor Constructor
+/** Function: Motor Constructor
 *   @brief - Constructs and sets the motor with only the pin and frequency paramaters.
 *   @param pin - the pin address for the device motor.
 *   @param frequency - the frequency that the signal will be transmitted on.
@@ -40,7 +40,7 @@ Motor::Motor(int pin, int frequency) {
     // this -> setDutyRange(MOTOR_PWM_RANGE);
 }
 
-/* Function: Motor Constructor
+/** Function: Motor Constructor
 *   @brief - Constructs and sets the motor with only the pin and frequency paramaters.
 *   @param pin - the pin address for the device motor.
 *   @param frequency - the frequency that the signal will be transmitted on.
@@ -59,14 +59,14 @@ Motor::Motor(int pin, int frequency, int pwm_range) {
     // this -> setDutyRange(pwm_range);
 }
 
-/* Function: Motor Deconstructor
+/** Function: Motor Deconstructor
 *   @brief - Deconstructor method for the motor.
 */  
 Motor::~Motor() {
     this -> stop();
 }
 
-/* Function: setFrequency
+/** Function: setFrequency
 *   @brief - Setter function for the motor frequency, and sends an error message and exit's if the setter fails.
 *   @param frequency - the frequency that the signal will be transmitted on.
 */  
@@ -77,7 +77,7 @@ void Motor::setFrequency(int frequency) {
     }
 }
 
-/* Function: setDutyRange
+/** Function: setDutyRange
 *   @brief - Setter function for the motor range, and sends an error message and exit's if the setter fails.
 *   @param range - the range of the signal.
 */  
@@ -88,7 +88,7 @@ void Motor::setDutyRange(int range) {
     }
 }
 
-/* Function: setSpeed
+/** Function: setSpeed
 *   @brief - Setter function for the motor speed.
 * 	On error returns -1, otherwise returns the speed.
 *   @param speed - speed the motor's are spinning.
@@ -112,7 +112,7 @@ int Motor::setSpeed(int speed) {
     }
 }
 
-/* Function: stop
+/** Function: stop
 *   @brief - Stop condition function for the motor, which returns 0 when successful, and -1 on an error.
 */  
 int Motor::stop() {

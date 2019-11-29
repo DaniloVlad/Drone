@@ -6,9 +6,10 @@
 
 #include "include/Client.h"
 
-/* Function: Client Constructor
-*   @brief - Constructs the client without any specific paramater input for it's components.
-*/  
+/**
+ * Function: Client Constructor
+ * @brief - Constructs the client without any specific paramater input for it's components.
+ */  
 Client::Client() : Socket() {
   	// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
     if(connect(this -> socketfd, (struct sockaddr *) this -> addr, this -> socklen) < 0) {
@@ -17,7 +18,8 @@ Client::Client() : Socket() {
     }
 }
 
-/* Function: Client Constructor
+/**
+ *  Function: Client Constructor
 *   @brief - Constructs the client with specific paramater input for it's components, and a char address type.
 *   @param port - port for the client.
 *   @param address - address for the client. 
