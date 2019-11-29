@@ -7,9 +7,347 @@ General superclass for sockets that defines default parameters.
 
 
 
+{\ttfamily \#include $<$Socket.\+h$>$}
+
+Inheritance diagram for Socket\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSocket}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the socket without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSocket_a4b996a1dc8d32a5cbef3c7092d1e0529}{Socket}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, char $\ast$address, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the socket with specific paramater input for it\textquotesingle{}s components, using the char address. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSocket_aae373efc8d5c274f9011373c7f7faab2}{Socket}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, uint32\+\_\+t address=I\+N\+A\+D\+D\+R\+\_\+\+A\+NY, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the socket with specific paramater input for it\textquotesingle{}s components, using the uint32\+\_\+t address. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSocket_aeac4eb6379a543d38ed88977d3b6630a}{$\sim$\+Socket}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Deconstructor method for the socket. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSocket_a69a0c0c506e359dc6abd52c45d53906b}{set\+Port}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}})
+\item 
+int \mbox{\hyperlink{classSocket_ad44386e28c24b9816dfe53fd7f225ffb}{set\+Host}} (const char $\ast$host)
+\item 
+int \mbox{\hyperlink{classSocket_a003d0e74f7760bfb3dd3620eeb5dac4c}{set\+Type}} (int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}})
+\item 
+int \mbox{\hyperlink{classSocket_ac07338c5b2c49993c2577d7a10c2993f}{set\+Domain}} (int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct sockaddr\+\_\+in $\ast$ \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} = N\+U\+LL
+\item 
+int \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}} = 0
+\item 
+int \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}} = 0
+\item 
+int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}} = 0
+\item 
+int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}} = 0
+\item 
+int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}} = 0
+\item 
+int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}} = 0
+\end{DoxyCompactItemize}
+
+
 \doxysubsection{Detailed Description}
 General superclass for sockets that defines default parameters. 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSocket_a7c3256c4fc6e2c603df73201049fae5a}\label{classSocket_a7c3256c4fc6e2c603df73201049fae5a}} 
+\index{Socket@{Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{Socket()}{Socket()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Socket\+::\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the socket without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{11                \{}
+\DoxyCodeLine{12   }
+\DoxyCodeLine{13     \textcolor{comment}{// Sets all the constructor variables.}}
+\DoxyCodeLine{14     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{15     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{16     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}} = htons(\mbox{\hyperlink{Socket_8h_a16b710f592bf8f7900666392adc444dc}{DEFAULT\_PORT}});}
+\DoxyCodeLine{17     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}} = \mbox{\hyperlink{Socket_8h_ad7dcb44575d9f5ad24ed5b429d5d4db0}{DEFAULT\_DOMAIN}};}
+\DoxyCodeLine{18     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}} = \mbox{\hyperlink{Socket_8h_a63206d24a4d41cf5443f3b0731238da6}{DEFAULT\_PROTOCOL}};}
+\DoxyCodeLine{19     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}} = \mbox{\hyperlink{Socket_8h_a94963595d5ef7b725db113d27acc5e06}{DEFAULT\_TYPE}};}
+\DoxyCodeLine{20   }
+\DoxyCodeLine{21     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, 0, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}});}
+\DoxyCodeLine{22     }
+\DoxyCodeLine{23     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_addr.s\_addr = \mbox{\hyperlink{Socket_8h_ab0fb6793bca811c272581d5b1473c4b5}{DEFAULT\_ADDR}};}
+\DoxyCodeLine{24     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_family = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{25     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_port = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{comment}{// Error check -\/ attempting to create the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{28     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}} = socket(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}})) < 0) \{}
+\DoxyCodeLine{29         perror(\textcolor{stringliteral}{"Couldn't create socket"});}
+\DoxyCodeLine{30         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{31     \}}
+\DoxyCodeLine{32 \}   }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_a4b996a1dc8d32a5cbef3c7092d1e0529}\label{classSocket_a4b996a1dc8d32a5cbef3c7092d1e0529}} 
+\index{Socket@{Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{Socket()}{Socket()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Socket\+::\+Socket (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char $\ast$}]{address,  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the socket with specific paramater input for it\textquotesingle{}s components, using the char address. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em port} & -\/ port for the socket. \\
+\hline
+{\em address} & -\/ address for the socket.\+socket. \\
+\hline
+{\em domain} & -\/ domain for the socket. \\
+\hline
+{\em type} & -\/ type of data for the socket. \\
+\hline
+{\em protocol} & -\/ protocol the client is socket. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                                                                           \{}
+\DoxyCodeLine{44   }
+\DoxyCodeLine{45     \textcolor{comment}{// Sets all the constructor variables. }}
+\DoxyCodeLine{46     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{47     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{48     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}} = htons(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}});}
+\DoxyCodeLine{49     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}} = \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}};}
+\DoxyCodeLine{50     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}} = \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}};}
+\DoxyCodeLine{51     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}} = \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{52     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, 0, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}});}
+\DoxyCodeLine{53     }
+\DoxyCodeLine{54     \textcolor{keywordflow}{if}(inet\_pton(AF\_INET, address, \&(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_addr.s\_addr)) < 1) \{}
+\DoxyCodeLine{55         perror(\textcolor{stringliteral}{"Could't translate ip address!\(\backslash\)n"});}
+\DoxyCodeLine{56         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_family = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{59     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_port = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{comment}{// Error check -\/ attempting to create the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{62     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}} = socket(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}})) < 0) \{}
+\DoxyCodeLine{63         perror(\textcolor{stringliteral}{"Couldn't create socket"});}
+\DoxyCodeLine{64         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_aae373efc8d5c274f9011373c7f7faab2}\label{classSocket_aae373efc8d5c274f9011373c7f7faab2}} 
+\index{Socket@{Socket}!Socket@{Socket}}
+\index{Socket@{Socket}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{Socket()}{Socket()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Socket\+::\+Socket (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{uint32\+\_\+t}]{address = {\ttfamily INADDR\+\_\+ANY},  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the socket with specific paramater input for it\textquotesingle{}s components, using the uint32\+\_\+t address. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em port} & -\/ port for the socket. \\
+\hline
+{\em address} & -\/ address for the socket.\+socket. \\
+\hline
+{\em domain} & -\/ domain for the socket. \\
+\hline
+{\em type} & -\/ type of data for the socket. \\
+\hline
+{\em protocol} & -\/ protocol the client is socket. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76                                                                              \{}
+\DoxyCodeLine{77   }
+\DoxyCodeLine{78     \textcolor{comment}{// Sets all the constructor variables.}}
+\DoxyCodeLine{79     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{80     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{81     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}} = htons(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}});}
+\DoxyCodeLine{82     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}} = \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}};}
+\DoxyCodeLine{83     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}} = \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{84     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}} = \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, 0, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}});}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_family = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{89     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_port = \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}};}
+\DoxyCodeLine{90     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_addr.s\_addr = address;}
+\DoxyCodeLine{91   }
+\DoxyCodeLine{92     \textcolor{comment}{// Error check -\/ attempting to create the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{93     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}} = socket(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}})) < 0) \{}
+\DoxyCodeLine{94         perror(\textcolor{stringliteral}{"Couldn't create socket"});}
+\DoxyCodeLine{95         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{96     \}}
+\DoxyCodeLine{97 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_aeac4eb6379a543d38ed88977d3b6630a}\label{classSocket_aeac4eb6379a543d38ed88977d3b6630a}} 
+\index{Socket@{Socket}!````~Socket@{$\sim$Socket}}
+\index{````~Socket@{$\sim$Socket}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{$\sim$Socket()}{~Socket()}}
+{\footnotesize\ttfamily Socket\+::$\sim$\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Deconstructor method for the socket. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Deconstructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{102                 \{}
+\DoxyCodeLine{103     printf(\textcolor{stringliteral}{"Destroying socket\(\backslash\)n"});}
+\DoxyCodeLine{104     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} != NULL) \{}
+\DoxyCodeLine{105         free(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}});}
+\DoxyCodeLine{106         close(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}});}
+\DoxyCodeLine{107     \}}
+\DoxyCodeLine{108 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSocket_ac07338c5b2c49993c2577d7a10c2993f}\label{classSocket_ac07338c5b2c49993c2577d7a10c2993f}} 
+\index{Socket@{Socket}!setDomain@{setDomain}}
+\index{setDomain@{setDomain}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{setDomain()}{setDomain()}}
+{\footnotesize\ttfamily int Socket\+::set\+Domain (\begin{DoxyParamCaption}\item[{int}]{domain }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64                                   \{}
+\DoxyCodeLine{65             \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}} = \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}};}
+\DoxyCodeLine{66             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{67         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_ad44386e28c24b9816dfe53fd7f225ffb}\label{classSocket_ad44386e28c24b9816dfe53fd7f225ffb}} 
+\index{Socket@{Socket}!setHost@{setHost}}
+\index{setHost@{setHost}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{setHost()}{setHost()}}
+{\footnotesize\ttfamily int Socket\+::set\+Host (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                       \{}
+\DoxyCodeLine{50             \textcolor{keywordflow}{if}(\mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} != NULL) \{}
+\DoxyCodeLine{51                 inet\_pton(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, host, \&\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}} -\/> sin\_addr.s\_addr);}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{53             \}}
+\DoxyCodeLine{54             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{55         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_a69a0c0c506e359dc6abd52c45d53906b}\label{classSocket_a69a0c0c506e359dc6abd52c45d53906b}} 
+\index{Socket@{Socket}!setPort@{setPort}}
+\index{setPort@{setPort}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{setPort()}{setPort()}}
+{\footnotesize\ttfamily int Socket\+::set\+Port (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43                               \{}
+\DoxyCodeLine{44             \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}} = htons(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}});}
+\DoxyCodeLine{45             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{46         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSocket_a003d0e74f7760bfb3dd3620eeb5dac4c}\label{classSocket_a003d0e74f7760bfb3dd3620eeb5dac4c}} 
+\index{Socket@{Socket}!setType@{setType}}
+\index{setType@{setType}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{setType()}{setType()}}
+{\footnotesize\ttfamily int Socket\+::set\+Type (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{58                               \{}
+\DoxyCodeLine{59             \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}} = \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}};}
+\DoxyCodeLine{60             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{61         \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}\label{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}} 
+\index{Socket@{Socket}!addr@{addr}}
+\index{addr@{addr}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{addr}{addr}}
+{\footnotesize\ttfamily struct sockaddr\+\_\+in$\ast$ Socket\+::addr = N\+U\+LL\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_a8b042d9fe02795041a5e045604c8b7ec}\label{classSocket_a8b042d9fe02795041a5e045604c8b7ec}} 
+\index{Socket@{Socket}!domain@{domain}}
+\index{domain@{domain}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{domain}{domain}}
+{\footnotesize\ttfamily int Socket\+::domain = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_a775a62c31f1189cbe2a24bcb45640141}\label{classSocket_a775a62c31f1189cbe2a24bcb45640141}} 
+\index{Socket@{Socket}!port@{port}}
+\index{port@{port}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily int Socket\+::port = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}\label{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}} 
+\index{Socket@{Socket}!protocol@{protocol}}
+\index{protocol@{protocol}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{protocol}{protocol}}
+{\footnotesize\ttfamily int Socket\+::protocol = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_aaea8204500fcb56bb5a7a40b825a3024}\label{classSocket_aaea8204500fcb56bb5a7a40b825a3024}} 
+\index{Socket@{Socket}!socketfd@{socketfd}}
+\index{socketfd@{socketfd}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{socketfd}{socketfd}}
+{\footnotesize\ttfamily int Socket\+::socketfd = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_a3850888fc1d093b1b334f9835f479278}\label{classSocket_a3850888fc1d093b1b334f9835f479278}} 
+\index{Socket@{Socket}!socklen@{socklen}}
+\index{socklen@{socklen}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{socklen}{socklen}}
+{\footnotesize\ttfamily int Socket\+::socklen = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classSocket_ac7f6980f36023df2004271c336217cb8}\label{classSocket_ac7f6980f36023df2004271c336217cb8}} 
+\index{Socket@{Socket}!type@{type}}
+\index{type@{type}!Socket@{Socket}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily int Socket\+::type = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Socket.\+cpp\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{Socket_8h}{Socket.\+h}}\item 
+\mbox{\hyperlink{Socket_8cpp}{Socket.\+cpp}}\end{DoxyCompactItemize}

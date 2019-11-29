@@ -1,24 +1,15 @@
 /**
-<<<<<<< HEAD
- * @class main
- * @brief creates drone instance
- * */
-=======
 *@class main - initates a drone object for operation
-*@include include/Drone.h
-*@include pigpio.h
-*@include iostream
+*@include - include/Drone.h
+*@include - <pigpio.h>
+*@include - <iostream>
 */
->>>>>>> 6b1bbeefaf3583e2b85e034dba449d4a98a3fe27
 
 #include <iostream>
 #include <pigpio.h>
-#include "include/Drone.h"
+#include "include/Drone.hpp"
 
-/**
-*Main method for drone
-*@brief - the main method initiates a drone object and starts it.
-*/
+
 int main() {
     std::cout << "Please ensure include/Configurations.h is correctly setup!" << std::endl;
     if(gpioInitialise() < 0) {

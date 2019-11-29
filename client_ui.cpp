@@ -1,7 +1,7 @@
 /**
- * @class Client_UI
- * @brief UI provided to user for interaction with the client socket
- * */
+*@file Client_UI
+*@brief UI provided to user for interaction with the client socket
+*/
 
 #include <iostream>
 #include <string>
@@ -31,7 +31,7 @@ typedef enum inst {
 } INSTRUCTION;
 
 
-//@brief - Command struct that will store an INSTRUCTION and thread id declared below
+//Command struct that will store an INSTRUCTION and thread id declared below
 typedef struct _cmd {
   INSTRUCTION ins;
   pthread_t *tid;
@@ -51,13 +51,15 @@ pthread_t moveRight = 0;
 pthread_mutex_t lock;
 
 /**
-* @brief - print availible commands
+*print instructions function
+*@brief - print availible commands
 */
 void print_instructions() {
     std::cout << "Controls are as follows:\n\ta => Rotate Left\n\td => Rotate Right\n\tw => Raise\n\ts => Lower\n\tArrow Left => Move Left\n\tArrow Right => Move Right\n\tArrow Forward => Move Forward\n\tArrow Back => Move Backward\n\tc => Calibrate/Initialise\n\tx => Turn off motors\n\tl => Land\n\th => Hover hold (Expiremental!)\n\ti => Show instruction list" << std::endl;
 }
 
 /**
+*instruction handler function
 *@brief - threaded function started by key press and exits upon key release
 *@param varg - this holds the arguments for the command
 */
@@ -115,6 +117,7 @@ void *instruction_handler(void *varg) {
 }
 
 /**
+*handle_key_release function
 *@brief - certain key releases need to set their respective thread id to kill the thread
 *@param widget - pointer to the widget in use
 *@param event - pointer to the key event
@@ -156,6 +159,7 @@ gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data
 }
 
 /**
+*handle_key_press function
 *@brief - Function is called multiple times if key is being held
 *@param widget - the pointer for the widget that we are using
 *@param event - the pointer to the key event
@@ -259,6 +263,7 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
 }
 
 /**
+*activate function
 *@brief - creates the windows and sets it to have the ability to get key presses
 *@param app - a pointer to create the window linked with it
 *@param user_data -  a gpointer object containing user data
@@ -282,6 +287,7 @@ static void activate (GtkApplication *app, gpointer user_data)
 }
 
 /**
+*the main method
 *@brief - the main function which performs the operations required to create the client ui
 *@param argc - this is the number of arguments present in the command line execution
 *@param argv - a pointer to the array of arguments

@@ -7,9 +7,427 @@ Instruction set for the four motors that handles frequencies and speeds.
 
 
 
+{\ttfamily \#include $<$Motor.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMotor_a8cec472094b5e04d24a47a4ab281ce2c}{Motor}} (int \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}})
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs and sets the base motor with only the pin parameter. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotor_a15aa9cde1a72ec51378df3294a1df5e1}{Motor}} (int \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, int \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}})
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs and sets the motor with only the pin and frequency paramaters. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotor_a0c239d5d4821ecd0dd59cc89d4837386}{Motor}} (int \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, int \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}}, int pwm\+\_\+range)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs and sets the motor with only the pin and frequency paramaters. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}{$\sim$\+Motor}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Deconstructor method for the motor. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMotor_a04d347d5665b518203d814746feeae3e}{get\+Pin}} ()
+\item 
+int \mbox{\hyperlink{classMotor_a52a82efa72fbef80551cfa3997648a46}{get\+Frequency}} ()
+\item 
+int \mbox{\hyperlink{classMotor_ad4ea3a9c0483a8005873979f9929183e}{get\+Duty\+Range}} ()
+\item 
+int \mbox{\hyperlink{classMotor_a4d03ea62bd9f5579d4fbe16d10462962}{get\+Speed}} ()
+\item 
+void \mbox{\hyperlink{classMotor_ad4bc222465ee40f1a48b90e40ec93f9e}{set\+Frequency}} (int \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}})
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Setter function for the motor frequency, and sends an error message and exit\textquotesingle{}s if the setter fails. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotor_a4373bc6db5020dd4a1c17cdd9ff86d02}{set\+Duty\+Range}} (int \mbox{\hyperlink{classMotor_a49b5c56f4d24330ebe5797606c560117}{range}})
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Setter function for the motor range, and sends an error message and exit\textquotesingle{}s if the setter fails. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMotor_a94dea7cd0c18c82930a42e14471ea581}{set\+Speed}} (int \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}})
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Setter function for the motor speed. On error returns -\/1, otherwise returns the speed. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMotor_a067a8020189d1f0d14098bd42567e934}{stop}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Stop condition function for the motor, which returns 0 when successful, and -\/1 on an error. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotor_ac16813de6ed3b41dee3f953cfc72c256}{is\+Running}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}}
+\item 
+int \mbox{\hyperlink{classMotor_a49b5c56f4d24330ebe5797606c560117}{range}}
+\item 
+int \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}}
+\item 
+unsigned int \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}
+\end{DoxyCompactItemize}
+
+
 \doxysubsection{Detailed Description}
 Instruction set for the four motors that handles frequencies and speeds. 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Header 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMotor_a8cec472094b5e04d24a47a4ab281ce2c}\label{classMotor_a8cec472094b5e04d24a47a4ab281ce2c}} 
+\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{int}]{pin }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs and sets the base motor with only the pin parameter. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classMotor}{Motor}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em pin} & -\/ the pin address for the device motor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12                     \{}
+\DoxyCodeLine{13     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} = 0;}
+\DoxyCodeLine{14     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}} = \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}};}
+\DoxyCodeLine{15     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{16     \textcolor{keywordflow}{if}(gpioSetMode(\mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, PI\_OUTPUT) != 0) \{}
+\DoxyCodeLine{17         perror(\textcolor{stringliteral}{"Couldn't initialize pin as PI\_OUTPUT"});}
+\DoxyCodeLine{18         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{19     \}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{comment}{// this -\/> setFrequency(MOTOR\_PWM\_FREQUENCY);}}
+\DoxyCodeLine{22     \textcolor{comment}{// this -\/> setDutyRange(MOTOR\_PWM\_RANGE);}}
+\DoxyCodeLine{23 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a15aa9cde1a72ec51378df3294a1df5e1}\label{classMotor_a15aa9cde1a72ec51378df3294a1df5e1}} 
+\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{int}]{pin,  }\item[{int}]{frequency }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs and sets the motor with only the pin and frequency paramaters. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classMotor}{Motor}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em pin} & -\/ the pin address for the device motor. \\
+\hline
+{\em frequency} & -\/ the frequency that the signal will be transmitted on. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                                    \{}
+\DoxyCodeLine{31     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} = 0;}
+\DoxyCodeLine{32     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}} = \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}};  }
+\DoxyCodeLine{33     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{34     \textcolor{keywordflow}{if}(gpioSetMode(\mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, PI\_OUTPUT) != 0) \{}
+\DoxyCodeLine{35         perror(\textcolor{stringliteral}{"Couldn't initialize pin as PI\_OUTPUT"});}
+\DoxyCodeLine{36         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{37     \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{comment}{// this -\/> setFrequency(frequency);}}
+\DoxyCodeLine{40     \textcolor{comment}{// this -\/> setDutyRange(MOTOR\_PWM\_RANGE);}}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a0c239d5d4821ecd0dd59cc89d4837386}\label{classMotor_a0c239d5d4821ecd0dd59cc89d4837386}} 
+\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{int}]{pin,  }\item[{int}]{frequency,  }\item[{int}]{pwm\+\_\+range }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs and sets the motor with only the pin and frequency paramaters. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classMotor}{Motor}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em pin} & -\/ the pin address for the device motor. \\
+\hline
+{\em frequency} & -\/ the frequency that the signal will be transmitted on. \\
+\hline
+{\em pwm\+\_\+range} & -\/ the range of the signal. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49                                                   \{}
+\DoxyCodeLine{50     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} = 0;}
+\DoxyCodeLine{51     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}} = \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}};}
+\DoxyCodeLine{52     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{53     \textcolor{keywordflow}{if}(gpioSetMode(\mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, PI\_OUTPUT) != 0) \{}
+\DoxyCodeLine{54         perror(\textcolor{stringliteral}{"Couldn't initialize pin as PI\_OUTPUT"});}
+\DoxyCodeLine{55         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{// this -\/> setFrequency(frequency);}}
+\DoxyCodeLine{59     \textcolor{comment}{// this -\/> setDutyRange(pwm\_range);}}
+\DoxyCodeLine{60 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}\label{classMotor_a2e57c7b2681efea1d3b7f253ee88ecd4}} 
+\index{Motor@{Motor}!````~Motor@{$\sim$Motor}}
+\index{````~Motor@{$\sim$Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{$\sim$Motor()}{~Motor()}}
+{\footnotesize\ttfamily Motor\+::$\sim$\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Deconstructor method for the motor. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classMotor}{Motor}} Deconstructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65               \{}
+\DoxyCodeLine{66     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a067a8020189d1f0d14098bd42567e934}{stop}}();}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMotor_ad4ea3a9c0483a8005873979f9929183e}\label{classMotor_ad4ea3a9c0483a8005873979f9929183e}} 
+\index{Motor@{Motor}!getDutyRange@{getDutyRange}}
+\index{getDutyRange@{getDutyRange}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getDutyRange()}{getDutyRange()}}
+{\footnotesize\ttfamily int Motor\+::get\+Duty\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33                            \{}
+\DoxyCodeLine{34             \textcolor{keywordflow}{return} \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a49b5c56f4d24330ebe5797606c560117}{range}};}
+\DoxyCodeLine{35         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a52a82efa72fbef80551cfa3997648a46}\label{classMotor_a52a82efa72fbef80551cfa3997648a46}} 
+\index{Motor@{Motor}!getFrequency@{getFrequency}}
+\index{getFrequency@{getFrequency}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getFrequency()}{getFrequency()}}
+{\footnotesize\ttfamily int Motor\+::get\+Frequency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                            \{}
+\DoxyCodeLine{31             \textcolor{keywordflow}{return} \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}};}
+\DoxyCodeLine{32         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a04d347d5665b518203d814746feeae3e}\label{classMotor_a04d347d5665b518203d814746feeae3e}} 
+\index{Motor@{Motor}!getPin@{getPin}}
+\index{getPin@{getPin}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getPin()}{getPin()}}
+{\footnotesize\ttfamily int Motor\+::get\+Pin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter Functions 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27                      \{}
+\DoxyCodeLine{28             \textcolor{keywordflow}{return} \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}};}
+\DoxyCodeLine{29         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a4d03ea62bd9f5579d4fbe16d10462962}\label{classMotor_a4d03ea62bd9f5579d4fbe16d10462962}} 
+\index{Motor@{Motor}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily int Motor\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36                        \{}
+\DoxyCodeLine{37             \textcolor{keywordflow}{return} \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}};}
+\DoxyCodeLine{38         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_ac16813de6ed3b41dee3f953cfc72c256}\label{classMotor_ac16813de6ed3b41dee3f953cfc72c256}} 
+\index{Motor@{Motor}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily bool Motor\+::is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47                          \{}
+\DoxyCodeLine{48             \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} != 0);}
+\DoxyCodeLine{49         \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a4373bc6db5020dd4a1c17cdd9ff86d02}\label{classMotor_a4373bc6db5020dd4a1c17cdd9ff86d02}} 
+\index{Motor@{Motor}!setDutyRange@{setDutyRange}}
+\index{setDutyRange@{setDutyRange}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{setDutyRange()}{setDutyRange()}}
+{\footnotesize\ttfamily void Motor\+::set\+Duty\+Range (\begin{DoxyParamCaption}\item[{int}]{range }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Setter function for the motor range, and sends an error message and exit\textquotesingle{}s if the setter fails. 
+\end{DoxyItemize}
+
+Function\+: set\+Duty\+Range 
+\begin{DoxyParams}{Parameters}
+{\em range} & -\/ the range of the signal. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{84                                   \{}
+\DoxyCodeLine{85     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a49b5c56f4d24330ebe5797606c560117}{range}} = gpioSetPWMrange(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, \mbox{\hyperlink{classMotor_a49b5c56f4d24330ebe5797606c560117}{range}})) == (PI\_BAD\_USER\_GPIO | PI\_BAD\_DUTYRANGE)) \{}
+\DoxyCodeLine{86         perror(\textcolor{stringliteral}{"Couldn't set PWM range"});}
+\DoxyCodeLine{87         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{88     \}}
+\DoxyCodeLine{89 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_ad4bc222465ee40f1a48b90e40ec93f9e}\label{classMotor_ad4bc222465ee40f1a48b90e40ec93f9e}} 
+\index{Motor@{Motor}!setFrequency@{setFrequency}}
+\index{setFrequency@{setFrequency}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{setFrequency()}{setFrequency()}}
+{\footnotesize\ttfamily void Motor\+::set\+Frequency (\begin{DoxyParamCaption}\item[{int}]{frequency }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Setter function for the motor frequency, and sends an error message and exit\textquotesingle{}s if the setter fails. 
+\end{DoxyItemize}
+
+Setter Functions
+
+Function\+: set\+Frequency 
+\begin{DoxyParams}{Parameters}
+{\em frequency} & -\/ the frequency that the signal will be transmitted on. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73                                       \{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}} = gpioSetPWMfrequency(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, \mbox{\hyperlink{classMotor_aa664769dad71d1442b6814e3f5cc56dc}{frequency}})) == PI\_BAD\_USER\_GPIO) \{}
+\DoxyCodeLine{75         perror(\textcolor{stringliteral}{"Couldn't set PWM frequency"});}
+\DoxyCodeLine{76         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a94dea7cd0c18c82930a42e14471ea581}\label{classMotor_a94dea7cd0c18c82930a42e14471ea581}} 
+\index{Motor@{Motor}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily int Motor\+::set\+Speed (\begin{DoxyParamCaption}\item[{int}]{speed }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Setter function for the motor speed. On error returns -\/1, otherwise returns the speed. 
+\end{DoxyItemize}
+
+Function\+: set\+Speed 
+\begin{DoxyParams}{Parameters}
+{\em speed} & -\/ speed the motor\textquotesingle{}s are spinning. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{96                              \{}
+\DoxyCodeLine{97     }
+\DoxyCodeLine{98     \textcolor{comment}{// If the speed is out of range, it returns -\/1.}}
+\DoxyCodeLine{99     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} > \mbox{\hyperlink{Configuration_8h_ac2cd96d53dd3ba6407db6766c3d92b26}{MAX\_SPEED}} || \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} < 0) \{}
+\DoxyCodeLine{100         perror(\textcolor{stringliteral}{"Speed out of range"});}
+\DoxyCodeLine{101         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103     \textcolor{comment}{// Attempt to return the speed.}}
+\DoxyCodeLine{104     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{105         \textcolor{comment}{// First check if the GPIO PWM can be set to 0 (off), send an error message and exit.}}
+\DoxyCodeLine{106         \textcolor{keywordflow}{if}(gpioServo(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}{pin}}, \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}}) != 0) \{}
+\DoxyCodeLine{107             perror(\textcolor{stringliteral}{"Error setting speed"});}
+\DoxyCodeLine{108             \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{109         \}}
+\DoxyCodeLine{110         \textcolor{comment}{// If everything works as intended, the speed is returned}}
+\DoxyCodeLine{111         \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} = \mbox{\hyperlink{classMotor_a68b835dd35395fbab7b32eb0bbc12283}{speed}});}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classMotor_a067a8020189d1f0d14098bd42567e934}\label{classMotor_a067a8020189d1f0d14098bd42567e934}} 
+\index{Motor@{Motor}!stop@{stop}}
+\index{stop@{stop}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily int Motor\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Stop condition function for the motor, which returns 0 when successful, and -\/1 on an error. 
+\end{DoxyItemize}
+
+Function\+: stop 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{118                 \{}
+\DoxyCodeLine{119     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classMotor_a94dea7cd0c18c82930a42e14471ea581}{setSpeed}}(0));}
+\DoxyCodeLine{120 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMotor_aa664769dad71d1442b6814e3f5cc56dc}\label{classMotor_aa664769dad71d1442b6814e3f5cc56dc}} 
+\index{Motor@{Motor}!frequency@{frequency}}
+\index{frequency@{frequency}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{frequency}{frequency}}
+{\footnotesize\ttfamily int Motor\+::frequency\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}\label{classMotor_ab6bd89d896d6cd3dd7784738d1322fa2}} 
+\index{Motor@{Motor}!pin@{pin}}
+\index{pin@{pin}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{pin}{pin}}
+{\footnotesize\ttfamily unsigned int Motor\+::pin\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotor_a49b5c56f4d24330ebe5797606c560117}\label{classMotor_a49b5c56f4d24330ebe5797606c560117}} 
+\index{Motor@{Motor}!range@{range}}
+\index{range@{range}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{range}{range}}
+{\footnotesize\ttfamily int Motor\+::range\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classMotor_a68b835dd35395fbab7b32eb0bbc12283}\label{classMotor_a68b835dd35395fbab7b32eb0bbc12283}} 
+\index{Motor@{Motor}!speed@{speed}}
+\index{speed@{speed}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int Motor\+::speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Motor.\+cpp\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{Motor_8h}{Motor.\+h}}\item 
+\mbox{\hyperlink{Motor_8cpp}{Motor.\+cpp}}\end{DoxyCompactItemize}

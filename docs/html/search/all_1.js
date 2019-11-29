@@ -1,5 +1,27 @@
 var searchData=
 [
-  ['client_1',['Client',['../classClient.html',1,'']]],
-  ['client_5fui_2',['Client_UI',['../classClient__UI.html',1,'']]]
+  ['acc_2',['acc',['../classDrone.html#a2948e805b777293e7fee7f5a8db94c09',1,'Drone']]],
+  ['acc_5fb_3',['ACC_B',['../client__ui_8cpp.html#a42383c382c136016fc3014fdc708ff01aab2e16cd9b0e7d7a0c457bf9426212f2',1,'client_ui.cpp']]],
+  ['acc_5fdata_4',['acc_data',['../classDrone.html#a347e8676a1f063c57b72e0b1476789ac',1,'Drone']]],
+  ['acc_5ff_5',['ACC_F',['../client__ui_8cpp.html#a42383c382c136016fc3014fdc708ff01affeb212e39b048286e52f720c6527dbd',1,'client_ui.cpp']]],
+  ['acc_5fl_6',['ACC_L',['../client__ui_8cpp.html#a42383c382c136016fc3014fdc708ff01a5895505082ec361adebdce3f503ac04f',1,'client_ui.cpp']]],
+  ['acc_5fr_7',['ACC_R',['../client__ui_8cpp.html#a42383c382c136016fc3014fdc708ff01a67194eb3d5dd79c61c0b8c29530e7105',1,'client_ui.cpp']]],
+  ['acc_5fx_5fh_8',['ACC_X_H',['../Accelerometer_8h.html#a7d6b9f10e7e5a25d57e2e328384b6b59',1,'Accelerometer.h']]],
+  ['acc_5fx_5fl_9',['ACC_X_L',['../Accelerometer_8h.html#aaee3651e1185ec280810025ef2c396bb',1,'Accelerometer.h']]],
+  ['acc_5fy_5fh_10',['ACC_Y_H',['../Accelerometer_8h.html#a35d00b15a4bbc9a8186ac28aa25294e4',1,'Accelerometer.h']]],
+  ['acc_5fy_5fl_11',['ACC_Y_L',['../Accelerometer_8h.html#a500bbcbcc46100cab6385a668c6d6e80',1,'Accelerometer.h']]],
+  ['acc_5fz_5fh_12',['ACC_Z_H',['../Accelerometer_8h.html#a2e68a33660791674db4f6c8964d339b0',1,'Accelerometer.h']]],
+  ['acc_5fz_5fl_13',['ACC_Z_L',['../Accelerometer_8h.html#ab487b6872f23521352382bf9e1976b7a',1,'Accelerometer.h']]],
+  ['accel_14',['accel',['../namespaceAccel__tests.html#aee15a6792c079077509656f6d187f3e7',1,'Accel_tests']]],
+  ['accel_5ftests_15',['Accel_tests',['../namespaceAccel__tests.html',1,'']]],
+  ['accel_5ftests_2ecpp_16',['Accel_tests.cpp',['../Accel__tests_8cpp.html',1,'']]],
+  ['accel_5ftests_2epy_17',['Accel_tests.py',['../Accel__tests_8py.html',1,'']]],
+  ['accelerometer_18',['Accelerometer',['../classAccelerometer.html',1,'Accelerometer'],['../classAccelerometer.html#aa01d756f8ba70acaaab7938dff643d4d',1,'Accelerometer::Accelerometer()'],['../classAccelerometer.html#a05e51a88a0d39e9ed55515e0cfe87d1f',1,'Accelerometer::Accelerometer(int i2c_addr, int i2c_bus, int data_pin, int clock_pin)']]],
+  ['accelerometer_2ecpp_19',['Accelerometer.cpp',['../Accelerometer_8cpp.html',1,'']]],
+  ['accelerometer_2eh_20',['Accelerometer.h',['../Accelerometer_8h.html',1,'']]],
+  ['accx_21',['accX',['../classAccelerometer.html#a3a8704a244bbd6e415b254f7bbcbda88',1,'Accelerometer']]],
+  ['accy_22',['accY',['../classAccelerometer.html#acac1991c541b1869a40107a157c6a2bf',1,'Accelerometer']]],
+  ['accz_23',['accZ',['../classAccelerometer.html#a71f9c7819fed7fe6045aa3b0f5fb9a0f',1,'Accelerometer']]],
+  ['activate_24',['activate',['../client__ui_8cpp.html#ac8d185b1db8b0153f14fd5cb4537cf2a',1,'client_ui.cpp']]],
+  ['addr_25',['addr',['../classSocket.html#a6f7b0e2bd832b8ffd9229f103989cff9',1,'Socket::addr()'],['../client__ui_8cpp.html#a2a15dfd02dcdec7139f585ff093f2088',1,'addr():&#160;client_ui.cpp'],['../namespaceAccel__tests.html#a0f48641aa17b56de33628783329657c0',1,'Accel_tests.ADDR()']]]
 ];
