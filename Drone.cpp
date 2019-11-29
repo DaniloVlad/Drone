@@ -43,6 +43,8 @@ Drone::Drone() {
 *@param m2_pin - this holds the pin for motor 1
 *@param m3_pin - this holds the pin for motor 2
 *@param m4_pin - this holds the pin for motor 3
+*@param freq -
+*@param cc, acc_clk_pin, acc_da_pin - are required for Accelerometer object which were not implemented but could be in the near future
 */
 Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc) {
 	// equivalent comments as in Drone::Drone() but with each using a parameter value rather than a reference value
@@ -110,7 +112,7 @@ int Drone::handleInstruction(char INS){
             break;
         }
         
-    // this is the case for having the drone move to the left
+    // this is the case for having the drone rotate to the the left
     case 'a':
         {
             //rotate left by adjusting clockwise and counterclockwise values to corresponding motor steps to have the motor
@@ -153,34 +155,39 @@ int Drone::handleInstruction(char INS){
             break;
 
         }
-    // 
+    // this is the case to rotate the drone to the right 
     case 'd':
         {
-
-            //rotate right
+	    // to rotate the drone to the right we set stepping of 
+	    // motor 0 to clockwise and motor 1's stepping to counterclockwise value
             int clockwise = this -> motors[0] -> getSpeed();
             int counterClockWise = this -> motors[1] -> getSpeed();
 
-            //prevent the drone from flipping over
+            //check to make sure the drone does not flipping over if the difference is  significant
             if(clockwise - counterClockWise >= 400) 
                 break;
 
-            //prevent drone from going over max or under min!
+            //check to prevent drone from going over max or under min!
+	    // this checks to make sure counterclockwise speed is not too slow
             if(counterClockWise - 100 < 1100) counterClockWise = 1200;
+	    // checks to make sure clockwise speed is not too high
             if(clockwise + 100 > 2000) clockwise = 1900;
             
+            // now we adjust the speeds of motors if the clockwise speed is greater than counterClockWise speed
             if(clockwise >= counterClockWise + 200) {
                 this -> setMotorSpeed(0, clockwise + 100);
                 this -> setMotorSpeed(3, clockwise + 100);
                 this -> setMotorSpeed(1, counterClockWise - 100);
                 this -> setMotorSpeed(2, counterClockWise - 100);
             }
+	    // we change the motor speeds differently if the speeds are very close
             else {
                 //speeds are within 100 steps (10%) of eachother
                 int diff = 0;
+		// we calculate the differnce if counterClockWise directionis greater than clockwise
                 if(counterClockWise > clockwise) 
                     diff = counterClockWise - clockwise;
-                
+                // and we utilize this differnce in adjusting the speeds of the motors
                 this -> setMotorSpeed(0, clockwise + diff + 100);
                 this -> setMotorSpeed(3, clockwise + diff + 100);
                 this -> setMotorSpeed(1, counterClockWise - 100);
@@ -188,7 +195,7 @@ int Drone::handleInstruction(char INS){
             }
             break;
         }
-
+    // case for when we want to raise  the altitude of the drone
     case 'w':
         {
             //raise, increase all motor speeds
@@ -197,10 +204,11 @@ int Drone::handleInstruction(char INS){
             //prevent drone from going above maximum
             if(avgSpeed + 100 > 2000) avgSpeed = 1900;
 
+	    // set the motor speeds to the average speed + 10 stepping
             this -> setAllMotors(avgSpeed + 100);
             break;
         }
-
+    // case for when we want to decrease the altitude of the drone
     case 's':
         {
             //lower, decrease all motor speeds
@@ -208,11 +216,12 @@ int Drone::handleInstruction(char INS){
 
             //prevent drone from going beyond minimum
             if(avgSpeed - 100 < 1100) avgSpeed = 1200;
-
+	    
+	    // set all motor speeds to 100 steps less than average speed
             this -> setAllMotors(avgSpeed - 100);
             break;
         }
-
+    // case for drone to move in the left direction
     case '<':
         {
             //move left, Motors 1 & 3 should be spin faster than 0 & 2
@@ -224,22 +233,29 @@ int Drone::handleInstruction(char INS){
                 break;
 
             //prevent motors from exceeding max/min
-            if(leftBank - 100 < 1100) leftBank = 1200;
-            if(rightBank + 100 > 2000) rightBank = 1900;
 
+	    // if the left bank is too slow we re-adjust the stepping
+            if(leftBank - 100 < 1100) leftBank = 1200;
+	    // if the right bank is too fast then we lower the stepping
+            if(rightBank + 100 > 2000) rightBank = 1900;
+	    // if the right bank is significatly larger than left bank then
+	    // the way we change the motor speeds will be depending upon
+	    // just pure subtracting and adding 100 steppings
             if(rightBank >= leftBank + 200) {
                 this -> setMotorSpeed(0, leftBank - 100);
                 this -> setMotorSpeed(2, leftBank - 100);
 
                 this -> setMotorSpeed(3, rightBank + 100);
                 this -> setMotorSpeed(1, rightBank + 100);
-            
             }
+	    // the else case is when you end up with a stepping case
+	    // with the right and left bank being within 10% (100 steppings
             else {
                 int diff = 0;
+		// calculate the difference if leftbank is greater than right bank
                 if(leftBank > rightBank)
                     diff = leftBank - rightBank;
-                
+                // use this difference to adjust the motor speed of left and right bank
                 this -> setMotorSpeed(0, leftBank - 100);
                 this -> setMotorSpeed(2, leftBank - 100);
 
@@ -248,10 +264,9 @@ int Drone::handleInstruction(char INS){
             }
             break;
         }
-
+    // this is the case for moving the drone in the right direction
     case '>':
         {
-
             //move right, Motors 0 & 2 > Motors 1 & 3
             int leftBank = this -> motors[0] -> getSpeed();
             int rightBank = this -> motors[1] -> getSpeed();
@@ -261,22 +276,26 @@ int Drone::handleInstruction(char INS){
                 break;
 
             //prevent motors from exceeding max/min
+	    // making sure that the leftbank is not too high and lowering it down
             if(leftBank + 100 > 2000) leftBank = 1900;
+	    // checking the right bank and ensuring it is not too low
             if(rightBank - 100 < 1100) rightBank = 1200;
-
+	    // check to see if the left bank is greather than right bank and if so by 200 steppings then we adjust the motor speeds accordingly
             if(leftBank >= rightBank + 200) {
                 this -> setMotorSpeed(0, leftBank + 100);
                 this -> setMotorSpeed(2, leftBank + 100);
 
                 this -> setMotorSpeed(3, rightBank - 100);
                 this -> setMotorSpeed(1, rightBank - 100);
-            
             }
+	    // this case is for when the rightbank is within 100 steppings different from the left bank
             else {
                 int diff = 0;
+		// if the right bank is greather than the left bank then
+		// calculate the difference
                 if(rightBank > leftBank)
                     diff = rightBank - leftBank;
-                
+                // then use that difference to adjust the motor speeds accordingly
                 this -> setMotorSpeed(0, leftBank + diff + 100);
                 this -> setMotorSpeed(2, leftBank + diff + 100);
 
@@ -285,10 +304,9 @@ int Drone::handleInstruction(char INS){
             }
             break;
         }
-
+    // case to move the drone forward
     case '^':
         {
-
             //move forward, Motors 0 & 1 > Motors 2 & 3
             int frontBank = this -> motors[0] -> getSpeed();
             int backBank = this -> motors[2] -> getSpeed();
@@ -296,11 +314,13 @@ int Drone::handleInstruction(char INS){
             //prevent the drone from flipping over
             if(backBank - frontBank >= 400)
                 break;
-            
+ 
             //prevent motors from exceeding max/min
+	    // if the drone's front bank is too low then we increase it
             if(frontBank - 100 < 1100) frontBank = 1200;
+	    // if the drone's backbank is to high then we lower it down
             if(backBank + 100 > 2000) backBank = 1900;
-
+	    // if the backbank is greater than the front bank then we adjust the motor speeds accordingly
             if(backBank >= frontBank + 200) {
                 this -> setMotorSpeed(0, frontBank - 100);
                 this -> setMotorSpeed(1, frontBank - 100);
@@ -309,14 +329,16 @@ int Drone::handleInstruction(char INS){
                 this -> setMotorSpeed(3, backBank + 100);
             
             }
+	    // if the drone's speeds/steppings are within 10%/100 steppings
             else {
                 int diff = 0;
+		// calculate the difference if front bank is greather than back bank
                 if(frontBank > backBank)
                     diff = frontBank - backBank;
-                
+		// we do not adjust the frontbank speeds
                 this -> setMotorSpeed(0, frontBank - 100);
                 this -> setMotorSpeed(1, frontBank - 100);
-
+                // and we use the differences to adjust our calculation to ensure that the drone moves forward
                 this -> setMotorSpeed(3, backBank + diff + 100);
                 this -> setMotorSpeed(1, backBank + diff + 100);
             }
