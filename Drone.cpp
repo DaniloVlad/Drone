@@ -1,6 +1,9 @@
 #include "include/Drone.h"
 
-
+// these comments are for reference of where each motor is
+// with the left side being with motors 0 and 2 and the right side
+// with motors 1 and 3
+// this will allow you to understand why each motor's speeds are changed
 // motors[0] --- motors[1]
 //   |            |
 // motors[2] --- motors[3]
@@ -43,24 +46,25 @@ Drone::Drone() {
 *@param m2_pin - this holds the pin for motor 1
 *@param m3_pin - this holds the pin for motor 2
 *@param m4_pin - this holds the pin for motor 3
-*@param freq -
-*@param cc, acc_clk_pin, acc_da_pin - are required for Accelerometer object which were not implemented but could be in the near future
+*@param freq - 
+*@param cc, acc_clk_pin, acc_da_pin - are required for Accelerometer object which were not implemented but could be in the near future due to complexity
 */
 Drone::Drone(int port, int freq, int m1_pin, int m2_pin, int m3_pin, int m4_pin, int acc_da_pin, int acc_clk_pin, int cc) {
 	// equivalent comments as in Drone::Drone() but with each using a parameter value rather than a reference value
-	this -> motors[0] = new Motor(m1_pin);
-	this -> motors[1] = new Motor(m2_pin);
-	this -> motors[2] = new Motor(m3_pin);
-	this -> motors[3] = new Motor(m4_pin);
-	this -> acc = new Accelerometer();
+    this -> motors[0] = new Motor(m1_pin);
+    this -> motors[1] = new Motor(m2_pin);
+    this -> motors[2] = new Motor(m3_pin);
+    this -> motors[3] = new Motor(m4_pin);
+    this -> acc = new Accelerometer();
     this -> server = new Server(port);
-    
+
     //set thread id to 0 (ie not running)
     this -> hover = NULL;
 
     this -> acc_data = new signed short(3);
     this -> gyro_data = new signed short(3);
-	//initialize with a loop
+
+    //initialize with a loop
     for(int i = 0; i < 3; i++) {
         this -> acc_data[i] = 0;
         this -> gyro_data[i] = 0;
@@ -90,6 +94,7 @@ Drone::~Drone(){
 */
 int Drone::handleInstruction(char INS){
     printf("Got character %c\n", INS);
+    // if  the average motors are not initalized to minimum speed then we adjust them to that speed
     if(this -> getAvgMotorSpeed() == 0) {
         printf("All motors are 0, starting at minimum!\n");
         this -> setAllMotors(1100);
@@ -418,7 +423,7 @@ int Drone::handleInstruction(char INS){
             
             break;
         }
-    default:
+    default: // and of course the default case is to just break
         break;
     }
 
@@ -428,24 +433,29 @@ int Drone::handleInstruction(char INS){
 
 /**
 *checkAlt function
-*@brief - this function
+*@brief - the function makes the drone hover
+*@return - returns null value
 */
 void *Drone::checkAlt(){
     //on default mode accelerometer samples at 20hz ie 20 updates to values per second
     while(this -> hover != NULL) {
         printf("Running thread...\n");
-        float z = (float) (this -> acc -> getAccZ()/(16*1000));
+	// obtaining the z direction acceleration (that is up and down)
+        float z = (floast) (this -> acc -> getAccZ()/(16*1000));
         int speed = this -> getAvgMotorSpeed();
+	// if the z value is less than zero then re-adjust it to be positive
         if(z < 0) z = (-1) * z;
-
+	// if the value is greater than 1 then it is accelerating  and adjust the speeds so it doesn't fly up
         if(z > 1) {
             if(speed - 25 < 1100) speed = 1125;
             this -> setAllMotors(speed - 25);
         }
+	// if the 1 >= speed >= 0, then increase the motor speeds to ensure the drone does not fall down
         else {
             if(speed + 25 > 2000) speed = 1975;
             this -> setAllMotors(speed + 25);
         }
+	// time lapse so its not checking all the time for like 0.1 seconds
         timespec timeSleep;
         timeSleep.tv_nsec = 1000000000/10;
         nanosleep(&timeSleep, NULL);
