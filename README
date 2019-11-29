@@ -3,7 +3,7 @@
 Found in the test_screenshots/ folder is proof of working utilities.
 	*- Additonally, source files for these tests can be found in the tests/ folder*
 
-**Compile: make*
+*Compile: make*
 
 *On drone:*
     make drone
