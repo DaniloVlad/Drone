@@ -359,7 +359,7 @@ void *Drone::checkAlt(){
     //on default mode accelerometer samples at 20hz ie 20 updates to values per second
     while(this -> hover != NULL) {
         printf("Running thread...\n");
-        float z = (float) this -> acc -> getAccZ();
+        float z = (float) (this -> acc -> getAccZ()/(16*1000));
         int speed = this -> getAvgMotorSpeed();
         if(z < 0) z = (-1) * z;
 
@@ -371,9 +371,9 @@ void *Drone::checkAlt(){
             if(speed + 25 > 2000) speed = 1975;
             this -> setAllMotors(speed + 25);
         }
-        timespec time;
-        time.tv_nsec = 1000000000/10;
-        nanosleep(&time, NULL);
+        timespec timeSleep;
+        timeSleep.tv_nsec = 1000000000/10;
+        nanosleep(&timeSleep, NULL);
     }
     return NULL;
 }
