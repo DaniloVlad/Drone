@@ -1,3 +1,7 @@
+/**
+ * @include Configuration header
+ * */
+
 #ifndef _DRONE_CONFIG
 #define _DRONE_CONFIG
 

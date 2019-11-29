@@ -1,3 +1,8 @@
+/**
+ * @class Client_UI
+ * @brief UI provided to user for interaction with the client socket
+ * */
+
 #include <iostream>
 #include <string>
 #include <gtk/gtk.h>

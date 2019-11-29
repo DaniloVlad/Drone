@@ -1,3 +1,8 @@
+/**
+ * @class Drone 
+ * @brief Drone object that will handle all socket, motor, and accelerometer utilities
+ * */
+
 #include "include/Drone.h"
 
 // these comments are for reference of where each motor is

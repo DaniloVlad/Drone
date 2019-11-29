@@ -1,3 +1,8 @@
+/**
+ * @class Server
+ * @brief Creates the server on the PI that handles all server-side transactions
+ * */
+
 #include "include/Server.h"
 
 /* Function: Socket Constructor

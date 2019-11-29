@@ -1,3 +1,8 @@
+/**
+ * @class Motor
+ * @brief Instruction set for the four motors that handles frequencies and speeds
+ * */
+
 #include "include/Motor.h"
 
 /* Function: Motor Constructor

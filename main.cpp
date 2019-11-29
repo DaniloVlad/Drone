@@ -1,3 +1,8 @@
+/**
+ * @class main
+ * @brief creates drone instance
+ * */
+
 #include <iostream>
 #include <pigpio.h>
 #include "include/Drone.h"

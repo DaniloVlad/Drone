@@ -1,3 +1,8 @@
+/**
+ * @class Socket
+ * @brief General superclass for sockets that defines default parameters
+ * */
+
 #include "include/Socket.h"
 
 /* Function: Socket Constructor

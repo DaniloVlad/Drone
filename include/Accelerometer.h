@@ -1,6 +1,6 @@
 /**
-* Accelerometer Header
-*/
+* @include Accelerometer header
+* */
 
 // Function/Class definitions can be seen in the accelerometer data sheet pdf within the repository.
 #ifndef Accelerometer_H

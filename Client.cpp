@@ -1,6 +1,11 @@
+/**
+ * @class Client
+ * @brief generates an instance of a client to connect to the PI
+ * */
+
+
 #include "include/Client.h"
 
-// Constructs the client without any specific paramater input for it's components.
 /* Function: Client Constructor
 *   @brief - Constructs the client without any specific paramater input for it's components.
 */  
@@ -12,7 +17,6 @@ Client::Client() : Socket() {
     }
 }
 
-// Constructs the client with specific paramater input for it's components, and a char address type.
 /* Function: Client Constructor
 *   @brief - Constructs the client with specific paramater input for it's components, and a char address type.
 *   @param port - port for the client.
@@ -30,7 +34,6 @@ Client::Client(int port, char *address, int domain, int type, int protocol) : So
     }
 }
 
-// Constructs the client with specific paramater input for it's components, and a uint32_t address type.
 /* Function: Client Constructor
 *   @brief - Constructs the client with specific paramater input for it's components, and a uint32_t address type.
 *   @param port - port for the client.
@@ -51,7 +54,6 @@ Client::~Client() {
     printf("Closing socket\n");
 }
 
-// Returns the information read in to the client socket.
 /* Function: Recieve
 *   @brief - Returns the information read in to the client socket.
 *   @param data - the data to be recieved by the client.
@@ -61,7 +63,6 @@ int Client::receive(void * data, size_t length) {
     return read(this -> socketfd, data, length);
 }
 
-// Returns the information to write in to the client socket.
 /* Function: Send
 *   @brief - Returns the information to write in to the client socket.
 *   @param buffer - the data to be sent by the client. 
