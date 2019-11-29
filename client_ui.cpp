@@ -25,7 +25,8 @@ typedef enum inst {
     LOWER
 } INSTRUCTION;
 
-//Command struct that will store an INSTRUCTION and thread id declared below
+
+//@brief - Command struct that will store an INSTRUCTION and thread id declared below
 typedef struct _cmd {
   INSTRUCTION ins;
   pthread_t *tid;
@@ -44,13 +45,17 @@ pthread_t moveRight = 0;
 //lock so that only 1 command is sent to the socket at a time
 pthread_mutex_t lock;
 
-//print availible commands
+/**
+* @brief - print availible commands
+*/
 void print_instructions() {
     std::cout << "Controls are as follows:\n\ta => Rotate Left\n\td => Rotate Right\n\tw => Raise\n\ts => Lower\n\tArrow Left => Move Left\n\tArrow Right => Move Right\n\tArrow Forward => Move Forward\n\tArrow Back => Move Backward\n\tc => Calibrate/Initialise\n\tx => Turn off motors\n\tl => Land\n\th => Hover hold (Expiremental!)\n\ti => Show instruction list" << std::endl;
 }
 
-//threaded function started by key press and 
-//exits upon key release
+/**
+*@brief - threaded function started by key press and exits upon key release
+*@param varg - this holds the arguments for the command
+*/
 void *instruction_handler(void *varg) {
   COMMAND * t_ins = (COMMAND *) varg;
   INSTRUCTION ins = t_ins -> ins;
@@ -104,7 +109,12 @@ void *instruction_handler(void *varg) {
   return NULL;
 }
 
-//certain key releases need to set their respective thread id to kill the thread
+/**
+*@brief - certain key releases need to set their respective thread id to kill the thread
+*@param widget - pointer to the widget in use
+*@param event - pointer to the key event
+*@param data - data that was send 
+*/
 gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data) {
   pthread_t *id = NULL;
 
@@ -140,7 +150,12 @@ gboolean handle_key_release(GtkWidget *widget, GdkEventKey *event, gpointer data
   return TRUE;
 }
 
-//Function is called multiple times if key is being held
+/**
+*@brief - Function is called multiple times if key is being held
+*@param widget - the pointer for the widget that we are using
+*@param event - the pointer to the key event
+*@param data - 
+*/
 gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data) {
   //command structure stores the instruction and a pointer to the thread id
   //which is used in the instruction_handler while loop
@@ -238,7 +253,11 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
   return TRUE;
 }
 
-
+/**
+*@brief - creates the windows and sets it to have the ability to get key presses
+*@param app - a pointer to create the window linked with it
+*@param user_data -  a gpointer object containing user data
+*/
 static void activate (GtkApplication *app, gpointer user_data)
 {
   GtkWidget *window;
@@ -257,6 +276,11 @@ static void activate (GtkApplication *app, gpointer user_data)
   gtk_widget_show_all (window);
 }
 
+/**
+*@brief - the main function which performs the operations required to create the client ui
+*@param argc - this is the number of arguments present in the command line execution
+*@param argv - a pointer to the array of arguments
+*/
 int main (int argc, char **argv)
 {
   GtkApplication *app;
