@@ -1,4 +1,6 @@
 #include <iostream>
+#include <unistd.h>
+#include <time.h>
 #include "../include/Accelerometer.h"
 
 int main() {  
@@ -13,17 +15,16 @@ int main() {
 
         Accelerometer *accel = new Accelerometer();
         // create half second delay
-        struct timespec time;
-        time.tv_nsec = 1000000000 * (1/2);
+        struct timespec sleepTime;
+        sleepTime.tv_nsec = 1000000000/8;
 
         //int read = 0;
-        const float start_time = timespec_get(&time, TIME_UTC);
+        time_t start = time(NULL);
 
-        while((timespec_get(&time, TIME_UTC) - start_time) < RUNTIME) {
+        while((time(NULL) - start) < RUNTIME) {
             int x = accel -> getAccX();    //this returned an int not sure if wanted unsigned short
             int y = accel -> getAccY();
-            int z = accel -> getAccZ();
-
+            int16_t z = accel -> getAccZ();
             int gx = accel -> getGyroX();
             int gy = accel -> getGyroY();
             int gz = accel -> getGyroY();
@@ -32,8 +33,7 @@ int main() {
 
             std::cout << "Gyro" << std::endl;
             std::cout << "X = " << gx << " Y = " << gy << " Z = " << gz << std::endl;
-            nanosleep(&time, NULL);
-        
+            sleep(1);
         }
     }
 }

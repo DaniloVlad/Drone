@@ -26,6 +26,43 @@ Accelerometer::Accelerometer() {
         perror("Couldn't initialize i2c device");
         exit(EXIT_FAILURE);
     }
+
+    //configure
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0) != 0) {
+        perror("Couldn't set register bank 0");
+        exit(EXIT_FAILURE);
+    }
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x06, 0x80) != 0) {
+        perror("Couldn't Configure PWR_MGMNT");
+        exit(EXIT_FAILURE);
+    }
+    sleep(2);
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x06, 0) != 0) {
+        perror("Couldn't Reset PWR_MGMNT");
+        exit(EXIT_FAILURE);
+    }
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0x20) != 0) {
+        perror("Couldn't select register bank 2");
+        exit(EXIT_FAILURE);
+    }
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x14, 0x07) != 0) {
+        perror("Couldn't configure sensitivity!");
+        exit(EXIT_FAILURE);
+    } 
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x15, 0x03) != 0) {
+        perror("Couldn't configure sample averaging!");
+        exit(EXIT_FAILURE);
+    } 
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0) != 0) {
+        perror("Couldn't return to register bank 0");
+        exit(EXIT_FAILURE);
+    }
+    
 }
 
 /* Function: Accelerometer
@@ -65,6 +102,42 @@ Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_p
         perror("Couldn't initialize i2c device");
         exit(EXIT_FAILURE);
     }
+    //configure
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0) != 0) {
+        perror("Couldn't set register bank 0");
+        exit(EXIT_FAILURE);
+    }
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x06, 0x80) != 0) {
+        perror("Couldn't Configure PWR_MGMNT");
+        exit(EXIT_FAILURE);
+    }
+    sleep(2);
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x06, 0) != 0) {
+        perror("Couldn't Reset PWR_MGMNT");
+        exit(EXIT_FAILURE);
+    }
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0x20) != 0) {
+        perror("Couldn't select register bank 2");
+        exit(EXIT_FAILURE);
+    }
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x14, 0x07) != 0) {
+        perror("Couldn't configure sensitivity!");
+        exit(EXIT_FAILURE);
+    } 
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x15, 0x03) != 0) {
+        perror("Couldn't configure sample averaging!");
+        exit(EXIT_FAILURE);
+    } 
+
+    if(i2cWriteByteData(this -> i2c_handle, 0x7F, 0) != 0) {
+        perror("Couldn't return to register bank 0");
+        exit(EXIT_FAILURE);
+    }
+    
 }
 
 /* Function: Accelerometer deconstructor.
@@ -85,20 +158,20 @@ int Accelerometer::getGyroX() {
 *   @breif - Getter function for the gyroscope's current Y-axis data. 
 */  
 int Accelerometer::getGyroY() {
-    return (this -> gyroX = i2cReadWordData(this -> i2c_handle, GYRO_Y_H));
+    return (this -> gyroY = i2cReadWordData(this -> i2c_handle, GYRO_Y_H));
 }
 
 /* Function: getGyroZ
 *   @breif - Getter function for the gyroscope's current Z-axis data.
 */  
 int Accelerometer::getGyroZ() {
-    return (this -> gyroX = i2cReadWordData(this -> i2c_handle, GYRO_Z_H));
+    return (this -> gyroZ = i2cReadWordData(this -> i2c_handle, GYRO_Z_H));
 }
 
 /* Function: getAccX
 *   @breif - Getter function for the accelerometer's current X-axis data.
 */  
-int Accelerometer::getAccX() {
+int16_t Accelerometer::getAccX() {
     //reads 16-bit word starting at register
     return (this -> accX = i2cReadWordData(this -> i2c_handle, ACC_X_H));
 }
@@ -106,17 +179,17 @@ int Accelerometer::getAccX() {
 /* Function: getAccY
 *   @breif - Getter function for the accelerometer's current Y-axis data.
 */  
-int Accelerometer::getAccY() {
+int16_t Accelerometer::getAccY() {
     //reads 16-bit word starting at register
-    return (this -> accX = i2cReadWordData(this -> i2c_handle, ACC_Y_H));
+    return (this -> accY = i2cReadWordData(this -> i2c_handle, ACC_Y_H));
 }
 
 /* Function: getAccZ
 *   @breif - Getter function for the accelerometer's current Z-axis data.
 */  
-int Accelerometer::getAccZ() {
+int16_t Accelerometer::getAccZ() {
     //reads 16-bit word starting at register
-    return (this -> accX = i2cReadWordData(this -> i2c_handle, ACC_Z_H));
+    return (this -> accZ = i2cReadWordData(this -> i2c_handle, ACC_Z_H));
 }
 
 /* Function: getGyroXYZ
