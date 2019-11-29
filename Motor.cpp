@@ -1,7 +1,7 @@
 #include "include/Motor.h"
 
 /* Function: Motor Constructor
-*   @breif - Constructs and sets the base motor with only the pin parameter. 
+*   @brief - Constructs and sets the base motor with only the pin parameter. 
 *   @param pin - the pin address for the device motor.
 */  
 Motor::Motor(int pin) {
@@ -18,7 +18,7 @@ Motor::Motor(int pin) {
 }
 
 /* Function: Motor Constructor
-*   @breif - Constructs and sets the motor with only the pin and frequency paramaters.
+*   @brief - Constructs and sets the motor with only the pin and frequency paramaters.
 *   @param pin - the pin address for the device motor.
 *   @param frequency - the frequency that the signal will be transmitted on.
 */  
@@ -36,7 +36,7 @@ Motor::Motor(int pin, int frequency) {
 }
 
 /* Function: Motor Constructor
-*   @breif - Constructs and sets the motor with only the pin and frequency paramaters.
+*   @brief - Constructs and sets the motor with only the pin and frequency paramaters.
 *   @param pin - the pin address for the device motor.
 *   @param frequency - the frequency that the signal will be transmitted on.
 *   @param pwm_range - the range of the signal.
@@ -55,14 +55,14 @@ Motor::Motor(int pin, int frequency, int pwm_range) {
 }
 
 /* Function: Motor Deconstructor
-*   @breif - Deconstructor method for the motor.
+*   @brief - Deconstructor method for the motor.
 */  
 Motor::~Motor() {
     this -> stop();
 }
 
 /* Function: setFrequency
-*   @breif - Setter function for the motor frequency, and sends an error message and exit's if the setter fails.
+*   @brief - Setter function for the motor frequency, and sends an error message and exit's if the setter fails.
 *   @param frequency - the frequency that the signal will be transmitted on.
 */  
 void Motor::setFrequency(int frequency) {
@@ -73,7 +73,7 @@ void Motor::setFrequency(int frequency) {
 }
 
 /* Function: setDutyRange
-*   @breif - Setter function for the motor range, and sends an error message and exit's if the setter fails.
+*   @brief - Setter function for the motor range, and sends an error message and exit's if the setter fails.
 *   @param range - the range of the signal.
 */  
 void Motor::setDutyRange(int range) {
@@ -84,7 +84,7 @@ void Motor::setDutyRange(int range) {
 }
 
 /* Function: setSpeed
-*   @breif - Setter function for the motor speed.
+*   @brief - Setter function for the motor speed.
 * 	On error returns -1, otherwise returns the speed.
 *   @param speed - speed the motor's are spinning.
 */  
@@ -108,7 +108,7 @@ int Motor::setSpeed(int speed) {
 }
 
 /* Function: stop
-*   @breif - Stop condition function for the motor, which returns 0 when successful, and -1 on an error.
+*   @brief - Stop condition function for the motor, which returns 0 when successful, and -1 on an error.
 */  
 int Motor::stop() {
     return (this -> setSpeed(0));

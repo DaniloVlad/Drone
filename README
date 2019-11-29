@@ -1,14 +1,18 @@
-Compile: make
+**Please find related documents in the docs/ folder.**
+Found in the test_screenshots/ folder is proof of working utilities.
+	*- Additonally, source files for these tests can be found in the tests/ folder*
 
-On drone:
+**Compile: make*
+
+*On drone:*
     make drone
     sudo ./bin/main
 
-On client:
+*On client:*
     make client
     ./bin/client_ui
     
-Testing socket:
+*Testing socket:*
 
     ./bin/test_server
     ./bin/test_client

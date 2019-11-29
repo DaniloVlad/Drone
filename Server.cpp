@@ -1,7 +1,7 @@
 #include "include/Server.h"
 
 /* Function: Socket Constructor
-*   @breif - Constructs the server socket without any specific paramater input for it's components.
+*   @brief - Constructs the server socket without any specific paramater input for it's components.
 */  
 Server::Server() : Socket() {
     printf("Creating server....\n");
@@ -31,7 +31,7 @@ Server::Server() : Socket() {
 
 
 /* Function: Socket Constructor
-*   @breif - Constructs the server socket with specific paramater input for it's components, using the char address.
+*   @brief - Constructs the server socket with specific paramater input for it's components, using the char address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.. 
 *   @param domain - domain for the socket.
@@ -65,7 +65,7 @@ Server::Server(int port, char *address, int domain, int type, int protocol) : So
 }
 
 /* Function: Socket Constructor
-*   @breif - Constructs the server socket with specific paramater input for it's components, using the uint32_t address.
+*   @brief - Constructs the server socket with specific paramater input for it's components, using the uint32_t address.
 *   @param port - port for the socket.
 *   @param address - address for the socket.. 
 *   @param domain - domain for the socket.
@@ -100,7 +100,7 @@ Server::Server(int port, uint32_t address, int domain, int type, int protocol) :
 }
 
 /* Function: Server Deconstructor
-*   @breif - Deconstructor method for the server socket.
+*   @brief - Deconstructor method for the server socket.
 */  
 Server::~Server() {
     if(this -> client_addr) free(this -> client_addr);
@@ -109,7 +109,7 @@ Server::~Server() {
 }
 
 /* Function: startServer
-*   @breif - Starter function that attempts to start the server. If failed, sends an error message and exit.
+*   @brief - Starter function that attempts to start the server. If failed, sends an error message and exit.
 */  
 int Server::startServer() {
     printf("Server waiting on connection...\n");
@@ -121,7 +121,7 @@ int Server::startServer() {
 }
 
 /* Function: send
-*   @breif - Returns the information read in to the server socket.
+*   @brief - Returns the information read in to the server socket.
 *   @param data - the data to be recieved by the server.
 *   @param length - the size/length of the data.
 */  
@@ -130,7 +130,7 @@ int Server::send(void *data, size_t length) {
 }
 
 /* Function: receive
-*   @breif - Returns the information to write in to the server socket.
+*   @brief - Returns the information to write in to the server socket.
 *   @param buffer - the data to be sent by the server. 
 *   @param length - the size/length of the data. 
 */  

@@ -2,7 +2,7 @@
 
 // Constructs the client without any specific paramater input for it's components.
 /* Function: Client Constructor
-*   @breif - Constructs the client without any specific paramater input for it's components.
+*   @brief - Constructs the client without any specific paramater input for it's components.
 */  
 Client::Client() : Socket() {
   	// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.
@@ -14,7 +14,7 @@ Client::Client() : Socket() {
 
 // Constructs the client with specific paramater input for it's components, and a char address type.
 /* Function: Client Constructor
-*   @breif - Constructs the client with specific paramater input for it's components, and a char address type.
+*   @brief - Constructs the client with specific paramater input for it's components, and a char address type.
 *   @param port - port for the client.
 *   @param address - address for the client. 
 *   @param domain - domain for the client.
@@ -32,7 +32,7 @@ Client::Client(int port, char *address, int domain, int type, int protocol) : So
 
 // Constructs the client with specific paramater input for it's components, and a uint32_t address type.
 /* Function: Client Constructor
-*   @breif - Constructs the client with specific paramater input for it's components, and a uint32_t address type.
+*   @brief - Constructs the client with specific paramater input for it's components, and a uint32_t address type.
 *   @param port - port for the client.
 *   @param address - address for the client. 
 *   @param domain - domain for the client.
@@ -53,7 +53,7 @@ Client::~Client() {
 
 // Returns the information read in to the client socket.
 /* Function: Recieve
-*   @breif - Returns the information read in to the client socket.
+*   @brief - Returns the information read in to the client socket.
 *   @param data - the data to be recieved by the client.
 *   @param length - the size/length of the data.
 */  
@@ -63,7 +63,7 @@ int Client::receive(void * data, size_t length) {
 
 // Returns the information to write in to the client socket.
 /* Function: Send
-*   @breif - Returns the information to write in to the client socket.
+*   @brief - Returns the information to write in to the client socket.
 *   @param buffer - the data to be sent by the client. 
 *   @param length - the size/length of the data. 
 */  

@@ -1,7 +1,7 @@
 #include "include/Accelerometer.h"
 
 /* Function: Accelerometer
-*   @breif - Constructs the accelerometer without any specific paramater input for it's components. 
+*   @brief - Constructs the accelerometer without any specific paramater input for it's components. 
 */  
 Accelerometer::Accelerometer() {
     this -> i2c_addr = I2C_ADDR_ACC;
@@ -66,7 +66,7 @@ Accelerometer::Accelerometer() {
 }
 
 /* Function: Accelerometer
-*   @breif Constructor for Accelerometer class with specific parameter input.
+*   @brief Constructor for Accelerometer class with specific parameter input.
 *   @param i2c_addr - address of i2c device.
 *   @param i2c_bus - i2c bus.
 *   @param data_pin - SDA pin for i2c device.
@@ -141,35 +141,35 @@ Accelerometer::Accelerometer(int i2c_addr, int i2c_bus,int data_pin, int clock_p
 }
 
 /* Function: Accelerometer deconstructor.
-*   @breif - Deconstructor method for the accelerometer.
+*   @brief - Deconstructor method for the accelerometer.
 */  
 Accelerometer::~Accelerometer() {
     i2cClose(this -> i2c_handle);
 }
 
 /* Function: getGyroX
-*   @breif - Getter function for the gyroscope's current X-axis data.
+*   @brief - Getter function for the gyroscope's current X-axis data.
 */  
 int Accelerometer::getGyroX() {
     return (this -> gyroX = i2cReadWordData(this -> i2c_handle, GYRO_X_H));
 }
 
 /* Function: getGyroY
-*   @breif - Getter function for the gyroscope's current Y-axis data. 
+*   @brief - Getter function for the gyroscope's current Y-axis data. 
 */  
 int Accelerometer::getGyroY() {
     return (this -> gyroY = i2cReadWordData(this -> i2c_handle, GYRO_Y_H));
 }
 
 /* Function: getGyroZ
-*   @breif - Getter function for the gyroscope's current Z-axis data.
+*   @brief - Getter function for the gyroscope's current Z-axis data.
 */  
 int Accelerometer::getGyroZ() {
     return (this -> gyroZ = i2cReadWordData(this -> i2c_handle, GYRO_Z_H));
 }
 
 /* Function: getAccX
-*   @breif - Getter function for the accelerometer's current X-axis data.
+*   @brief - Getter function for the accelerometer's current X-axis data.
 */  
 int16_t Accelerometer::getAccX() {
     //reads 16-bit word starting at register
@@ -177,7 +177,7 @@ int16_t Accelerometer::getAccX() {
 }
 
 /* Function: getAccY
-*   @breif - Getter function for the accelerometer's current Y-axis data.
+*   @brief - Getter function for the accelerometer's current Y-axis data.
 */  
 int16_t Accelerometer::getAccY() {
     //reads 16-bit word starting at register
@@ -185,7 +185,7 @@ int16_t Accelerometer::getAccY() {
 }
 
 /* Function: getAccZ
-*   @breif - Getter function for the accelerometer's current Z-axis data.
+*   @brief - Getter function for the accelerometer's current Z-axis data.
 */  
 int16_t Accelerometer::getAccZ() {
     //reads 16-bit word starting at register
@@ -193,7 +193,7 @@ int16_t Accelerometer::getAccZ() {
 }
 
 /* Function: getGyroXYZ
-*   @breif - Getter function for the gyroscope's current X, Y and Z axis data.
+*   @brief - Getter function for the gyroscope's current X, Y and Z axis data.
 */  
 signed short *Accelerometer::getGyroXYZ() {
     signed short *val = new signed short(3);
@@ -204,7 +204,7 @@ signed short *Accelerometer::getGyroXYZ() {
 }
 
 /* Function: getAccXYZ
-*   @breif - Getter function for the accelerometer's current X, Y and Z axis data.
+*   @brief - Getter function for the accelerometer's current X, Y and Z axis data.
 */  
 signed short *Accelerometer::getAccXYZ() {
 	signed short *val = new signed short(3);
