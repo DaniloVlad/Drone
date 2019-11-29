@@ -1,3 +1,10 @@
+/**
+*@class main - initates a drone object for operation
+*@include include/Drone.h
+*@include pigpio.h
+*@include iostream
+*/
+
 #include <iostream>
 #include <pigpio.h>
 #include "include/Drone.h"
