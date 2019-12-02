@@ -446,7 +446,7 @@ void *Drone::checkAlt(){
     while(this -> hover != NULL) {
         printf("Running thread...\n");
 	// obtaining the z direction acceleration (that is up and down)
-        float z = (floast) (this -> acc -> getAccZ()/(16*1000));
+        float z = (float) (this -> acc -> getAccZ()/(16*1000));
         int speed = this -> getAvgMotorSpeed();
 	// if the z value is less than zero then re-adjust it to be positive
         if(z < 0) z = (-1) * z;
