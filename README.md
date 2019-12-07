@@ -1,7 +1,7 @@
 **Please find related documents in the documents/ folder.**
 
     - UML diagram can be found there as well
-    -Found in the test_screenshots/ folder is proof of working utilities.
+    - Found in the test_screenshots/ folder is proof of working utilities.
 	- Additonally, source files for these tests can be found in the tests/ folder
 
 Checkout the [documentation!](https://danilovlad.github.io/Drone/) 
