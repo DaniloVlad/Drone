@@ -1,0 +1,361 @@
+\hypertarget{classServer}{}\doxysection{Server Class Reference}
+\label{classServer}\index{Server@{Server}}
+
+
+Creates the server on the PI that handles all server-\/side transactions.  
+
+
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+Inheritance diagram for Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classServer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classServer_ad5ec9462b520e59f7ea831e157ee5e59}{Server}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the server socket without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classServer_a3da670de7e5bb068bcfb204abdfe0631}{Server}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, char $\ast$address, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the server socket with specific paramater input for it\textquotesingle{}s components, using the char address. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classServer_a2c9b9f39cf7f2df3540b7eeff653852e}{Server}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, uint32\+\_\+t address=I\+N\+A\+D\+D\+R\+\_\+\+A\+NY, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the server socket with specific paramater input for it\textquotesingle{}s components, using the uint32\+\_\+t address. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}{$\sim$\+Server}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Deconstructor method for the server socket. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classServer_a3d31a6702f6074152bec37c28c4bbf5b}{start\+Server}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Starter function that attempts to start the server. If failed, sends an error message and exit. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classServer_a034c4bb914db40d2bcd43044e5fb1fb4}{send}} (void $\ast$data, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Returns the information read in to the server socket. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classServer_abdfd6190821c48b60327bf7090cb1e07}{receive}} (void $\ast$buffer, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Returns the information to write in to the server socket. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct sockaddr\+\_\+in $\ast$ \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\+\_\+addr}} = N\+U\+LL
+\item 
+int \mbox{\hyperlink{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}{new\+\_\+socket}} = 0
+\item 
+int \mbox{\hyperlink{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}{client\+\_\+socklen}} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Creates the server on the PI that handles all server-\/side transactions. 
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Header 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classServer_ad5ec9462b520e59f7ea831e157ee5e59}\label{classServer_ad5ec9462b520e59f7ea831e157ee5e59}} 
+\index{Server@{Server}!Server@{Server}}
+\index{Server@{Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Server\+::\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the server socket without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{11                : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}() \{}
+\DoxyCodeLine{12     printf(\textcolor{stringliteral}{"Creating server....\(\backslash\)n"});}
+\DoxyCodeLine{13     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(sockaddr\_in));}
+\DoxyCodeLine{14     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}{client\_socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{15     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}}, 0, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{16     \textcolor{keywordtype}{int} opt = 1;}
+\DoxyCodeLine{17     }
+\DoxyCodeLine{18     \textcolor{comment}{// Error check -\/ attempting to set socket options. If failed, sends an error message and exit.}}
+\DoxyCodeLine{19     \textcolor{keywordflow}{if}(setsockopt(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, SOL\_SOCKET, SO\_REUSEADDR | SO\_REUSEPORT, \&opt, \textcolor{keyword}{sizeof}(opt)) < 0) \{}
+\DoxyCodeLine{20         perror(\textcolor{stringliteral}{"Couldn't set socket options"});}
+\DoxyCodeLine{21         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23   }
+\DoxyCodeLine{24     \textcolor{comment}{// Error check -\/ attempting to bind the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{25     \textcolor{keywordflow}{if}(bind(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{26         perror(\textcolor{stringliteral}{"Couldn't bind socket!"});}
+\DoxyCodeLine{27         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29   }
+\DoxyCodeLine{30     \textcolor{comment}{// Error check -\/ attempting to listen to the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{31     \textcolor{keywordflow}{if}(listen(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, 1) < 0) \{}
+\DoxyCodeLine{32         perror(\textcolor{stringliteral}{"Couldn't listen on socket"});}
+\DoxyCodeLine{33         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a3da670de7e5bb068bcfb204abdfe0631}\label{classServer_a3da670de7e5bb068bcfb204abdfe0631}} 
+\index{Server@{Server}!Server@{Server}}
+\index{Server@{Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Server\+::\+Server (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char $\ast$}]{address,  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the server socket with specific paramater input for it\textquotesingle{}s components, using the char address. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em port} & -\/ port for the socket. \\
+\hline
+{\em address} & -\/ address for the socket.. \\
+\hline
+{\em domain} & -\/ domain for the socket. \\
+\hline
+{\em type} & -\/ type of data for the socket. \\
+\hline
+{\em protocol} & -\/ protocol the socket is using. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46                                                                           : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, address, \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}) \{}
+\DoxyCodeLine{47     }
+\DoxyCodeLine{48     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(sockaddr\_in));}
+\DoxyCodeLine{49     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}{client\_socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{50     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}}, 0, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{51     \textcolor{keywordtype}{int} opt = 1;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{comment}{// Error check -\/ attempting to set socket options. If failed, sends an error message and exit.}}
+\DoxyCodeLine{54     \textcolor{keywordflow}{if}(setsockopt(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, SOL\_SOCKET, SO\_REUSEADDR | SO\_REUSEPORT, \&opt, \textcolor{keyword}{sizeof}(opt)) < 0) \{}
+\DoxyCodeLine{55         perror(\textcolor{stringliteral}{"Couldn't set socket options"});}
+\DoxyCodeLine{56         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58     }
+\DoxyCodeLine{59     \textcolor{comment}{// Error check -\/ attempting to bind the socket. If failed, sends an error message and exit.  }}
+\DoxyCodeLine{60     \textcolor{keywordflow}{if}(bind(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{61         perror(\textcolor{stringliteral}{"Couldn't bind socket!"});}
+\DoxyCodeLine{62         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{63     \}}
+\DoxyCodeLine{64   }
+\DoxyCodeLine{65     \textcolor{comment}{// Error check -\/ attempting to listen to the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{66     \textcolor{keywordflow}{if}(listen(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, 1) < 0) \{}
+\DoxyCodeLine{67         perror(\textcolor{stringliteral}{"Couldn't listen on socket"});}
+\DoxyCodeLine{68         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{69     \}}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a2c9b9f39cf7f2df3540b7eeff653852e}\label{classServer_a2c9b9f39cf7f2df3540b7eeff653852e}} 
+\index{Server@{Server}!Server@{Server}}
+\index{Server@{Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{Server()}{Server()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Server\+::\+Server (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{uint32\+\_\+t}]{address = {\ttfamily INADDR\+\_\+ANY},  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the server socket with specific paramater input for it\textquotesingle{}s components, using the uint32\+\_\+t address. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classSocket}{Socket}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em port} & -\/ port for the socket. \\
+\hline
+{\em address} & -\/ address for the socket.. \\
+\hline
+{\em domain} & -\/ domain for the socket. \\
+\hline
+{\em type} & -\/ type of data for the socket. \\
+\hline
+{\em protocol} & -\/ protocol the socket is using. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{80                                                                              : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, address, \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}) \{}
+\DoxyCodeLine{81     printf(\textcolor{stringliteral}{"Creating server....\(\backslash\)n"});}
+\DoxyCodeLine{82     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}} = (\textcolor{keyword}{struct }sockaddr\_in *) malloc(\textcolor{keyword}{sizeof}(sockaddr\_in));}
+\DoxyCodeLine{83     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}{client\_socklen}} = \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }sockaddr\_in);}
+\DoxyCodeLine{84     memset(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}}, 0, \textcolor{keyword}{sizeof}( \textcolor{keyword}{struct} sockaddr\_in));}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{int} opt = 1;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{// Error check -\/ attempting to set socket options. If failed, sends an error message and exit.}}
+\DoxyCodeLine{89     \textcolor{keywordflow}{if}(setsockopt(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, SOL\_SOCKET, SO\_REUSEADDR | SO\_REUSEPORT, \&opt, \textcolor{keyword}{sizeof}(opt)) < 0) \{}
+\DoxyCodeLine{90         perror(\textcolor{stringliteral}{"Couldn't set socket options"});}
+\DoxyCodeLine{91         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93     }
+\DoxyCodeLine{94     \textcolor{comment}{// Error check -\/ attempting to bind the socket. If failed, sends an error message and exit.  }}
+\DoxyCodeLine{95     \textcolor{keywordflow}{if}(bind(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{96         perror(\textcolor{stringliteral}{"Couldn't bind socket!"});}
+\DoxyCodeLine{97         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{comment}{// Error check -\/ attempting to listen to the socket. If failed, sends an error message and exit.}}
+\DoxyCodeLine{101     \textcolor{keywordflow}{if}(listen(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, 1) < 0) \{}
+\DoxyCodeLine{102         perror(\textcolor{stringliteral}{"Couldn't listen on socket"});}
+\DoxyCodeLine{103         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}\label{classServer_a4b3aa2579cb1c8cd1d069582c14d0fa6}} 
+\index{Server@{Server}!````~Server@{$\sim$Server}}
+\index{````~Server@{$\sim$Server}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{$\sim$Server()}{~Server()}}
+{\footnotesize\ttfamily Server\+::$\sim$\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Deconstructor method for the server socket. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classServer}{Server}} Deconstructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{110                 \{}
+\DoxyCodeLine{111     \textcolor{keywordflow}{if}(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}}) free(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}});}
+\DoxyCodeLine{112     printf(\textcolor{stringliteral}{"Closing server socket...\(\backslash\)n"});}
+\DoxyCodeLine{113     close(\mbox{\hyperlink{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}{new\_socket}});}
+\DoxyCodeLine{114 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classServer_abdfd6190821c48b60327bf7090cb1e07}\label{classServer_abdfd6190821c48b60327bf7090cb1e07}} 
+\index{Server@{Server}!receive@{receive}}
+\index{receive@{receive}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily int Server\+::receive (\begin{DoxyParamCaption}\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Returns the information to write in to the server socket. 
+\end{DoxyItemize}
+
+Function\+: receive 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & -\/ the data to be sent by the server. \\
+\hline
+{\em length} & -\/ the size/length of the data. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{142                                                 \{}
+\DoxyCodeLine{143     printf(\textcolor{stringliteral}{"Server waiting for data...\(\backslash\)n"});}
+\DoxyCodeLine{144     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespaceAccel__tests_a0369b1e3199214346246bde7c7c0f743}{read}}(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}{new\_socket}}, buffer, length);}
+\DoxyCodeLine{145 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a034c4bb914db40d2bcd43044e5fb1fb4}\label{classServer_a034c4bb914db40d2bcd43044e5fb1fb4}} 
+\index{Server@{Server}!send@{send}}
+\index{send@{send}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily int Server\+::send (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Returns the information read in to the server socket. 
+\end{DoxyItemize}
+
+Function\+: send 
+\begin{DoxyParams}{Parameters}
+{\em data} & -\/ the data to be recieved by the server. \\
+\hline
+{\em length} & -\/ the size/length of the data. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{133                                           \{}
+\DoxyCodeLine{134     \textcolor{keywordflow}{return} write(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}{new\_socket}}, data, length);}
+\DoxyCodeLine{135 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classServer_a3d31a6702f6074152bec37c28c4bbf5b}\label{classServer_a3d31a6702f6074152bec37c28c4bbf5b}} 
+\index{Server@{Server}!startServer@{startServer}}
+\index{startServer@{startServer}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{startServer()}{startServer()}}
+{\footnotesize\ttfamily int Server\+::start\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Starter function that attempts to start the server. If failed, sends an error message and exit. 
+\end{DoxyItemize}
+
+Function\+: start\+Server 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{119                         \{}
+\DoxyCodeLine{120     printf(\textcolor{stringliteral}{"Server waiting on connection...\(\backslash\)n"});}
+\DoxyCodeLine{121     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}{new\_socket}} = accept(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_ad7da018aa35c896837448e546210b941}{client\_addr}}, (socklen\_t *) \& \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}{client\_socklen}})) < 0) \{}
+\DoxyCodeLine{122         perror(\textcolor{stringliteral}{"Error accepting connection!"});}
+\DoxyCodeLine{123         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{126 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classServer_ad7da018aa35c896837448e546210b941}\label{classServer_ad7da018aa35c896837448e546210b941}} 
+\index{Server@{Server}!client\_addr@{client\_addr}}
+\index{client\_addr@{client\_addr}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{client\_addr}{client\_addr}}
+{\footnotesize\ttfamily struct sockaddr\+\_\+in$\ast$ Server\+::client\+\_\+addr = N\+U\+LL\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}\label{classServer_acf7d9a0a5fcd325746cd1ffffc9e1a54}} 
+\index{Server@{Server}!client\_socklen@{client\_socklen}}
+\index{client\_socklen@{client\_socklen}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{client\_socklen}{client\_socklen}}
+{\footnotesize\ttfamily int Server\+::client\+\_\+socklen = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}\label{classServer_a6504e40ca4dd0fa36c6daf5e941477ca}} 
+\index{Server@{Server}!new\_socket@{new\_socket}}
+\index{new\_socket@{new\_socket}!Server@{Server}}
+\doxysubsubsection{\texorpdfstring{new\_socket}{new\_socket}}
+{\footnotesize\ttfamily int Server\+::new\+\_\+socket = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Server_8h}{Server.\+h}}\item 
+\mbox{\hyperlink{Server_8cpp}{Server.\+cpp}}\end{DoxyCompactItemize}

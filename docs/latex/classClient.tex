@@ -1,0 +1,177 @@
+\hypertarget{classClient}{}\doxysection{Client Class Reference}
+\label{classClient}\index{Client@{Client}}
+
+
+generates an instance of a client to connect to the PI  
+
+
+
+
+{\ttfamily \#include $<$Client.\+h$>$}
+
+Inheritance diagram for Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classClient}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classClient_ae51af7aa6b8f591496a8f6a4a87a14bf}{Client}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the client without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classClient_aec709668101de03dab81686e9307d6cd}{Client}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, char $\ast$address, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the client with specific paramater input for it\textquotesingle{}s components, and a char address type. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classClient_a3ab79afa9dd685a75a75471d2a0cff8b}{Client}} (int \mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, uint32\+\_\+t address, int \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}=A\+F\+\_\+\+I\+N\+ET, int \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}=S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM, int \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}=0)
+\item 
+\mbox{\hyperlink{classClient_a840e519ca781888cbd54181572ebe3a7}{$\sim$\+Client}} ()
+\item 
+int \mbox{\hyperlink{classClient_af6dcc9abcacaddd505e3878deb6c2a5a}{send}} (void $\ast$data, size\+\_\+t length)
+\item 
+int \mbox{\hyperlink{classClient_aeff455d75f9f50696d3bb8287587af44}{receive}} (void $\ast$buffer, size\+\_\+t length)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+generates an instance of a client to connect to the PI 
+
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ header 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClient_ae51af7aa6b8f591496a8f6a4a87a14bf}\label{classClient_ae51af7aa6b8f591496a8f6a4a87a14bf}} 
+\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the client without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classClient}{Client}} Constructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13                : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}() \{}
+\DoxyCodeLine{14     \textcolor{comment}{// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.}}
+\DoxyCodeLine{15     \textcolor{keywordflow}{if}(connect(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{16         perror(\textcolor{stringliteral}{"Couldn't connect client socket"});}
+\DoxyCodeLine{17         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{18     \}}
+\DoxyCodeLine{19 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classClient_aec709668101de03dab81686e9307d6cd}\label{classClient_aec709668101de03dab81686e9307d6cd}} 
+\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{char $\ast$}]{address,  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the client with specific paramater input for it\textquotesingle{}s components, and a char address type. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classClient}{Client}} Constructor 
+\begin{DoxyParams}{Parameters}
+{\em port} & -\/ port for the client. \\
+\hline
+{\em address} & -\/ address for the client. \\
+\hline
+{\em domain} & -\/ domain for the client. \\
+\hline
+{\em type} & -\/ type of data for the client. \\
+\hline
+{\em protocol} & -\/ protocol the client is using. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                                                                           : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, address, \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}) \{}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32     \textcolor{comment}{// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.}}
+\DoxyCodeLine{33     \textcolor{keywordflow}{if}(connect(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{34         perror(\textcolor{stringliteral}{"Couldn't connect client socket"});}
+\DoxyCodeLine{35         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classClient_a3ab79afa9dd685a75a75471d2a0cff8b}\label{classClient_a3ab79afa9dd685a75a75471d2a0cff8b}} 
+\index{Client@{Client}!Client@{Client}}
+\index{Client@{Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{Client()}{Client()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Client\+::\+Client (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{uint32\+\_\+t}]{address,  }\item[{int}]{domain = {\ttfamily AF\+\_\+INET},  }\item[{int}]{type = {\ttfamily SOCK\+\_\+STREAM},  }\item[{int}]{protocol = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47                                                                              : \mbox{\hyperlink{classSocket_a7c3256c4fc6e2c603df73201049fae5a}{Socket}}(\mbox{\hyperlink{classSocket_a775a62c31f1189cbe2a24bcb45640141}{port}}, address, \mbox{\hyperlink{classSocket_a8b042d9fe02795041a5e045604c8b7ec}{domain}}, \mbox{\hyperlink{classSocket_ac7f6980f36023df2004271c336217cb8}{type}}, \mbox{\hyperlink{classSocket_aa1a5128027f9af179b6e88a3eb6bb706}{protocol}}) \{}
+\DoxyCodeLine{48     \textcolor{comment}{// Attempts to connect to the client socket after creation, and outputs an error message for exiting if the attempt fails.}}
+\DoxyCodeLine{49     \textcolor{keywordflow}{if}(connect(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, (\textcolor{keyword}{struct} sockaddr *) \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a6f7b0e2bd832b8ffd9229f103989cff9}{addr}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_a3850888fc1d093b1b334f9835f479278}{socklen}}) < 0) \{}
+\DoxyCodeLine{50         perror(\textcolor{stringliteral}{"Couldn't connect client socket"});}
+\DoxyCodeLine{51         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classClient_a840e519ca781888cbd54181572ebe3a7}\label{classClient_a840e519ca781888cbd54181572ebe3a7}} 
+\index{Client@{Client}!````~Client@{$\sim$Client}}
+\index{````~Client@{$\sim$Client}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{$\sim$Client()}{~Client()}}
+{\footnotesize\ttfamily Client\+::$\sim$\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55                 \{}
+\DoxyCodeLine{56     printf(\textcolor{stringliteral}{"Closing socket\(\backslash\)n"});}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classClient_aeff455d75f9f50696d3bb8287587af44}\label{classClient_aeff455d75f9f50696d3bb8287587af44}} 
+\index{Client@{Client}!receive@{receive}}
+\index{receive@{receive}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily int Client\+::receive (\begin{DoxyParamCaption}\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64                                               \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespaceAccel__tests_a0369b1e3199214346246bde7c7c0f743}{read}}(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, data, length);}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classClient_af6dcc9abcacaddd505e3878deb6c2a5a}\label{classClient_af6dcc9abcacaddd505e3878deb6c2a5a}} 
+\index{Client@{Client}!send@{send}}
+\index{send@{send}!Client@{Client}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily int Client\+::send (\begin{DoxyParamCaption}\item[{void $\ast$}]{data,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73                                             \{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} write(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classSocket_aaea8204500fcb56bb5a7a40b825a3024}{socketfd}}, buffer, length);}
+\DoxyCodeLine{75 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Client_8h}{Client.\+h}}\item 
+\mbox{\hyperlink{Client_8cpp}{Client.\+cpp}}\end{DoxyCompactItemize}

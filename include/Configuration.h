@@ -1,3 +1,7 @@
+/**
+ * @include Configuration header
+ * */
+
 #ifndef _DRONE_CONFIG
 #define _DRONE_CONFIG
 
@@ -21,8 +25,11 @@
 #define GPIO_MOTOR_3 22
 #define GPIO_MOTOR_4 24
 
-#define MOTOR_PWM_RANGE 2000
-#define MOTOR_PWM_FREQUENCY 8000
+#define MOTOR_PWM_RANGE 2500 //2500 us pwm signals
+#define MOTOR_PWM_FREQUENCY 400 //400hz
+
+#define MAX_SPEED 2000
+#define MIN_SPEED 1000
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,4 +38,19 @@
 
 #include <pigpio.h>
 
+#pragma pack(2)
+typedef struct _packet {
+    uint16_t ins;
+    int16_t val;
+} INSTRUCTION;
+
+// pack to 2 bytes ie:
+// -------------------
+// |   1    |    0   |
+// -------------------
+// | ins(1) | ins(0) |
+// -------------------
+// | val(1) | val(0) |
+// -------------------
+// Written in Network Byte Order.
 #endif

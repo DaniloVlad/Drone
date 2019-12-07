@@ -22,6 +22,7 @@ if i2c >= 0:
 	pi.i2c_write_byte_data(i2c, 0x07, 0)
 	pi.i2c_read_i2c_block_data(i2c, 0x7f, 0x20)
 	pi.i2c_write_byte_data(i2c, 0x14, 7)
+	
 	pi.i2c_write_byte_data(i2c, 0x15, 3)
 	pi.i2c_write_byte_data(i2c, 0x7f, 0)
 	read = 0

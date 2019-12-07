@@ -1,0 +1,34 @@
+\hypertarget{test__server_8cpp}{}\doxysection{tests/test\+\_\+server.cpp File Reference}
+\label{test__server_8cpp}\index{tests/test\_server.cpp@{tests/test\_server.cpp}}
+{\ttfamily \#include \char`\"{}../include/\+Server.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{test__server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{test__server_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{test\_server.cpp@{test\_server.cpp}!main@{main}}
+\index{main@{main}!test\_server.cpp@{test\_server.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{classmain}{main}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{3            \{}
+\DoxyCodeLine{4     \textcolor{keywordtype}{char} buff[256] = \{0\};}
+\DoxyCodeLine{5     printf(\textcolor{stringliteral}{"Creating server on 0.0.0.0:8080\(\backslash\)n"});}
+\DoxyCodeLine{6     \mbox{\hyperlink{classServer}{Server}} *t1 = \textcolor{keyword}{new} \mbox{\hyperlink{classServer}{Server}}();}
+\DoxyCodeLine{7     t1 -\/> startServer();}
+\DoxyCodeLine{8     printf(\textcolor{stringliteral}{"Server started. Waiting for client data...\(\backslash\)n"});}
+\DoxyCodeLine{9     t1 -\/> receive(buff, 256);}
+\DoxyCodeLine{10     printf(\textcolor{stringliteral}{"Got \%s\(\backslash\)n"}, buff);}
+\DoxyCodeLine{11     t1 -\/> send((\textcolor{keywordtype}{void} *) \textcolor{stringliteral}{"ok"}, 2);}
+\DoxyCodeLine{12     printf(\textcolor{stringliteral}{"Sent back: ok\(\backslash\)n"});}
+\DoxyCodeLine{13     \textcolor{keyword}{delete} t1;}
+\DoxyCodeLine{14     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{15 \}}
+
+\end{DoxyCode}

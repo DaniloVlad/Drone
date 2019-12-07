@@ -1,14 +1,19 @@
-# Compiling
+**Please find related documents in the docs/ folder.**
+    *- UML diagram can be found there as well* 
+Found in the test_screenshots/ folder is proof of working utilities.
+	*- Additonally, source files for these tests can be found in the tests/ folder*
 
-Compile Drone (on raspberry pi): 
+*Compile: make*
 
+*On drone:*
     make drone
+    sudo ./bin/main
 
-Compile Client:
-
+*On client:*
     make client
+    ./bin/client_ui
     
-Testing socket:
+*Testing socket:*
 
     ./bin/test_server
     ./bin/test_client

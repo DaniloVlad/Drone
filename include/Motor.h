@@ -1,5 +1,5 @@
 /**
- * Motor Header
+ * @include Motor Header
  * */
 #ifndef MOTOR_H
 #define MOTOR_H
@@ -24,10 +24,18 @@ class Motor{
         ~Motor();
 
         /** Getter Functions **/
-        int getPin();
-        int getFrequency();
-        int getDutyRange();
-        int getSpeed();
+        int getPin() {
+            return this -> pin;
+        }
+        int getFrequency() {
+            return this -> frequency;
+        }
+        int getDutyRange() {
+            return this -> range;
+        }
+        int getSpeed() {
+            return this -> speed;
+        }
 
         /** Setter Functions **/
         void setFrequency(int frequency);

@@ -1,0 +1,530 @@
+\hypertarget{classAccelerometer}{}\doxysection{Accelerometer Class Reference}
+\label{classAccelerometer}\index{Accelerometer@{Accelerometer}}
+
+
+{\ttfamily \#include $<$Accelerometer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAccelerometer_aa01d756f8ba70acaaab7938dff643d4d}{Accelerometer}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Constructs the accelerometer without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAccelerometer_a05e51a88a0d39e9ed55515e0cfe87d1f}{Accelerometer}} (int \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\+\_\+addr}}, int \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\+\_\+bus}}, int \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\+\_\+pin}}, int \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\+\_\+pin}})
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classAccelerometer}{Accelerometer}} class with specific parameter input. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAccelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}{$\sim$\+Accelerometer}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Deconstructor method for the accelerometer. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAccelerometer_a3dce5db78f109e8579a05b6f8119c644}{get\+GyroX}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current X-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAccelerometer_a4f5b6d63723641ca798957c2f067f4fc}{get\+GyroY}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current Y-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAccelerometer_af09684f914c0dad395a4b00bb1481c48}{get\+GyroZ}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current Z-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_ae2cc621494dc7b9b98b2f336c6802f8f}{get\+AccX}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current X-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a7ecf2ab14ef74efde3dfeca2f4b2bd73}{get\+AccY}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current Y-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a87016646e6299b6595f5e24ab358f867}{get\+AccZ}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current Z-\/axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+signed short $\ast$ \mbox{\hyperlink{classAccelerometer_a00eedf7fedccedbf9e3de60a9802788f}{get\+Gyro\+X\+YZ}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current X, Y and Z axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+signed short $\ast$ \mbox{\hyperlink{classAccelerometer_a597268fbe4adba8243b374813dc21a68}{get\+Acc\+X\+YZ}} ()
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current X, Y and Z axis data. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\+\_\+pin}}
+\item 
+int \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\+\_\+pin}}
+\item 
+int \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\+\_\+handle}}
+\item 
+int \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\+\_\+addr}}
+\item 
+int \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\+\_\+bus}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a3a8704a244bbd6e415b254f7bbcbda88}{accX}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_acac1991c541b1869a40107a157c6a2bf}{accY}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a71f9c7819fed7fe6045aa3b0f5fb9a0f}{accZ}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a99c2b29e2ee9db4cb993b617460f7d59}{gyroX}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_a3f53d271bde5dceb5069ed8a5dd0e6ea}{gyroY}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{classAccelerometer_aaa38e587190e3e9b67638f3755476ead}{gyroZ}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAccelerometer_aa01d756f8ba70acaaab7938dff643d4d}\label{classAccelerometer_aa01d756f8ba70acaaab7938dff643d4d}} 
+\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{Accelerometer()}{Accelerometer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Accelerometer\+::\+Accelerometer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Constructs the accelerometer without any specific paramater input for it\textquotesingle{}s components. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classAccelerometer}{Accelerometer}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{6                              \{}
+\DoxyCodeLine{7     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\_addr}} = \mbox{\hyperlink{Configuration_8h_a24ec58c97012b28ee23d1774b0e8d623}{I2C\_ADDR\_ACC}};}
+\DoxyCodeLine{8     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}} = \mbox{\hyperlink{Configuration_8h_a357ae664eb5f3c937443339e9b568c51}{I2C\_BUS}};}
+\DoxyCodeLine{9     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\_pin}} = \mbox{\hyperlink{Configuration_8h_a18aefd12ad84d4c33dc97923cb821e47}{I2C\_SDA}};}
+\DoxyCodeLine{10     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\_pin}} = \mbox{\hyperlink{Configuration_8h_a212ca328a6409c98f8c3dfbbe1ba561d}{I2C\_SCL}};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{13     \textcolor{keywordflow}{if}(gpioSetMode(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\_pin}}, PI\_ALT0) != 0) \{}
+\DoxyCodeLine{14         perror(\textcolor{stringliteral}{"Couldn't set mode"});}
+\DoxyCodeLine{15         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{16     \}}
+\DoxyCodeLine{17   }
+\DoxyCodeLine{18     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{19     \textcolor{keywordflow}{if}(gpioSetMode(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\_pin}}, PI\_ALT0) != 0) \{}
+\DoxyCodeLine{20         perror(\textcolor{stringliteral}{"Couldn't set mode"});}
+\DoxyCodeLine{21         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{22     \}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// Attempt's to initialize the i2c device.}}
+\DoxyCodeLine{25     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}} = i2cOpen(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\_addr}}, 0)) == (PI\_BAD\_I2C\_BUS | PI\_BAD\_I2C\_ADDR | PI\_BAD\_FLAGS | PI\_NO\_HANDLE | PI\_I2C\_OPEN\_FAILED)) \{}
+\DoxyCodeLine{26         perror(\textcolor{stringliteral}{"Couldn't initialize i2c device"});}
+\DoxyCodeLine{27         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{comment}{//configure}}
+\DoxyCodeLine{31     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0) != 0) \{}
+\DoxyCodeLine{32         perror(\textcolor{stringliteral}{"Couldn't set register bank 0"});}
+\DoxyCodeLine{33         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x06, 0x80) != 0) \{}
+\DoxyCodeLine{37         perror(\textcolor{stringliteral}{"Couldn't Configure PWR\_MGMNT"});}
+\DoxyCodeLine{38         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40     sleep(2);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x06, 0) != 0) \{}
+\DoxyCodeLine{43         perror(\textcolor{stringliteral}{"Couldn't Reset PWR\_MGMNT"});}
+\DoxyCodeLine{44         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{45     \}}
+\DoxyCodeLine{46     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0x20) != 0) \{}
+\DoxyCodeLine{47         perror(\textcolor{stringliteral}{"Couldn't select register bank 2"});}
+\DoxyCodeLine{48         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x14, 0x07) != 0) \{}
+\DoxyCodeLine{52         perror(\textcolor{stringliteral}{"Couldn't configure sensitivity!"});}
+\DoxyCodeLine{53         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{54     \} }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x15, 0x03) != 0) \{}
+\DoxyCodeLine{57         perror(\textcolor{stringliteral}{"Couldn't configure sample averaging!"});}
+\DoxyCodeLine{58         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{59     \} }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0) != 0) \{}
+\DoxyCodeLine{62         perror(\textcolor{stringliteral}{"Couldn't return to register bank 0"});}
+\DoxyCodeLine{63         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65     }
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a05e51a88a0d39e9ed55515e0cfe87d1f}\label{classAccelerometer_a05e51a88a0d39e9ed55515e0cfe87d1f}} 
+\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\index{Accelerometer@{Accelerometer}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{Accelerometer()}{Accelerometer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Accelerometer\+::\+Accelerometer (\begin{DoxyParamCaption}\item[{int}]{i2c\+\_\+addr,  }\item[{int}]{i2c\+\_\+bus,  }\item[{int}]{data\+\_\+pin,  }\item[{int}]{clock\+\_\+pin }\end{DoxyParamCaption})}
+
+
+
+Constructor for \mbox{\hyperlink{classAccelerometer}{Accelerometer}} class with specific parameter input. 
+
+Function\+: \mbox{\hyperlink{classAccelerometer}{Accelerometer}} 
+\begin{DoxyParams}{Parameters}
+{\em i2c\+\_\+addr} & -\/ address of i2c device. \\
+\hline
+{\em i2c\+\_\+bus} & -\/ i2c bus. \\
+\hline
+{\em data\+\_\+pin} & -\/ S\+DA pin for i2c device. \\
+\hline
+{\em clock\+\_\+pin} & -\/ S\+CL pin for i2c device. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75                                                                                   \{}
+\DoxyCodeLine{76   }
+\DoxyCodeLine{77     \textcolor{comment}{// Checks if the i2c bus is of the desired type.}}
+\DoxyCodeLine{78     \textcolor{keywordflow}{if}(\mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}} != 0 || \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}} != 1) \{}
+\DoxyCodeLine{79         perror(\textcolor{stringliteral}{"I2C bus must be either 0 or 1"});}
+\DoxyCodeLine{80     \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{// Set components to given parameters.}}
+\DoxyCodeLine{83     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\_addr}} = \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\_addr}};}
+\DoxyCodeLine{84     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}} = \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}};}
+\DoxyCodeLine{85     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\_pin}} = \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\_pin}};}
+\DoxyCodeLine{86     \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\_pin}} = \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\_pin}};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{89     \textcolor{keywordflow}{if}(gpioSetMode(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}{data\_pin}}, PI\_ALT0) != 0) \{}
+\DoxyCodeLine{90         perror(\textcolor{stringliteral}{"Couldn't set mode"});}
+\DoxyCodeLine{91         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93   }
+\DoxyCodeLine{94     \textcolor{comment}{// If the GPIO mode is unable to be set to alternative mode 0, send an error message and exit.}}
+\DoxyCodeLine{95     \textcolor{keywordflow}{if}(gpioSetMode(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}{clock\_pin}}, PI\_ALT0) != 0) \{}
+\DoxyCodeLine{96         perror(\textcolor{stringliteral}{"Couldn't set mode"});}
+\DoxyCodeLine{97         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{comment}{// Attempt's to initialize the i2c device.}}
+\DoxyCodeLine{101     \textcolor{keywordflow}{if}((\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}} = i2cOpen(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}{i2c\_bus}}, \textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_af18833275afb40424b864d034af9ddec}{i2c\_addr}}, 0)) == (PI\_BAD\_I2C\_BUS | PI\_BAD\_I2C\_ADDR | PI\_BAD\_FLAGS | PI\_NO\_HANDLE | PI\_I2C\_OPEN\_FAILED)) \{}
+\DoxyCodeLine{102         perror(\textcolor{stringliteral}{"Couldn't initialize i2c device"});}
+\DoxyCodeLine{103         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105     \textcolor{comment}{//configure}}
+\DoxyCodeLine{106     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0) != 0) \{}
+\DoxyCodeLine{107         perror(\textcolor{stringliteral}{"Couldn't set register bank 0"});}
+\DoxyCodeLine{108         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{109     \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x06, 0x80) != 0) \{}
+\DoxyCodeLine{112         perror(\textcolor{stringliteral}{"Couldn't Configure PWR\_MGMNT"});}
+\DoxyCodeLine{113         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{114     \}}
+\DoxyCodeLine{115     sleep(2);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x06, 0) != 0) \{}
+\DoxyCodeLine{118         perror(\textcolor{stringliteral}{"Couldn't Reset PWR\_MGMNT"});}
+\DoxyCodeLine{119         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0x20) != 0) \{}
+\DoxyCodeLine{122         perror(\textcolor{stringliteral}{"Couldn't select register bank 2"});}
+\DoxyCodeLine{123         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x14, 0x07) != 0) \{}
+\DoxyCodeLine{127         perror(\textcolor{stringliteral}{"Couldn't configure sensitivity!"});}
+\DoxyCodeLine{128         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{129     \} }
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x15, 0x03) != 0) \{}
+\DoxyCodeLine{132         perror(\textcolor{stringliteral}{"Couldn't configure sample averaging!"});}
+\DoxyCodeLine{133         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{134     \} }
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{keywordflow}{if}(i2cWriteByteData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, 0x7F, 0) != 0) \{}
+\DoxyCodeLine{137         perror(\textcolor{stringliteral}{"Couldn't return to register bank 0"});}
+\DoxyCodeLine{138         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{139     \}}
+\DoxyCodeLine{140     }
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}\label{classAccelerometer_acb6a7d9c61f2084ec4aec4a8ff35d622}} 
+\index{Accelerometer@{Accelerometer}!````~Accelerometer@{$\sim$Accelerometer}}
+\index{````~Accelerometer@{$\sim$Accelerometer}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{$\sim$Accelerometer()}{~Accelerometer()}}
+{\footnotesize\ttfamily Accelerometer\+::$\sim$\+Accelerometer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Deconstructor method for the accelerometer. 
+\end{DoxyItemize}
+
+Function\+: \mbox{\hyperlink{classAccelerometer}{Accelerometer}} deconstructor. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{146                               \{}
+\DoxyCodeLine{147     i2cClose(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}});}
+\DoxyCodeLine{148 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAccelerometer_ae2cc621494dc7b9b98b2f336c6802f8f}\label{classAccelerometer_ae2cc621494dc7b9b98b2f336c6802f8f}} 
+\index{Accelerometer@{Accelerometer}!getAccX@{getAccX}}
+\index{getAccX@{getAccX}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getAccX()}{getAccX()}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::get\+AccX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current X-\/axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+AccX 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{174                                \{}
+\DoxyCodeLine{175     \textcolor{comment}{//reads 16-\/bit word starting at register}}
+\DoxyCodeLine{176     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a3a8704a244bbd6e415b254f7bbcbda88}{accX}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a7d6b9f10e7e5a25d57e2e328384b6b59}{ACC\_X\_H}}));}
+\DoxyCodeLine{177 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a597268fbe4adba8243b374813dc21a68}\label{classAccelerometer_a597268fbe4adba8243b374813dc21a68}} 
+\index{Accelerometer@{Accelerometer}!getAccXYZ@{getAccXYZ}}
+\index{getAccXYZ@{getAccXYZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getAccXYZ()}{getAccXYZ()}}
+{\footnotesize\ttfamily signed short $\ast$ Accelerometer\+::get\+Acc\+X\+YZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current X, Y and Z axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+Acc\+X\+YZ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{209                                        \{}
+\DoxyCodeLine{210     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short} *val = \textcolor{keyword}{new} \textcolor{keywordtype}{signed} short(3);}
+\DoxyCodeLine{211     val[0] = \mbox{\hyperlink{classAccelerometer_ae2cc621494dc7b9b98b2f336c6802f8f}{getAccX}}();}
+\DoxyCodeLine{212     val[1] = \mbox{\hyperlink{classAccelerometer_a7ecf2ab14ef74efde3dfeca2f4b2bd73}{getAccY}}();}
+\DoxyCodeLine{213     val[2] = \mbox{\hyperlink{classAccelerometer_a87016646e6299b6595f5e24ab358f867}{getAccZ}}();}
+\DoxyCodeLine{214     \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{215 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a7ecf2ab14ef74efde3dfeca2f4b2bd73}\label{classAccelerometer_a7ecf2ab14ef74efde3dfeca2f4b2bd73}} 
+\index{Accelerometer@{Accelerometer}!getAccY@{getAccY}}
+\index{getAccY@{getAccY}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getAccY()}{getAccY()}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::get\+AccY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current Y-\/axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+AccY 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182                                \{}
+\DoxyCodeLine{183     \textcolor{comment}{//reads 16-\/bit word starting at register}}
+\DoxyCodeLine{184     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_acac1991c541b1869a40107a157c6a2bf}{accY}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a35d00b15a4bbc9a8186ac28aa25294e4}{ACC\_Y\_H}}));}
+\DoxyCodeLine{185 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a87016646e6299b6595f5e24ab358f867}\label{classAccelerometer_a87016646e6299b6595f5e24ab358f867}} 
+\index{Accelerometer@{Accelerometer}!getAccZ@{getAccZ}}
+\index{getAccZ@{getAccZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getAccZ()}{getAccZ()}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::get\+AccZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the accelerometer\textquotesingle{}s current Z-\/axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+AccZ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{190                                \{}
+\DoxyCodeLine{191     \textcolor{comment}{//reads 16-\/bit word starting at register}}
+\DoxyCodeLine{192     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a71f9c7819fed7fe6045aa3b0f5fb9a0f}{accZ}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a2e68a33660791674db4f6c8964d339b0}{ACC\_Z\_H}}));}
+\DoxyCodeLine{193 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a3dce5db78f109e8579a05b6f8119c644}\label{classAccelerometer_a3dce5db78f109e8579a05b6f8119c644}} 
+\index{Accelerometer@{Accelerometer}!getGyroX@{getGyroX}}
+\index{getGyroX@{getGyroX}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getGyroX()}{getGyroX()}}
+{\footnotesize\ttfamily int Accelerometer\+::get\+GyroX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current X-\/axis data. 
+\end{DoxyItemize}
+
+Getter Functions
+
+Function\+: get\+GyroX 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{153                             \{}
+\DoxyCodeLine{154     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a99c2b29e2ee9db4cb993b617460f7d59}{gyroX}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a6c958ccaaedbceb4b6359cd1caf831db}{GYRO\_X\_H}}));}
+\DoxyCodeLine{155 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a00eedf7fedccedbf9e3de60a9802788f}\label{classAccelerometer_a00eedf7fedccedbf9e3de60a9802788f}} 
+\index{Accelerometer@{Accelerometer}!getGyroXYZ@{getGyroXYZ}}
+\index{getGyroXYZ@{getGyroXYZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getGyroXYZ()}{getGyroXYZ()}}
+{\footnotesize\ttfamily signed short $\ast$ Accelerometer\+::get\+Gyro\+X\+YZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current X, Y and Z axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+Gyro\+X\+YZ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{198                                         \{}
+\DoxyCodeLine{199     \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short} *val = \textcolor{keyword}{new} \textcolor{keywordtype}{signed} short(3);}
+\DoxyCodeLine{200     val[0] = \mbox{\hyperlink{classAccelerometer_a3dce5db78f109e8579a05b6f8119c644}{getGyroX}}();}
+\DoxyCodeLine{201     val[1] = \mbox{\hyperlink{classAccelerometer_a4f5b6d63723641ca798957c2f067f4fc}{getGyroY}}();}
+\DoxyCodeLine{202     val[2] = \mbox{\hyperlink{classAccelerometer_af09684f914c0dad395a4b00bb1481c48}{getGyroZ}}();}
+\DoxyCodeLine{203     \textcolor{keywordflow}{return} val;}
+\DoxyCodeLine{204 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_a4f5b6d63723641ca798957c2f067f4fc}\label{classAccelerometer_a4f5b6d63723641ca798957c2f067f4fc}} 
+\index{Accelerometer@{Accelerometer}!getGyroY@{getGyroY}}
+\index{getGyroY@{getGyroY}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getGyroY()}{getGyroY()}}
+{\footnotesize\ttfamily int Accelerometer\+::get\+GyroY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current Y-\/axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+GyroY 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{160                             \{}
+\DoxyCodeLine{161     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a3f53d271bde5dceb5069ed8a5dd0e6ea}{gyroY}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a294b64f63476a444d64d00e0c07194b7}{GYRO\_Y\_H}}));}
+\DoxyCodeLine{162 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classAccelerometer_af09684f914c0dad395a4b00bb1481c48}\label{classAccelerometer_af09684f914c0dad395a4b00bb1481c48}} 
+\index{Accelerometer@{Accelerometer}!getGyroZ@{getGyroZ}}
+\index{getGyroZ@{getGyroZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{getGyroZ()}{getGyroZ()}}
+{\footnotesize\ttfamily int Accelerometer\+::get\+GyroZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Getter function for the gyroscope\textquotesingle{}s current Z-\/axis data. 
+\end{DoxyItemize}
+
+Function\+: get\+GyroZ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{167                             \{}
+\DoxyCodeLine{168     \textcolor{keywordflow}{return} (\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_aaa38e587190e3e9b67638f3755476ead}{gyroZ}} = i2cReadWordData(\textcolor{keyword}{this} -\/> \mbox{\hyperlink{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}{i2c\_handle}}, \mbox{\hyperlink{Accelerometer_8h_a9de13df0fbc0fc1de96fbde0cc8688f3}{GYRO\_Z\_H}}));}
+\DoxyCodeLine{169 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classAccelerometer_a3a8704a244bbd6e415b254f7bbcbda88}\label{classAccelerometer_a3a8704a244bbd6e415b254f7bbcbda88}} 
+\index{Accelerometer@{Accelerometer}!accX@{accX}}
+\index{accX@{accX}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{accX}{accX}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::accX\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_acac1991c541b1869a40107a157c6a2bf}\label{classAccelerometer_acac1991c541b1869a40107a157c6a2bf}} 
+\index{Accelerometer@{Accelerometer}!accY@{accY}}
+\index{accY@{accY}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{accY}{accY}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::accY\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_a71f9c7819fed7fe6045aa3b0f5fb9a0f}\label{classAccelerometer_a71f9c7819fed7fe6045aa3b0f5fb9a0f}} 
+\index{Accelerometer@{Accelerometer}!accZ@{accZ}}
+\index{accZ@{accZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{accZ}{accZ}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::accZ\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}\label{classAccelerometer_a373870698b2724f32633e90a53bc4ad8}} 
+\index{Accelerometer@{Accelerometer}!clock\_pin@{clock\_pin}}
+\index{clock\_pin@{clock\_pin}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{clock\_pin}{clock\_pin}}
+{\footnotesize\ttfamily int Accelerometer\+::clock\+\_\+pin\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}\label{classAccelerometer_af0c68901615761cccd35a183f4ebfe3a}} 
+\index{Accelerometer@{Accelerometer}!data\_pin@{data\_pin}}
+\index{data\_pin@{data\_pin}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{data\_pin}{data\_pin}}
+{\footnotesize\ttfamily int Accelerometer\+::data\+\_\+pin\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_a99c2b29e2ee9db4cb993b617460f7d59}\label{classAccelerometer_a99c2b29e2ee9db4cb993b617460f7d59}} 
+\index{Accelerometer@{Accelerometer}!gyroX@{gyroX}}
+\index{gyroX@{gyroX}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{gyroX}{gyroX}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::gyroX\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_a3f53d271bde5dceb5069ed8a5dd0e6ea}\label{classAccelerometer_a3f53d271bde5dceb5069ed8a5dd0e6ea}} 
+\index{Accelerometer@{Accelerometer}!gyroY@{gyroY}}
+\index{gyroY@{gyroY}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{gyroY}{gyroY}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::gyroY\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_aaa38e587190e3e9b67638f3755476ead}\label{classAccelerometer_aaa38e587190e3e9b67638f3755476ead}} 
+\index{Accelerometer@{Accelerometer}!gyroZ@{gyroZ}}
+\index{gyroZ@{gyroZ}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{gyroZ}{gyroZ}}
+{\footnotesize\ttfamily int16\+\_\+t Accelerometer\+::gyroZ\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_af18833275afb40424b864d034af9ddec}\label{classAccelerometer_af18833275afb40424b864d034af9ddec}} 
+\index{Accelerometer@{Accelerometer}!i2c\_addr@{i2c\_addr}}
+\index{i2c\_addr@{i2c\_addr}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{i2c\_addr}{i2c\_addr}}
+{\footnotesize\ttfamily int Accelerometer\+::i2c\+\_\+addr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}\label{classAccelerometer_af517cbd974cfcaa5dfb58879c1c6c481}} 
+\index{Accelerometer@{Accelerometer}!i2c\_bus@{i2c\_bus}}
+\index{i2c\_bus@{i2c\_bus}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{i2c\_bus}{i2c\_bus}}
+{\footnotesize\ttfamily int Accelerometer\+::i2c\+\_\+bus\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}\label{classAccelerometer_a5cded11d9bd0e79dd39f4b275454ebdd}} 
+\index{Accelerometer@{Accelerometer}!i2c\_handle@{i2c\_handle}}
+\index{i2c\_handle@{i2c\_handle}!Accelerometer@{Accelerometer}}
+\doxysubsubsection{\texorpdfstring{i2c\_handle}{i2c\_handle}}
+{\footnotesize\ttfamily int Accelerometer\+::i2c\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Accelerometer_8h}{Accelerometer.\+h}}\item 
+\mbox{\hyperlink{Accelerometer_8cpp}{Accelerometer.\+cpp}}\end{DoxyCompactItemize}

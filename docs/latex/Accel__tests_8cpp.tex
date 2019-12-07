@@ -1,0 +1,58 @@
+\hypertarget{Accel__tests_8cpp}{}\doxysection{tests/\+Accel\+\_\+tests.cpp File Reference}
+\label{Accel__tests_8cpp}\index{tests/Accel\_tests.cpp@{tests/Accel\_tests.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../include/\+Accelerometer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Accel__tests_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Accel__tests_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{Accel__tests_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{Accel\_tests.cpp@{Accel\_tests.cpp}!main@{main}}
+\index{main@{main}!Accel\_tests.cpp@{Accel\_tests.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{classmain}{main}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{6            \{  }
+\DoxyCodeLine{7     }
+\DoxyCodeLine{8     \textcolor{keywordtype}{int} \mbox{\hyperlink{namespaceAccel__tests_a5c8f0253d65cbe9fbeee0b6d3adb7c53}{SENS\_ACC}} = 16 * 1000 ;\textcolor{comment}{//convert values from mg to g}}
+\DoxyCodeLine{9     \textcolor{keywordtype}{int} \mbox{\hyperlink{namespaceAccel__tests_a98fccb1d1a64ff7fb5e647cd5dc15416}{RUNTIME}} = 60;}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11     \textcolor{keywordflow}{if}(gpioInitialise() < 0) \{}
+\DoxyCodeLine{12         std::cout << \textcolor{stringliteral}{"Must be run as sudo. Also run sudo killall pigpiod!"} << std::endl;}
+\DoxyCodeLine{13     \}}
+\DoxyCodeLine{14     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16         \mbox{\hyperlink{classAccelerometer}{Accelerometer}} *\mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} = \textcolor{keyword}{new} \mbox{\hyperlink{classAccelerometer}{Accelerometer}}();}
+\DoxyCodeLine{17         \textcolor{comment}{// create half second delay}}
+\DoxyCodeLine{18         \textcolor{keyword}{struct }timespec sleepTime;}
+\DoxyCodeLine{19         sleepTime.tv\_nsec = 1000000000/8;}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21         \textcolor{comment}{//int read = 0;}}
+\DoxyCodeLine{22         time\_t start = time(NULL);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24         \textcolor{keywordflow}{while}((time(NULL) -\/ start) < \mbox{\hyperlink{namespaceAccel__tests_a98fccb1d1a64ff7fb5e647cd5dc15416}{RUNTIME}}) \{}
+\DoxyCodeLine{25             \textcolor{keywordtype}{int} \mbox{\hyperlink{namespaceAccel__tests_a0c55325e41653a28356a1d0e717143c7}{x}} = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getAccX();    \textcolor{comment}{//this returned an int not sure if wanted unsigned short}}
+\DoxyCodeLine{26             \textcolor{keywordtype}{int} \mbox{\hyperlink{namespaceAccel__tests_a598e318a701d367c8970bc54c2d13637}{y}} = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getAccY();}
+\DoxyCodeLine{27             int16\_t \mbox{\hyperlink{namespaceAccel__tests_af0c9ab5a3bcf30eefcb890f283a181a7}{z}} = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getAccZ();}
+\DoxyCodeLine{28             \textcolor{keywordtype}{int} gx = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getGyroX();}
+\DoxyCodeLine{29             \textcolor{keywordtype}{int} gy = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getGyroY();}
+\DoxyCodeLine{30             \textcolor{keywordtype}{int} gz = \mbox{\hyperlink{namespaceAccel__tests_aee15a6792c079077509656f6d187f3e7}{accel}} -\/> getGyroY();}
+\DoxyCodeLine{31             std::cout << \textcolor{stringliteral}{"Acceleration:"} << std::endl;}
+\DoxyCodeLine{32             std::cout << \textcolor{stringliteral}{"X = "}<< (float) \mbox{\hyperlink{namespaceAccel__tests_a0c55325e41653a28356a1d0e717143c7}{x}}/\mbox{\hyperlink{namespaceAccel__tests_a5c8f0253d65cbe9fbeee0b6d3adb7c53}{SENS\_ACC}} << \textcolor{stringliteral}{"g Y ="}<< (\textcolor{keywordtype}{float}) \mbox{\hyperlink{namespaceAccel__tests_a598e318a701d367c8970bc54c2d13637}{y}}/\mbox{\hyperlink{namespaceAccel__tests_a5c8f0253d65cbe9fbeee0b6d3adb7c53}{SENS\_ACC}} <<\textcolor{stringliteral}{"g Z = "}<< (float) \mbox{\hyperlink{namespaceAccel__tests_af0c9ab5a3bcf30eefcb890f283a181a7}{z}}/\mbox{\hyperlink{namespaceAccel__tests_a5c8f0253d65cbe9fbeee0b6d3adb7c53}{SENS\_ACC}} <<\textcolor{stringliteral}{"g "} << std::endl;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34             std::cout << \textcolor{stringliteral}{"Gyro"} << std::endl;}
+\DoxyCodeLine{35             std::cout << \textcolor{stringliteral}{"X = "} << gx << \textcolor{stringliteral}{" Y = "} << gy << \textcolor{stringliteral}{" Z = "} << gz << std::endl;}
+\DoxyCodeLine{36             sleep(1);}
+\DoxyCodeLine{37         \}}
+\DoxyCodeLine{38     \}}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
