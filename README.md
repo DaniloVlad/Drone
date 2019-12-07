@@ -3,6 +3,7 @@
 Found in the test_screenshots/ folder is proof of working utilities.
 	*- Additonally, source files for these tests can be found in the tests/ folder*
 
+Checkout the [documentation!](https://danilovlad.github.io/Drone/) 
 #Setting up the pi:
 
     sudo apt-get install pigpio
