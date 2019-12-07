@@ -5,7 +5,7 @@ Found in the test_screenshots/ folder is proof of working utilities.
 
 Checkout the [documentation!](https://danilovlad.github.io/Drone/) 
 
-#Setting up the pi:
+# Setting up the pi:
 
     sudo apt-get install pigpio
 
@@ -13,11 +13,11 @@ Next configure the pi as a wireless access point: https://www.raspberrypi.org/do
 
 (Set the IP to 192.168.4.1 for the code to work out of box)
 
-#Configuration.h
+# Configuration.h
 
     In the include/ this file should be edited to the appropriate pins and settings for your hookup!
-    
-#Compiling
+
+# Compiling
 
 *Compile: make*
 
