@@ -6,7 +6,7 @@
 
 Checkout the [documentation!](https://danilovlad.github.io/Drone/) 
 
-Video Of the Drone working: [Here!](https://drive.google.com/file/d/1CiL84dBEGCEAY9FnCJg5qpFQOMIlLBFK/view?usp=sharing)
+Video Of the Drone working: [Here!](https://drive.google.com/file/d/1PWa7tf55ajyGLO5VAZWS5-eSpB_HxBNT/view?usp=sharing)
 
 # Setting up the pi:
 
