@@ -21,8 +21,6 @@ Next configure the pi as a [wireless access point](https://www.raspberrypi.org/d
 
 # Compiling
 
-*Compile: make*
-
 On Drone (raspberry pi):
 
     make drone
