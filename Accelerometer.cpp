@@ -197,9 +197,9 @@ int16_t Accelerometer::getAccZ() {
 */  
 signed short *Accelerometer::getGyroXYZ() {
     signed short *val = new signed short(3);
-	val[0] = getGyroX();
-  	val[1] = getGyroY();
-  	val[2] = getGyroZ();
+    val[0] = getGyroX();
+    val[1] = getGyroY();
+    val[2] = getGyroZ();
     return val;
 }
 
@@ -207,10 +207,10 @@ signed short *Accelerometer::getGyroXYZ() {
 *   @brief - Getter function for the accelerometer's current X, Y and Z axis data.
 */  
 signed short *Accelerometer::getAccXYZ() {
-	signed short *val = new signed short(3);
+    signed short *val = new signed short(3);
     val[0] = getAccX();
-  	val[1] = getAccY();
-  	val[2] = getAccZ();
+    val[1] = getAccY();
+    val[2] = getAccZ();
     return val;
 }
 
