@@ -1,7 +1,9 @@
 Compile Drone (on raspberry pi): 
+
     make drone
 
 Compile Client:
+
     make client
     
 Testing socket:
