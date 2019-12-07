@@ -32,7 +32,7 @@ On Client (any linux machine with UI):
     ./bin/client_ui
     
 
-#Testing
+# Testing
 
 sample outputs availible in [test_screenshots](https://github.com/DaniloVlad/Drone/tree/master/test_screenshots)
 Testing socket:
