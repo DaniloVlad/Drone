@@ -11,7 +11,7 @@ Video Of the Drone working: [Here!](https://drive.google.com/file/d/1CiL84dBEGCE
 
     sudo apt-get install pigpio
 
-Next configure the pi as a wireless access point: https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
+Next configure the pi as a [wireless access point](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
 
 (Set the IP to 192.168.4.1 for the code to work out of box)
 
