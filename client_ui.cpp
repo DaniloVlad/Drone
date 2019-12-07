@@ -231,12 +231,13 @@ gboolean handle_key_press (GtkWidget *widget, GdkEventKey *event, gpointer data)
     char c = 'c';
     if(calibration == 0) {
       std::cout << "Starting calibration." << std::endl;
-     client -> send(&c, 1);
-     std::cout << "Please connect the battery and press c again once the beeping is completed!" << std::endl;
-     calibration = 1;
+      client -> send(&c, 1);
+      std::cout << "Please connect the battery and press c again once the beeping is completed!" << std::endl;
+      calibration = 1;
     }
 
     else if(calibration == 1) {
+      client -> send(&c, 1);
       std::cout << "Wait for the beeps to complete and you can start flying the drone!" << std::endl;
       calibration = 2;
     }
