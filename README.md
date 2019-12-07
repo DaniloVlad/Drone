@@ -1,9 +1,11 @@
-**Please find related documents in the docs/ folder.**
+**Please find related documents in the documents/ folder.**
     *- UML diagram can be found there as well* 
 Found in the test_screenshots/ folder is proof of working utilities.
 	*- Additonally, source files for these tests can be found in the tests/ folder*
 
 Checkout the [documentation!](https://danilovlad.github.io/Drone/) 
+
+Video Of the Drone working: [Here!] (https://drive.google.com/file/d/1CiL84dBEGCEAY9FnCJg5qpFQOMIlLBFK/view?usp=sharing)
 
 # Setting up the pi:
 
